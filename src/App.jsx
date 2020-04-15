@@ -1,38 +1,38 @@
-import React, { useState } from "react";
-import carsData from "./components/carsData";
-import CarTable from "./components/CarTable";
-import AddCarForm from "./components/AddCarForm";
-import EditCarForm from "./components/EditCarForm";
-import Footer from "./components/Footer";
+import React, { useState } from 'react';
+import carsData from './components/carsData';
+import CarTable from './components/CarTable';
+import AddCarForm from './components/AddCarForm';
+import EditCarForm from './components/EditCarForm';
+import Footer from './components/Footer';
 
 const App = () => {
-
   const [cars, setCars] = useState(carsData);
   const [editing, setEditing] = useState(false);
 
-  const addCar = car => {
-    car.id = cars.length + 1;
+  const addCar = (car) => {
+    const carTwo = car;
+    carTwo.id = cars.length + 1;
     setCars([...cars, car]);
   };
 
-  const deleteCar = id => {
+  const deleteCar = (id) => {
     setEditing(false);
-    setCars(cars.filter(car => car.id !== id));
+    setCars(cars.filter((car) => car.id !== id));
   };
 
   const initialFormState = {
     id: null,
-    brand: "",
-    country: "",
-    model: "",
-    year: "",
-    serialNum: "",
-    description: ""
+    brand: '',
+    country: '',
+    model: '',
+    year: '',
+    serialNum: '',
+    description: '',
   };
 
   const [currentCar, setCurrentCar] = useState(initialFormState);
 
-  const editRow = car => {
+  const editRow = (car) => {
     setEditing(true);
     setCurrentCar({
       id: car.id,
@@ -41,20 +41,20 @@ const App = () => {
       model: car.model,
       year: car.year,
       serialNum: car.serialNum,
-      description: car.description
+      description: car.description,
     });
   };
 
-  const updateCar = (id, updateCar) => {
+  const updateCarTwo = (id, updateCar) => {
     setEditing(false);
-    setCars(cars.map(car => (car.id === id ? updateCar : car)));
+    setCars(cars.map((car) => (car.id === id ? updateCar : car)));
   };
 
   return (
     <div className="container">
       <h1>CRUD App Cars</h1>
       <div className="flex-row">
-      <div className="flex-large">
+        <div className="flex-large">
           <h2>View cars</h2>
           <CarTable cars={cars} editRow={editRow} deleteCar={deleteCar} />
         </div>
@@ -65,7 +65,7 @@ const App = () => {
               <EditCarForm
                 setEditing={setEditing}
                 currentCar={currentCar}
-                updateCar={updateCar}
+                updateCar={updateCarTwo}
               />
             </div>
           ) : (
@@ -79,5 +79,5 @@ const App = () => {
       <Footer />
     </div>
   );
-}
+};
 export default App;
