@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-const EditCarForm = ({ currentCar, updateCar, setEditing }, props) => {
+const EditCarForm = ({
+  currentCar, updateCar, setEditing, setPencil,
+}) => {
   const [car, setCar] = useState(currentCar);
 
   const handleInputChange = (event) => {
@@ -11,8 +13,7 @@ const EditCarForm = ({ currentCar, updateCar, setEditing }, props) => {
 
   useEffect(() => {
     setCar(currentCar);
-    // eslint-disable-next-line
-  }, [props]);
+  }, [currentCar]);
 
   return (
     <form
@@ -78,7 +79,10 @@ const EditCarForm = ({ currentCar, updateCar, setEditing }, props) => {
       <button type="submit" className="button add-button">Update car</button>
       <button
         type="submit"
-        onClick={() => setEditing(false)}
+        onClick={() => {
+          setEditing(false);
+          setPencil(false);
+        }}
         className="button cancel-button"
       >
         Cancel
@@ -100,6 +104,7 @@ EditCarForm.propTypes = {
   }),
   updateCar: PropTypes.func,
   setEditing: PropTypes.func,
+  setPencil: PropTypes.func,
 };
 
 export default EditCarForm;
