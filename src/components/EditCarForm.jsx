@@ -11,6 +11,7 @@ const EditCarForm = ({ currentCar, updateCar, setEditing }, props) => {
 
   useEffect(() => {
     setCar(currentCar);
+    // eslint-disable-next-line
   }, [props]);
 
   return (
@@ -50,7 +51,7 @@ const EditCarForm = ({ currentCar, updateCar, setEditing }, props) => {
       <label>
         Year
         <input
-          type="number"
+          type="text"
           name="year"
           value={car.year}
           onChange={handleInputChange}
@@ -59,7 +60,7 @@ const EditCarForm = ({ currentCar, updateCar, setEditing }, props) => {
       <label>
         Serial Number
         <input
-          type="number"
+          type="text"
           name="serialNum"
           value={car.serialNum}
           onChange={handleInputChange}
@@ -86,10 +87,19 @@ const EditCarForm = ({ currentCar, updateCar, setEditing }, props) => {
   );
 };
 
+
 EditCarForm.propTypes = {
-  currentCar: PropTypes.arrayOf.isRequired,
-  updateCar: PropTypes.func.isRequired,
-  setEditing: PropTypes.func.isRequired,
+  currentCar: PropTypes.shape({
+    id: PropTypes.number,
+    brand: PropTypes.string,
+    country: PropTypes.string,
+    model: PropTypes.string,
+    year: PropTypes.string,
+    serialNum: PropTypes.string,
+    description: PropTypes.string,
+  }),
+  updateCar: PropTypes.func,
+  setEditing: PropTypes.func,
 };
 
 export default EditCarForm;

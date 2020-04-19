@@ -54,9 +54,9 @@ const CarTable = ({ cars, editRow, deleteCar }) => (
 );
 
 CarTable.propTypes = {
-  cars: PropTypes.arrayOf.isRequired,
-  editRow: PropTypes.func.isRequired,
-  deleteCar: PropTypes.func.isRequired,
+  cars: PropTypes.arrayOf(PropTypes.object),
+  editRow: PropTypes.func,
+  deleteCar: PropTypes.func,
 };
 
 export default CarTable;

@@ -42,7 +42,7 @@
     "react/jsx-one-expression-per-line": "off",
     "react/require-default-props": "off",
     "react/jsx-wrap-multilines": "off",
-    "react/forbid-prop-types": "off",
+    // "react/forbid-prop-types": "off",
     "react/jsx-filename-extension": "off",
     "jsx-a11y/label-has-associated-control": [
         "error",

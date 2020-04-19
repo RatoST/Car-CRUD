@@ -58,7 +58,7 @@ const AddCarForm = (props) => {
       <label>
         Year
         <input
-          type="number"
+          type="text"
           name="year"
           value={car.year}
           onChange={handleInputChange}
@@ -67,7 +67,7 @@ const AddCarForm = (props) => {
       <label>
         Serial Number
         <input
-          type="number"
+          type="text"
           name="serialNum"
           value={car.serialNum}
           onChange={handleInputChange}
