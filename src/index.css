@@ -45,7 +45,7 @@ body {
     background: #535253;
     color: #ffffff;
     padding: .75rem 1.25rem;
-    margin: 10px 10px 0 0;
+    margin: 0 10px 0 0;
 }
 
 .cancel-button{
@@ -53,7 +53,7 @@ body {
     border: 1px solid #cdcdcd;
     color: #4e4e4e;
     padding: .75rem 1.25rem; 
-    margin: 10px 0 0 10px;
+    margin: 0 0 0 10px;
     }
   
 .delete-button{
