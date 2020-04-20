@@ -1,9 +1,36 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
 }
-/**
- * Buttons
- */
+
+footer {
+  margin:0;
+  padding: 5%;
+  text-align: center;
+}
+
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+input[type=number], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+             
+label {
+  margin: 5px 0 0 5px;
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+} 
+
+/* Buttons */
 .button, a.button, button, [type=submit], [type=reset], [type=button] {
   -webkit-appearance: none;
   display: inline-block;
@@ -91,172 +118,76 @@ button:focus, button:active,
   margin: 5px;
 }
 
-.muted-button, a.muted-button {
-  background: transparent;
-  border: 1px solid #cdcdcd;
-  color: #4e4e4e;
-}
-
-.muted-button:hover, .muted-button:focus, .muted-button:active,
-a.muted-button:hover, a.muted-button:focus, a.muted-button:active {
-  color: #4e4e4e;
-  border: 1px solid #818181;
-  background: transparent;
-}
-  
-.round-button, a.round-button {
-  border-radius: 40px;
-}
-  
-  .square-button,
-  a.square-button {
-    border-radius: 0; }
-  
-  .full-button,
-  a.full-button {
-    display: block;
-    width: 100%; }
-
-
-/**
- * Tables
- */
- table {
-    border-collapse: collapse;
-    border-spacing: 0;
-    width: 100%;
-    max-width: 100%; }
-  
-  thead th {
-    border-bottom: 2px solid #dedede; }
-  
-  tfoot th {
-    border-top: 2px solid #dedede; }
-  
-  td {
-    border-bottom: 1px solid #dedede; }
-  
-  th,
-  td {
-    text-align: left;
-    padding: .5rem; }
-  
-  caption {
-    padding: 1rem 0;
-    caption-side: bottom;
-    color: #ababab; }
-  
-  .striped-table tbody tr:nth-child(odd) {
-    background-color: #f8f8f8; }
-  
-  .contain-table {
-    overflow-x: auto; }
-  
-  @media (min-width: 600px) {
-    .contain-table {
-      width: 100%; } }
-  
-    /*Container*/
-    .full-container {
-  max-width: 100%;
-  padding: 0 1rem; }
-
+/* Container */
 .container, .small-container, .medium-container {
   max-width: 1200px;
   padding: 0 1rem;
   margin-left: auto;
-  margin-right: auto; }
+  margin-right: auto; 
+}
 
-.small-container {
-  max-width: 800px; }
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f262;
+  padding: 20px;
+}
 
-.medium-container {
-  max-width: 1000px; }
-
-.content-section {
-  padding: 30px 0; }
-
-@media (min-width: 600px) {
-  .content-section {
-    padding: 60px 0; } }
-
-    /**
- * Grid
- */
-.flex-small,
+  /* Grid */
 .flex-large {
   padding-left: 1rem;
-  padding-right: 1rem; }
+  padding-right: 1rem; 
+}
 
-.flex-small,
 .flex-large {
   flex-basis: 100%;
-  margin-bottom: 1rem; }
-
-/* Small screen breakpoint */
-@media (min-width: 600px) {
-  .flex-small {
-    flex: 1;
-    margin-bottom: 0; } }
+  margin-bottom: 1rem; 
+}
 
 /* Large screen breakpoint */
 @media (min-width: 1000px) {
   .flex-large {
     flex: 1;
-    margin-bottom: 0; } }
+    margin-bottom: 0; } 
+  }                 
 
-
-   * {
-    box-sizing: border-box;
-        }
-              
- input[type=text], select, textarea {
- width: 100%;
- padding: 12px;
- border: 1px solid #ccc;
- border-radius: 4px;
- resize: vertical;
- }
-
- input[type=number], select, textarea {
- width: 100%;
- padding: 12px;
- border: 1px solid #ccc;
- border-radius: 4px;
- resize: vertical;
- }
-             
- label {
-    margin: 5px 0 0 5px;
-    padding: 12px 12px 12px 0;
-    display: inline-block;
- }
-              
-                            
-.container {
-border-radius: 5px;
-background-color: #f2f2f262;
-padding: 20px;
-  }
-              
-footer {
-  margin:0;
-  padding: 5%;
-  text-align: center;
-}
-
+/* Pointers */    
 .disPen {
   display:inline;
 }
 
-.remPen {
-  display:none;
+.pointTypeInit {
+  cursor: initial;
 }
 
 .poinTypePoint {
   cursor:pointer;
 }
 
-.pointTypeInit {
-  cursor: initial;
+.remPen {
+  display:none;
+}  
+
+/* Tables */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  max-width: 100%; 
+}
+  
+thead th {
+  border-bottom: 2px solid #dedede; 
+}
+  
+tfoot th {
+  border-top: 2px solid #dedede; 
+}
+  
+td {
+  border-bottom: 1px solid #dedede; 
+}
+  
+th, td {
+  text-align: left;
+  padding: .5rem; 
 }
