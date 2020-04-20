@@ -32,7 +32,7 @@ const CarTable = ({
         {cars.length > 0 ? (
           cars.map((car) => (
             <tr
-              className={isMouseOver ? 'poinTypeGrab' : 'poinTypeInit'}
+              className={isMouseOver ? 'poinTypePoint' : 'poinTypeInit'}
               key={car.id}
               onMouseOver={handleMouseOver}
               onMouseOut={handleMouseOut}

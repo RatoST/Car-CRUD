@@ -54,7 +54,6 @@ const App = () => {
     setCars(cars.map((car) => (car.id === id ? updateCar : car)));
   };
 
-
   return (
     <div className="container">
       <h1>CRUD App Cars</h1>

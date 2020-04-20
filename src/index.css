@@ -240,8 +240,8 @@ footer {
   display:none;
 }
 
-.poinTypeGrab {
-  cursor:grab;
+.poinTypePoint {
+  cursor:pointer;
 }
 
 .pointTypeInit {
