@@ -134,21 +134,19 @@ button:focus, button:active,
 
   /* Grid */
 .flex-large {
-  padding-left: 1rem;
-  padding-right: 1rem; 
-}
-
-.flex-large {
   flex-basis: 100%;
   margin-bottom: 1rem; 
+  padding-left: 1rem;
+  padding-right: 1rem; 
 }
 
 /* Large screen breakpoint */
 @media (min-width: 1000px) {
   .flex-large {
     flex: 1;
-    margin-bottom: 0; } 
-  }                 
+    margin-bottom: 0; 
+  } 
+}                 
 
 /* Pointers */    
 .disPen {
