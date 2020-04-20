@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 const CarTable = ({
-  cars, editRow, deleteCar, pencil, setPencil,
+  cars, editRow, deleteCar, pencil,
 }) => {
   const [isMouseOver, setMouseOver] = useState(false);
 
@@ -32,7 +32,7 @@ const CarTable = ({
         {cars.length > 0 ? (
           cars.map((car) => (
             <tr
-              style={{ cursor: isMouseOver ? 'grab' : 'initial' }}
+              className={isMouseOver ? 'poinTypeGrab' : 'poinTypeInit'}
               key={car.id}
               onMouseOver={handleMouseOver}
               onMouseOut={handleMouseOut}
@@ -49,12 +49,11 @@ const CarTable = ({
               <td>{car.serialNum}</td>
               <td>{car.description}</td>
               <td>
-                <span className="button edit-button" style={{ display: pencil ? 'inline' : 'none' }}>🖉</span>
+                <span className={`button edit-button ${pencil ? 'disPen' : 'remPen'}`}>🖉</span>
                 <button
                   type="button"
                   onClick={() => {
                     deleteCar(car.id);
-                    setPencil(false);
                   }}
                   className="button delete-button"
                 >
@@ -78,7 +77,7 @@ CarTable.propTypes = {
   editRow: PropTypes.func,
   deleteCar: PropTypes.func,
   pencil: PropTypes.bool,
-  setPencil: PropTypes.func,
+
 };
 
 export default CarTable;

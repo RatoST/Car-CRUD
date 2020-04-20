@@ -68,6 +68,8 @@ body {
     background: #ff0000;
     border: 1px solid #ff0000;
     color:#ffffff;
+    cursor: default;
+    pointer-events: auto;
 }
 .edit-button{
     background:transparent ;
@@ -228,4 +230,20 @@ footer {
   margin:0;
   padding: 5%;
   text-align: center;
+}
+
+.disPen {
+  display:inline;
+}
+
+.remPen {
+  display:none;
+}
+
+.poinTypeGrab {
+  cursor:grab;
+}
+
+.pointTypeInit {
+  cursor: initial;
 }
