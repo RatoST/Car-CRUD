@@ -4,7 +4,7 @@ import DeleteButton from './DeleteButton';
 import ClickEdit from './ClickEdit';
 
 const CarTable = ({
-  cars, editRow, deleteCar, pencil, currentCarSerNum,
+  cars, editing, editRow, deleteCar, currentCarSerNum,
 }) => {
   const [isMouseOver, setMouseOver] = useState(false);
 
@@ -42,9 +42,9 @@ const CarTable = ({
               onBlur={handleMouseOut}
             >
               <ClickEdit
+                editing={editing}
                 editRow={editRow}
                 car={car}
-                pencil={pencil}
                 currentCarSerNum={currentCarSerNum}
               />
 
@@ -69,9 +69,9 @@ const CarTable = ({
 
 CarTable.propTypes = {
   cars: PropTypes.arrayOf(PropTypes.object),
+  editing: PropTypes.bool,
   editRow: PropTypes.func,
   deleteCar: PropTypes.func,
-  pencil: PropTypes.bool,
   currentCarSerNum: PropTypes.string,
 
 };

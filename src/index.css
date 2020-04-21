@@ -149,11 +149,6 @@ button:focus, button:active,
 }                 
 
 /* Pointers */    
-.disPen {
-  display:inline-block;
-  
-}
-
 .pointTypeInit {
   cursor: initial;
 }
@@ -161,10 +156,6 @@ button:focus, button:active,
 .poinTypePoint {
   cursor:pointer;
 }
-
-.remPen {
-  display:none;
-}  
 
 /* Tables */
 table {

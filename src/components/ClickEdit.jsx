@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const ClickEdit = ({
-  editRow, car, currentCarSerNum, pencil,
+  editing, editRow, car, currentCarSerNum,
 }) => {
   const click = () => {
     editRow(car);
@@ -19,7 +19,7 @@ const ClickEdit = ({
         onKeyDown={keyDown}
         role="presentation"
       >
-        {car.serialNum === currentCarSerNum && <span className={pencil ? 'disPen' : 'remPen'}>🖉</span>}{' '}
+        {car.serialNum === currentCarSerNum && editing && <span>🖉</span> }{' '}
         {car.brand}
       </td>
       <td
@@ -62,6 +62,7 @@ const ClickEdit = ({
 };
 
 ClickEdit.propTypes = {
+  editing: PropTypes.bool,
   editRow: PropTypes.func,
   car: PropTypes.shape({
     id: PropTypes.number,
@@ -73,7 +74,6 @@ ClickEdit.propTypes = {
     description: PropTypes.string,
   }),
   currentCarSerNum: PropTypes.string,
-  pencil: PropTypes.bool,
 
 };
 

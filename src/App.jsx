@@ -8,7 +8,6 @@ import Footer from './components/Footer';
 const App = () => {
   const [cars, setCars] = useState(carsData);
   const [editing, setEditing] = useState(false);
-  const [pencil, setPencil] = useState(false);
 
   const addCar = (car) => {
     const carTwo = car;
@@ -18,7 +17,6 @@ const App = () => {
 
   const deleteCar = (id) => {
     setEditing(false);
-    setPencil(false);
     setCars(cars.filter((car) => car.id !== id));
   };
 
@@ -36,7 +34,6 @@ const App = () => {
 
   const editRow = (car) => {
     setEditing(true);
-    setPencil(true);
     setCurrentCar({
       id: car.id,
       brand: car.brand,
@@ -50,7 +47,6 @@ const App = () => {
 
   const updateCarTwo = (id, updateCar) => {
     setEditing(false);
-    setPencil(false);
     setCars(cars.map((car) => (car.id === id ? updateCar : car)));
   };
 
@@ -62,9 +58,9 @@ const App = () => {
           <h2>View cars</h2>
           <CarTable
             cars={cars}
+            editing={editing}
             editRow={editRow}
             deleteCar={deleteCar}
-            pencil={pencil}
             currentCarSerNum={currentCar.serialNum}
           />
         </div>
@@ -76,7 +72,6 @@ const App = () => {
                 setEditing={setEditing}
                 currentCar={currentCar}
                 updateCar={updateCarTwo}
-                setPencil={setPencil}
               />
             </div>
           ) : (

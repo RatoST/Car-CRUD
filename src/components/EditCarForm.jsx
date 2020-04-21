@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 const EditCarForm = ({
-  currentCar, updateCar, setEditing, setPencil,
+  currentCar, updateCar, setEditing,
 }) => {
   const [car, setCar] = useState(currentCar);
 
@@ -81,7 +81,6 @@ const EditCarForm = ({
         type="submit"
         onClick={() => {
           setEditing(false);
-          setPencil(false);
         }}
         className="button cancel-button"
       >
@@ -104,7 +103,6 @@ EditCarForm.propTypes = {
   }),
   updateCar: PropTypes.func,
   setEditing: PropTypes.func,
-  setPencil: PropTypes.func,
 };
 
 export default EditCarForm;
