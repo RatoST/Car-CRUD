@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import DeleteButton from './DeleteButton';
+import ClickEdit from './ClickEdit';
 
 const CarTable = ({
-  cars, editRow, deleteCar, pencil,
+  cars, editRow, deleteCar, pencil, currentCarSerNum,
 }) => {
   const [isMouseOver, setMouseOver] = useState(false);
 
@@ -38,27 +40,20 @@ const CarTable = ({
               onMouseOut={handleMouseOut}
               onFocus={handleMouseOver}
               onBlur={handleMouseOut}
-              onClick={() => {
-                editRow(car);
-              }}
             >
-              <td>{car.brand}</td>
-              <td>{car.country}</td>
-              <td>{car.model}</td>
-              <td>{car.year}</td>
-              <td>{car.serialNum}</td>
-              <td>{car.description}</td>
+              <ClickEdit
+                editRow={editRow}
+                car={car}
+                pencil={pencil}
+                currentCarSerNum={currentCarSerNum}
+              />
+
               <td>
-                <span className={`button edit-button ${pencil ? 'disPen' : 'remPen'}`}>🖉</span>
-                <button
-                  type="button"
-                  onClick={() => {
-                    deleteCar(car.id);
-                  }}
-                  className="button delete-button"
-                >
-                  Delete
-                </button>
+                <DeleteButton
+                  deleteCar={deleteCar}
+                  carId={car.id}
+                />
+
               </td>
             </tr>
           ))
@@ -77,6 +72,7 @@ CarTable.propTypes = {
   editRow: PropTypes.func,
   deleteCar: PropTypes.func,
   pencil: PropTypes.bool,
+  currentCarSerNum: PropTypes.string,
 
 };
 

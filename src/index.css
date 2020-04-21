@@ -150,7 +150,8 @@ button:focus, button:active,
 
 /* Pointers */    
 .disPen {
-  display:inline;
+  display:inline-block;
+  
 }
 
 .pointTypeInit {

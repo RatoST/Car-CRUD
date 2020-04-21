@@ -65,7 +65,7 @@ const App = () => {
             editRow={editRow}
             deleteCar={deleteCar}
             pencil={pencil}
-            setPencil={setPencil}
+            currentCarSerNum={currentCar.serialNum}
           />
         </div>
         <div className="flex-large">
