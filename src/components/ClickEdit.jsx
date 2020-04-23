@@ -65,7 +65,7 @@ ClickEdit.propTypes = {
   editing: PropTypes.bool,
   editRow: PropTypes.func,
   car: PropTypes.shape({
-    id: PropTypes.number,
+    id: PropTypes.string,
     brand: PropTypes.string,
     country: PropTypes.string,
     model: PropTypes.string,

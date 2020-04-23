@@ -13,7 +13,7 @@ const DeleteButton = ({ deleteCar, carId }) => (
 
 DeleteButton.propTypes = {
   deleteCar: PropTypes.func,
-  carId: PropTypes.number,
+  carId: PropTypes.string,
 };
 
 export default DeleteButton;

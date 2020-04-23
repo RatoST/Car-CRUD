@@ -1,17 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-const AddCarForm = (props) => {
-  const initialFormState = {
-    id: null,
-    brand: '',
-    country: '',
-    model: '',
-    year: '',
-    serialNum: '',
-    description: '',
-  };
-
+const AddCarForm = ({ initialFormState, addCar }) => {
   const [car, setCar] = useState(initialFormState);
 
   const handleInputChange = (event) => {
@@ -24,7 +14,7 @@ const AddCarForm = (props) => {
       onSubmit={(event) => {
         event.preventDefault();
         if (!car.brand || !car.country) return;
-        props.addCar(car);
+        addCar(car);
         setCar(initialFormState);
       }}
     >
@@ -89,6 +79,15 @@ const AddCarForm = (props) => {
 
 AddCarForm.propTypes = {
   addCar: PropTypes.func.isRequired,
+  initialFormState: PropTypes.shape({
+    id: PropTypes.string,
+    brand: PropTypes.string,
+    country: PropTypes.string,
+    model: PropTypes.string,
+    year: PropTypes.string,
+    serialNum: PropTypes.string,
+    description: PropTypes.string,
+  }),
 };
 
 export default AddCarForm;

@@ -93,7 +93,7 @@ const EditCarForm = ({
 
 EditCarForm.propTypes = {
   currentCar: PropTypes.shape({
-    id: PropTypes.number,
+    id: PropTypes.string,
     brand: PropTypes.string,
     country: PropTypes.string,
     model: PropTypes.string,

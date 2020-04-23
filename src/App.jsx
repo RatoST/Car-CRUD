@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import carsData from './components/carsData';
 import CarTable from './components/CarTable';
 import AddCarForm from './components/AddCarForm';
 import EditCarForm from './components/EditCarForm';
 import Footer from './components/Footer';
 
+
 const App = () => {
   const initialFormState = {
-    id: null,
+    id: '',
     brand: '',
     country: '',
     model: '',
@@ -21,7 +23,7 @@ const App = () => {
   const [editing, setEditing] = useState(false);
 
   const addCar = (car) => {
-    const newCar = { ...car, id: cars.length + 1 };
+    const newCar = { ...car, id: uuidv4() };
     setCars([...cars, newCar]);
   };
 
@@ -29,7 +31,6 @@ const App = () => {
     setEditing(false);
     setCars(cars.filter((car) => car.id !== id));
   };
-
 
   const editRow = (car) => {
     setEditing(true);
@@ -68,7 +69,10 @@ const App = () => {
           ) : (
             <div>
               <h2>Add cars</h2>
-              <AddCarForm addCar={addCar} />
+              <AddCarForm
+                initialFormState={initialFormState}
+                addCar={addCar}
+              />
             </div>
           )}
         </div>
