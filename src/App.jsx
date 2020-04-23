@@ -6,20 +6,6 @@ import EditCarForm from './components/EditCarForm';
 import Footer from './components/Footer';
 
 const App = () => {
-  const [cars, setCars] = useState(carsData);
-  const [editing, setEditing] = useState(false);
-
-  const addCar = (car) => {
-    const carTwo = car;
-    carTwo.id = cars.length + 1;
-    setCars([...cars, car]);
-  };
-
-  const deleteCar = (id) => {
-    setEditing(false);
-    setCars(cars.filter((car) => car.id !== id));
-  };
-
   const initialFormState = {
     id: null,
     brand: '',
@@ -30,22 +16,27 @@ const App = () => {
     description: '',
   };
 
+  const [cars, setCars] = useState(carsData);
   const [currentCar, setCurrentCar] = useState(initialFormState);
+  const [editing, setEditing] = useState(false);
+
+  const addCar = (car) => {
+    const newCar = { ...car, id: cars.length + 1 };
+    setCars([...cars, newCar]);
+  };
+
+  const deleteCar = (id) => {
+    setEditing(false);
+    setCars(cars.filter((car) => car.id !== id));
+  };
+
 
   const editRow = (car) => {
     setEditing(true);
-    setCurrentCar({
-      id: car.id,
-      brand: car.brand,
-      country: car.country,
-      model: car.model,
-      year: car.year,
-      serialNum: car.serialNum,
-      description: car.description,
-    });
+    setCurrentCar(car);
   };
 
-  const updateCarTwo = (id, updateCar) => {
+  const updateNewCar = (id, updateCar) => {
     setEditing(false);
     setCars(cars.map((car) => (car.id === id ? updateCar : car)));
   };
@@ -71,7 +62,7 @@ const App = () => {
               <EditCarForm
                 setEditing={setEditing}
                 currentCar={currentCar}
-                updateCar={updateCarTwo}
+                updateCar={updateNewCar}
               />
             </div>
           ) : (
