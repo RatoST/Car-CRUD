@@ -17,6 +17,7 @@ const App = () => {
     serialNum: '',
     description: '',
   };
+
   const addId = (obj) => ({ ...obj, id: uuidv4() });
   const addIds = (obj) => obj.map(addId);
 
@@ -25,8 +26,7 @@ const App = () => {
   const [editing, setEditing] = useState(false);
 
   const addCar = (car) => {
-    const newCar = { ...car, id: addId() };
-    setCars([...cars, newCar]);
+    setCars([...cars, addId(car)]);
   };
 
   const deleteCar = (id) => {
