@@ -3,7 +3,7 @@ import React from 'react';
 function Footer() {
   return (
     <footer>
-      <p>2020. © Ratko Pokrajac</p>
+      <p>{new Date().getFullYear()}. © Ratko Pokrajac</p>
     </footer>
   );
 }
