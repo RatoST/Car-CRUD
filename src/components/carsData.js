@@ -1,8 +1,5 @@
-import { v4 as uuidv4 } from 'uuid';
-
 const carsData = [
   {
-    id: uuidv4(),
     brand: 'Peugeot',
     country: 'France',
     model: '5008',
@@ -11,7 +8,6 @@ const carsData = [
     description: 'Mono-volume family car. ',
   },
   {
-    id: uuidv4(),
     brand: 'BMW',
     country: 'Germany',
     model: '535',
@@ -20,7 +16,6 @@ const carsData = [
     description: 'Sports limousine car. ',
   },
   {
-    id: uuidv4(),
     brand: 'Peugeot',
     country: 'France',
     model: '3008',

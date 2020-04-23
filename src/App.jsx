@@ -17,8 +17,10 @@ const App = () => {
     serialNum: '',
     description: '',
   };
+  const addId = (obj) => ({ ...obj, id: uuidv4() });
+  const addIds = () => {}; // todo
 
-  const [cars, setCars] = useState(carsData);
+  const [cars, setCars] = useState(addIds(carsData));
   const [currentCar, setCurrentCar] = useState(initialFormState);
   const [editing, setEditing] = useState(false);
 
