@@ -18,14 +18,14 @@ const App = () => {
     description: '',
   };
   const addId = (obj) => ({ ...obj, id: uuidv4() });
-  const addIds = () => {}; // todo
+  const addIds = (obj) => obj.map(addId);
 
   const [cars, setCars] = useState(addIds(carsData));
   const [currentCar, setCurrentCar] = useState(initialFormState);
   const [editing, setEditing] = useState(false);
 
   const addCar = (car) => {
-    const newCar = { ...car, id: uuidv4() };
+    const newCar = { ...car, id: addId() };
     setCars([...cars, newCar]);
   };
 
