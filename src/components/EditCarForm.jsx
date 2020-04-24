@@ -19,7 +19,7 @@ const EditCarForm = ({
     <form
       onSubmit={(event) => {
         event.preventDefault();
-        updateCar(car.id, car);
+        updateCar(car);
       }}
     >
       <label>

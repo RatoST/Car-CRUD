@@ -14,12 +14,12 @@ const ClickEdit = ({
 
   return (
     <>
+      <td>{car.serialNum === currentCarSerNum && editing && <span> &#x270E;</span> }{' '}</td>
       <td
         onClick={click}
         onKeyDown={keyDown}
         role="presentation"
       >
-        {car.serialNum === currentCarSerNum && editing && <span>🖉</span> }{' '}
         {car.brand}
       </td>
       <td
