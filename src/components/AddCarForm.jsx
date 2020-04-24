@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import AddEditForm from './AddEditForm';
 
-const AddCarForm = ({ initialFormState, addCar }) => {
+const AddCarForm = ({ addCar, initialFormState }) => {
   const [car, setCar] = useState(initialFormState);
 
   const handleInputChange = (event) => {
@@ -18,60 +19,10 @@ const AddCarForm = ({ initialFormState, addCar }) => {
         setCar(initialFormState);
       }}
     >
-      <label>
-        Brand
-        <input
-          type="text"
-          name="brand"
-          value={car.brand}
-          onChange={handleInputChange}
-        />
-      </label>
-      <label>
-        Country
-        <input
-          type="text"
-          name="country"
-          value={car.country}
-          onChange={handleInputChange}
-        />
-      </label>
-      <label>
-        Model
-        <input
-          type="text"
-          name="model"
-          value={car.model}
-          onChange={handleInputChange}
-        />
-      </label>
-      <label>
-        Year
-        <input
-          type="text"
-          name="year"
-          value={car.year}
-          onChange={handleInputChange}
-        />
-      </label>
-      <label>
-        Serial Number
-        <input
-          type="text"
-          name="serialNum"
-          value={car.serialNum}
-          onChange={handleInputChange}
-        />
-      </label>
-      <label>
-        Description
-        <input
-          type="text"
-          name="description"
-          value={car.description}
-          onChange={handleInputChange}
-        />
-      </label>
+      <AddEditForm
+        car={car}
+        handleInputChange={handleInputChange}
+      />
       <button type="submit" className="button add-button">Add new car</button>
     </form>
   );
