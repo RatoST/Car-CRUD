@@ -21,7 +21,7 @@ const CarTable = ({
     <table>
       <thead>
         <tr>
-          <th>{editing && <span> Edit</span> }</th>
+          <th className="firstCol">{editing && <span> </span> }</th>
           <th>Brand</th>
           <th>Country</th>
           <th>Model</th>

@@ -181,3 +181,8 @@ th, td {
   text-align: left;
   padding: .5rem; 
 }
+
+.firstCol {
+  max-width: 0;
+  text-align: left;
+}

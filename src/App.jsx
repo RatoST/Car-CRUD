@@ -41,7 +41,7 @@ const App = () => {
 
   const updateNewCar = (updateCar) => {
     setEditing(false);
-    setCars(cars.map((car) => (car.id === currentCar.id ? updateCar : car)));
+    setCars(cars.map((car) => (car.id === updateCar.id ? updateCar : car)));
   };
 
   return (
