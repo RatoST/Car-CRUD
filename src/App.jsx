@@ -95,15 +95,17 @@ const App = () => {
             </div>
           )}
         </div>
-        <button
-          type="submit"
-          className={add || editing ? 'new-button-off' : 'button add-button new-button'}
-          onClick={click}
-          onKeyDown={keyDown}
-          role="presentation"
-        >
-          Add new car
-        </button>
+        {!add && (!editing && (
+          <button
+            type="submit"
+            className="button add-button new-button"
+            onClick={click}
+            onKeyDown={keyDown}
+            role="presentation"
+          >
+            Add new car
+          </button>
+        ))}
       </div>
       <Footer />
     </div>

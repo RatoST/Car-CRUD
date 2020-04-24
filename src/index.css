@@ -123,10 +123,6 @@ button:focus, button:active,
   display:block;
 }
 
-.new-button-off{
-  display: none;
-}
-
 /* Container */
 .container, .small-container, .medium-container {
   max-width: 1200px;
