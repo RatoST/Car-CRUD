@@ -118,6 +118,15 @@ button:focus, button:active,
   margin: 5px;
 }
 
+.new-button {
+  margin: 3% auto;
+  display:block;
+}
+
+.new-button-off{
+  display: none;
+}
+
 /* Container */
 .container, .small-container, .medium-container {
   max-width: 1200px;

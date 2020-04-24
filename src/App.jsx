@@ -24,6 +24,7 @@ const App = () => {
   const [cars, setCars] = useState(addIds(carsData));
   const [currentCar, setCurrentCar] = useState(initialFormState);
   const [editing, setEditing] = useState(false);
+  const [add, setAdd] = useState(false);
 
   const addCar = (car) => {
     setCars([...cars, addId(car)]);
@@ -37,11 +38,25 @@ const App = () => {
   const editRow = (car) => {
     setEditing(true);
     setCurrentCar(car);
+    setAdd(false);
   };
 
   const updateNewCar = (updateCar) => {
     setEditing(false);
     setCars(cars.map((car) => (car.id === updateCar.id ? updateCar : car)));
+  };
+
+  const addNewCar = () => {
+    setAdd(true);
+    setEditing(false);
+  };
+
+  const click = (car) => {
+    addNewCar(car);
+  };
+
+  const keyDown = (car) => {
+    addNewCar(car);
   };
 
   return (
@@ -59,7 +74,7 @@ const App = () => {
           />
         </div>
         <div className="flex-large">
-          {editing ? (
+          {editing && (
             <div>
               <h2>Edit car</h2>
               <EditCarForm
@@ -68,16 +83,27 @@ const App = () => {
                 updateCar={updateNewCar}
               />
             </div>
-          ) : (
+          )}
+          {add && (
             <div>
               <h2>Add cars</h2>
               <AddCarForm
                 initialFormState={initialFormState}
                 addCar={addCar}
+                setAdd={setAdd}
               />
             </div>
           )}
         </div>
+        <button
+          type="submit"
+          className={add || editing ? 'new-button-off' : 'button add-button new-button'}
+          onClick={click}
+          onKeyDown={keyDown}
+          role="presentation"
+        >
+          Add new car
+        </button>
       </div>
       <Footer />
     </div>
