@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import AddEditForm from './AddEditForm';
+import AddUpdateForm from './AddUpdateForm';
 
-const AddCarForm = ({ addCar, initialFormState, setAdd }) => {
+const AddCarForm = ({ addCar, initialFormState, setAdding }) => {
   const [car, setCar] = useState(initialFormState);
 
   const handleInputChange = (event) => {
@@ -17,10 +17,9 @@ const AddCarForm = ({ addCar, initialFormState, setAdd }) => {
         if (!car.brand || !car.country) return;
         addCar(car);
         setCar(initialFormState);
-        setAdd(false);
       }}
     >
-      <AddEditForm
+      <AddUpdateForm
         car={car}
         handleInputChange={handleInputChange}
       />
@@ -28,7 +27,7 @@ const AddCarForm = ({ addCar, initialFormState, setAdd }) => {
       <button
         type="submit"
         onClick={() => {
-          setAdd(false);
+          setAdding(false);
         }}
         className="button cancel-button"
       >
@@ -49,7 +48,7 @@ AddCarForm.propTypes = {
     serialNum: PropTypes.string,
     description: PropTypes.string,
   }),
-  setAdd: PropTypes.func,
+  setAdding: PropTypes.func,
 };
 
 export default AddCarForm;

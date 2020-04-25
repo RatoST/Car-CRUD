@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 
-const AddEditForm = ({ car, handleInputChange }) => (
+const AddUpdateForm = ({ car, handleInputChange }) => (
   <>
     <label>
       Brand
@@ -61,7 +61,7 @@ const AddEditForm = ({ car, handleInputChange }) => (
   </>
 );
 
-AddEditForm.propTypes = {
+AddUpdateForm.propTypes = {
   car: PropTypes.shape({
     id: PropTypes.string,
     brand: PropTypes.string,
@@ -74,4 +74,4 @@ AddEditForm.propTypes = {
   handleInputChange: PropTypes.func,
 };
 
-export default AddEditForm;
+export default AddUpdateForm;

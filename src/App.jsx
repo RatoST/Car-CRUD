@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import carsData from './components/carsData';
 import CarTable from './components/CarTable';
 import AddCarForm from './components/AddCarForm';
-import EditCarForm from './components/EditCarForm';
+import UpdateCarForm from './components/UpdateCarForm';
 import Footer from './components/Footer';
 
 
@@ -23,40 +23,40 @@ const App = () => {
 
   const [cars, setCars] = useState(addIds(carsData));
   const [currentCar, setCurrentCar] = useState(initialFormState);
-  const [editing, setEditing] = useState(false);
-  const [add, setAdd] = useState(false);
+  const [updating, setUpdating] = useState(false);
+  const [adding, setAdding] = useState(false);
 
   const addCar = (car) => {
     setCars([...cars, addId(car)]);
   };
 
   const deleteCar = (id) => {
-    setEditing(false);
+    setUpdating(false);
     setCars(cars.filter((car) => car.id !== id));
   };
 
-  const editRow = (car) => {
-    setEditing(true);
+  const updateRow = (car) => {
+    setUpdating(true);
     setCurrentCar(car);
-    setAdd(false);
+    setAdding(false);
   };
 
-  const updateNewCar = (updateCar) => {
-    setEditing(false);
+  const updateExistCar = (updateCar) => {
+    setUpdating(false);
     setCars(cars.map((car) => (car.id === updateCar.id ? updateCar : car)));
   };
 
-  const addNewCar = () => {
-    setAdd(true);
-    setEditing(false);
+  const addingCar = () => {
+    setAdding(true);
+    setUpdating(false);
   };
 
-  const click = (car) => {
-    addNewCar(car);
+  const clickHandle = (car) => {
+    addingCar(car);
   };
 
-  const keyDown = (car) => {
-    addNewCar(car);
+  const keyDownHandle = (car) => {
+    addingCar(car);
   };
 
   return (
@@ -67,40 +67,40 @@ const App = () => {
           <h2>View cars</h2>
           <CarTable
             cars={cars}
-            editing={editing}
-            editRow={editRow}
+            updating={updating}
+            updateRow={updateRow}
             deleteCar={deleteCar}
             currentCarSerNum={currentCar.serialNum}
           />
         </div>
         <div className="flex-large">
-          {editing && (
+          {updating && (
             <div>
               <h2>Edit car</h2>
-              <EditCarForm
-                setEditing={setEditing}
+              <UpdateCarForm
+                setUpdating={setUpdating}
                 currentCar={currentCar}
-                updateCar={updateNewCar}
+                updateCar={updateExistCar}
               />
             </div>
           )}
-          {add && (
+          {adding && (
             <div>
               <h2>Add cars</h2>
               <AddCarForm
                 initialFormState={initialFormState}
                 addCar={addCar}
-                setAdd={setAdd}
+                setAdding={setAdding}
               />
             </div>
           )}
         </div>
-        {!add && (!editing && (
+        {!adding && (!updating && (
           <button
             type="submit"
             className="button add-button new-button"
-            onClick={click}
-            onKeyDown={keyDown}
+            onClick={clickHandle}
+            onKeyDown={keyDownHandle}
             role="presentation"
           >
             Add new car

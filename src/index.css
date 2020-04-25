@@ -106,8 +106,6 @@ button:focus, button:active,
   background: #ff0000;
   border: 1px solid #ff0000;
   color:#ffffff;
-  cursor: default;
-  pointer-events: auto;
 }
 
 .edit-button {
@@ -153,15 +151,6 @@ button:focus, button:active,
   } 
 }                 
 
-/* Pointers */    
-.pointTypeInit {
-  cursor: initial;
-}
-
-.poinTypePoint {
-  cursor:pointer;
-}
-
 /* Tables */
 table {
   border-collapse: collapse;
@@ -181,13 +170,26 @@ tfoot th {
 td {
   border-bottom: 1px solid #dedede; 
 }
+
+td:hover {
+  cursor:pointer;
+}
+
+td:last-of-type {
+  cursor:initial;
+}
   
 th, td {
   text-align: left;
   padding: .5rem; 
 }
 
-.firstCol {
+th:first-of-type {
+  max-width: 0;
+  text-align: left;
+}
+
+td:first-of-type {
   max-width: 0;
   text-align: left;
 }

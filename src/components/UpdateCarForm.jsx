@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import AddEditForm from './AddEditForm';
+import AddUpdateForm from './AddUpdateForm';
 
-const EditCarForm = ({
-  currentCar, updateCar, setEditing,
+const UpdateCarForm = ({
+  currentCar, updateCar, setUpdating,
 }) => {
   const [car, setCar] = useState(currentCar);
 
@@ -23,7 +23,7 @@ const EditCarForm = ({
         updateCar(car);
       }}
     >
-      <AddEditForm
+      <AddUpdateForm
         car={car}
         handleInputChange={handleInputChange}
       />
@@ -31,7 +31,7 @@ const EditCarForm = ({
       <button
         type="submit"
         onClick={() => {
-          setEditing(false);
+          setUpdating(false);
         }}
         className="button cancel-button"
       >
@@ -42,7 +42,7 @@ const EditCarForm = ({
 };
 
 
-EditCarForm.propTypes = {
+UpdateCarForm.propTypes = {
   currentCar: PropTypes.shape({
     id: PropTypes.string,
     brand: PropTypes.string,
@@ -53,7 +53,7 @@ EditCarForm.propTypes = {
     description: PropTypes.string,
   }),
   updateCar: PropTypes.func,
-  setEditing: PropTypes.func,
+  setUpdating: PropTypes.func,
 };
 
-export default EditCarForm;
+export default UpdateCarForm;

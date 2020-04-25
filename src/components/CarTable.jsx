@@ -1,77 +1,53 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import DeleteButton from './DeleteButton';
-import ClickEdit from './ClickEdit';
+import UpdatedTableRow from './UpdatedTableRow';
 
 const CarTable = ({
-  cars, editing, editRow, deleteCar, currentCarSerNum,
-}) => {
-  const [isMouseOver, setMouseOver] = useState(false);
-
-  const handleMouseOver = () => {
-    setMouseOver(true);
-  };
-
-  const handleMouseOut = () => {
-    setMouseOver(false);
-  };
-
-  return (
-
-    <table>
-      <thead>
-        <tr>
-          <th className="firstCol">{editing && <span> </span> }</th>
-          <th>Brand</th>
-          <th>Country</th>
-          <th>Model</th>
-          <th>Year</th>
-          <th>Serial Number</th>
-          <th>Description</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        {cars.length > 0 ? (
-          cars.map((car) => (
-            <tr
-              className={isMouseOver ? 'poinTypePoint' : 'poinTypeInit'}
-              key={car.id}
-              onMouseOver={handleMouseOver}
-              onMouseOut={handleMouseOut}
-              onFocus={handleMouseOver}
-              onBlur={handleMouseOut}
-            >
-              <ClickEdit
-                editing={editing}
-                editRow={editRow}
-                car={car}
-                currentCarSerNum={currentCarSerNum}
-              />
-
-              <td>
-                <DeleteButton
-                  deleteCar={deleteCar}
-                  carId={car.id}
-                />
-
-              </td>
-            </tr>
-          ))
-        ) : (
-          <tr>
-            <td colSpan={3}>No cars </td>
+  cars, updating, updateRow, deleteCar, currentCarSerNum,
+}) => (
+  <table>
+    <thead>
+      <tr>
+        <th className="firstCol">{updating && <span> </span> }</th>
+        <th>Brand</th>
+        <th>Country</th>
+        <th>Model</th>
+        <th>Year</th>
+        <th>Serial Number</th>
+        <th>Description</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {cars.length > 0 ? (
+        cars.map((car) => (
+          <tr key={car.id}>
+            <UpdatedTableRow
+              updating={updating}
+              updateRow={updateRow}
+              car={car}
+              currentCarSerNum={currentCarSerNum}
+            />
+            <DeleteButton
+              deleteCar={deleteCar}
+              carId={car.id}
+            />
           </tr>
-        )}
-      </tbody>
-    </table>
-  );
-};
+        ))
+      ) : (
+        <tr>
+          <td colSpan={3}>No cars </td>
+        </tr>
+      )}
+    </tbody>
+  </table>
+);
 
 CarTable.propTypes = {
   cars: PropTypes.arrayOf(PropTypes.object),
-  editing: PropTypes.bool,
-  editRow: PropTypes.func,
+  updating: PropTypes.bool,
+  updateRow: PropTypes.func,
   deleteCar: PropTypes.func,
   currentCarSerNum: PropTypes.string,
 
