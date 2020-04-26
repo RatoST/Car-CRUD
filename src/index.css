@@ -8,15 +8,7 @@ footer {
   text-align: center;
 }
 
-input[type=text], select, textarea {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  resize: vertical;
-}
-
-input[type=number], select, textarea {
+input, select, textarea {
   width: 100%;
   padding: 12px;
   border: 1px solid #ccc;
@@ -31,15 +23,13 @@ label {
 } 
 
 /* Buttons */
-.button, a.button, button, [type=submit], [type=reset], [type=button] {
+.button, [type=submit], [type=reset], [type=button] {
   -webkit-appearance: none;
   display: inline-block;
-  border: 1px solid #535253;
   border-radius: 4px;
   background: #535253;
   color: #ffffff;
   font-weight: 600;
-  font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif;
   font-size: 1rem;
   text-transform: none;
   padding: .75rem 1.25rem;
@@ -51,38 +41,18 @@ label {
   line-height: 1;
 }
   
-.button:hover, a.button:hover, button:hover,
-[type=submit]:hover, [type=reset]:hover, [type=button]:hover {
+.button:hover, 
+  [type=submit]:hover, [type=reset]:hover, [type=button]:hover {
   border: 1px solid #7a7a7a;
   background: #7a7a7a;
   color: #ffffff;
   text-decoration: none;
-}
-  
-.button:focus, .button:active,
-a.button:focus, a.button:active,
-button:focus, button:active,
-[type=submit]:focus, [type=submit]:active,
-[type=reset]:focus, [type=reset]:active,
-[type=button]:focus, [type=button]:active {
-  border: 1px solid #7a7a7a;
-  background: #7a7a7a;
-  color: #ffffff;
-  text-decoration: none;
-}
-  
-.button::-moz-focus-inner, a.button::-moz-focus-inner, button::-moz-focus-inner,
-[type=submit]::-moz-focus-inner, [type=reset]::-moz-focus-inner, [type=button]::-moz-focus-inner {
-  border: 0;
-  padding: 0;
 }
 
 .add-button {
   border: 1px solid #535253;
-  border-radius: 4px;
   background: #535253;
   color: #ffffff;
-  padding: .75rem 1.25rem;
   margin: 0 10px 0 0;
 }
 
@@ -90,7 +60,6 @@ button:focus, button:active,
   background:transparent ;
   border: 1px solid #cdcdcd;
   color: #4e4e4e;
-  padding: .75rem 1.25rem; 
   margin: 0 0 0 10px;
 }
   
@@ -98,7 +67,6 @@ button:focus, button:active,
   background: #ffffff;
   border: 1px solid #ff0000;
   color: #ff0000; 
-  padding: .75rem 1.25rem; 
   margin: 5px;
 }
 
@@ -106,14 +74,6 @@ button:focus, button:active,
   background: #ff0000;
   border: 1px solid #ff0000;
   color:#ffffff;
-}
-
-.edit-button {
-  background:transparent;
-  border: 1px solid #cdcdcd;
-  color: #4e4e4e;
-  padding: .75rem 1.25rem; 
-  margin: 5px;
 }
 
 .new-button {
@@ -161,12 +121,9 @@ table {
   
 thead th {
   border-bottom: 2px solid #dedede; 
-}
-  
-tfoot th {
   border-top: 2px solid #dedede; 
 }
-  
+
 td {
   border-bottom: 1px solid #dedede; 
 }

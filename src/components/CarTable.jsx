@@ -9,7 +9,7 @@ const CarTable = ({
   <table>
     <thead>
       <tr>
-        <th className="firstCol">{updating && <span> </span> }</th>
+        <th>{updating && <span> </span> }</th>
         <th>Brand</th>
         <th>Country</th>
         <th>Model</th>

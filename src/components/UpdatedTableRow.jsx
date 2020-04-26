@@ -14,7 +14,7 @@ const UpdatedTableRow = ({
 
   return (
     <>
-      <td className="firstCol">{car.serialNum === currentCarSerNum && updating && <span> &#x270E;</span> }</td>
+      <td>{car.serialNum === currentCarSerNum && updating && <span> &#x270E;</span> }</td>
       <td
         onClick={clickHandle}
         onKeyDown={keyDownHandle}
