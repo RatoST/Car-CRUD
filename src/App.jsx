@@ -5,6 +5,7 @@ import CarTable from './components/CarTable';
 import AddCarForm from './components/AddCarForm';
 import UpdateCarForm from './components/UpdateCarForm';
 import Footer from './components/Footer';
+import SearchBar from './components/SearchBar';
 
 
 const App = () => {
@@ -65,6 +66,9 @@ const App = () => {
       <div className="flex-row">
         <div className="flex-large">
           <h2>View cars</h2>
+          <SearchBar
+            cars={cars}
+          />
           <CarTable
             cars={cars}
             updating={updating}
