@@ -55,6 +55,22 @@ const carsData = [
     serialNum: '202008357',
     description: 'City car. ',
   },
+  {
+    brand: 'Audi',
+    country: 'Germany',
+    model: 'A8',
+    year: '2020',
+    serialNum: '20204332553',
+    description: '',
+  },
+  {
+    brand: 'Audi',
+    country: 'Germany',
+    model: 'a2',
+    year: '2020',
+    serialNum: '20204882991',
+    description: '',
+  },
 ];
 
 export default carsData;
