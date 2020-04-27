@@ -150,19 +150,3 @@ td:first-of-type {
   max-width: 0;
   text-align: left;
 }
-
-thead th.ascending::after {
-  content: "↓";
-  display: inline-block;
-  margin-left: 1%;
-}
-
-thead th.descending::after {
-  content: "↑";
-  display: inline-block;
-  margin-left: 1%;
-}
-
-.theadPoint:hover {
-  cursor: pointer;
-}

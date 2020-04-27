@@ -4,43 +4,33 @@ import DeleteButton from './DeleteButton';
 import UpdatedTableRow from './UpdatedTableRow';
 
 const CarTable = ({
-  filteredCars, updating, updateRow, deleteCar, currentCarSerNum, useSortableData,
+  filteredCars, updating, updateRow, deleteCar, currentCarSerNum,
 }) => {
-  const { requestSort, sortConfig } = useSortableData(filteredCars);
-  const getClassNamesFor = (name) => {
-    if (!sortConfig) {
-      return undefined;
+  const compare = (a, b) => {
+    const brandA = a.brand.toLowerCase();
+    const brandB = b.brand.toLowerCase();
+
+    let comparison = 0;
+    if (brandA > brandB) {
+      comparison = 1;
+    } else if (brandA < brandB) {
+      comparison = -1;
     }
-    return sortConfig.key === name ? sortConfig.direction : undefined;
+    return comparison;
   };
+
+  filteredCars.sort(compare);
   return (
     <table>
       <thead>
         <tr>
           <th />
-          <th
-            onClick={() => requestSort('brand')}
-            className={`theadPoint ${getClassNamesFor('brand')}`}
-          >
-            Brand
-          </th>
-          <th
-            onClick={() => requestSort('country')}
-            className={`theadPoint ${getClassNamesFor('country')}`}
-          >
-            Country
-          </th>
-          <th>
-            Model
-          </th>
+          <th>Brand</th>
+          <th>Country</th>
+          <th>Model</th>
           <th>Year</th>
           <th>Serial Number</th>
-          <th
-            onClick={() => requestSort('description')}
-            className={`theadPoint ${getClassNamesFor('description')}`}
-          >
-            Description
-          </th>
+          <th>Description</th>
           <th>Actions</th>
         </tr>
       </thead>
@@ -76,7 +66,6 @@ CarTable.propTypes = {
   updateRow: PropTypes.func,
   deleteCar: PropTypes.func,
   currentCarSerNum: PropTypes.string,
-  useSortableData: PropTypes.func,
 
 };
 
