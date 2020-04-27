@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import carsData from './components/carsData';
 import CarTable from './components/CarTable';
@@ -61,7 +61,47 @@ const App = () => {
     addingCar(car);
   };
 
-  const filteredCars = cars.filter((car) => (car.brand.toLowerCase().includes(searchText.toLowerCase())));
+  const filteredCars = cars.filter((car) =>
+    (car.brand.toLowerCase().includes(searchText.toLowerCase()))
+    || (car.model.toLowerCase().includes(searchText.toLowerCase()))
+    || (car.country.toLowerCase().includes(searchText.toLowerCase()))
+    || (car.description.toLowerCase().includes(searchText.toLowerCase())));
+
+
+  // recycled code from line 72 to 104.
+  const useSortableData = (config = null) => {
+    const [sortConfig, setSortConfig] = useState(config);
+
+    const sortedItems = useMemo(() => {
+      const sortableItems = [...filteredCars];
+      if (sortConfig !== null) {
+        sortableItems.sort((a, b) => {
+          if (a[sortConfig.key] < b[sortConfig.key]) {
+            return sortConfig.direction === 'ascending' ? -1 : 1;
+          }
+          if (a[sortConfig.key] > b[sortConfig.key]) {
+            return sortConfig.direction === 'ascending' ? 1 : -1;
+          }
+          return 0;
+        });
+      }
+      return sortableItems;
+    }, [sortConfig]);
+
+    const requestSort = (key) => {
+      let direction = 'ascending';
+      if (
+        sortConfig
+          && sortConfig.key === key
+          && sortConfig.direction === 'ascending'
+      ) {
+        direction = 'descending';
+      }
+      setSortConfig({ key, direction });
+    };
+
+    return { filteredCars: sortedItems, requestSort, sortConfig };
+  };
 
   return (
     <div className="container">
@@ -80,6 +120,7 @@ const App = () => {
             filteredCars={filteredCars}
             updating={updating}
             updateRow={updateRow}
+            useSortableData={useSortableData}
           />
         </div>
         <div className="flex-large">
