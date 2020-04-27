@@ -23,6 +23,22 @@ const carsData = [
     serialNum: '2017017536',
     description: 'SUV car. ',
   },
+  {
+    brand: 'Fiat',
+    country: 'Italy',
+    model: 'Punto',
+    year: '2006',
+    serialNum: '2006011147',
+    description: 'City car. ',
+  },
+  {
+    brand: 'Nissan',
+    country: 'Japan',
+    model: 'X-Trail',
+    year: '2019',
+    serialNum: '2019088214',
+    description: 'SUV 4x4 car. ',
+  },
 ];
 
 export default carsData;

@@ -4,12 +4,12 @@ import DeleteButton from './DeleteButton';
 import UpdatedTableRow from './UpdatedTableRow';
 
 const CarTable = ({
-  cars, updating, updateRow, deleteCar, currentCarSerNum,
+  filteredCars, updating, updateRow, deleteCar, currentCarSerNum,
 }) => (
   <table>
     <thead>
       <tr>
-        <th>{updating && <span> </span> }</th>
+        <th />
         <th>Brand</th>
         <th>Country</th>
         <th>Model</th>
@@ -20,8 +20,8 @@ const CarTable = ({
       </tr>
     </thead>
     <tbody>
-      {cars.length > 0 ? (
-        cars.map((car) => (
+      {filteredCars.length > 0 ? (
+        filteredCars.map((car) => (
           <tr key={car.id}>
             <UpdatedTableRow
               updating={updating}
@@ -45,7 +45,7 @@ const CarTable = ({
 );
 
 CarTable.propTypes = {
-  cars: PropTypes.arrayOf(PropTypes.object),
+  filteredCars: PropTypes.arrayOf(PropTypes.object),
   updating: PropTypes.bool,
   updateRow: PropTypes.func,
   deleteCar: PropTypes.func,

@@ -26,6 +26,7 @@ const App = () => {
   const [currentCar, setCurrentCar] = useState(initialFormState);
   const [updating, setUpdating] = useState(false);
   const [adding, setAdding] = useState(false);
+  const [searchText, setSearchText] = useState('');
 
   const addCar = (car) => {
     setCars([...cars, addId(car)]);
@@ -60,6 +61,8 @@ const App = () => {
     addingCar(car);
   };
 
+  const filteredCars = cars.filter((car) => (car.brand.toLowerCase().includes(searchText.toLowerCase())));
+
   return (
     <div className="container">
       <h1>CRUD App Cars</h1>
@@ -67,14 +70,16 @@ const App = () => {
         <div className="flex-large">
           <h2>View cars</h2>
           <SearchBar
-            cars={cars}
+            filteredCars={filteredCars}
+            searchText={searchText}
+            setSearchText={setSearchText}
           />
           <CarTable
-            cars={cars}
+            currentCarSerNum={currentCar.serialNum}
+            deleteCar={deleteCar}
+            filteredCars={filteredCars}
             updating={updating}
             updateRow={updateRow}
-            deleteCar={deleteCar}
-            currentCarSerNum={currentCar.serialNum}
           />
         </div>
         <div className="flex-large">

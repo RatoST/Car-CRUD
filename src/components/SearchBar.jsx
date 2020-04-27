@@ -1,16 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
-const SearchBar = ({ cars }) => {
-  const [searchText, setSearchText] = useState('');
-
-  const results = cars.filter((car) => car.brand.includes(searchText));
-
-
+const SearchBar = ({ searchText, setSearchText }) => {
   const handleChange = (event) => {
     const newValue = event.target.value;
     setSearchText(newValue);
   };
-
 
   return (
     <>
@@ -22,12 +17,13 @@ const SearchBar = ({ cars }) => {
           value={searchText}
         />
       </label>
-      <div>
-        {results.map((result) => (
-          result.brand
-        ))}
-      </div>
     </>
   );
 };
+
+SearchBar.propTypes = {
+  searchText: PropTypes.string,
+  setSearchText: PropTypes.func,
+};
+
 export default SearchBar;
