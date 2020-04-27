@@ -6,20 +6,14 @@ import UpdatedTableRow from './UpdatedTableRow';
 const CarTable = ({
   filteredCars, updating, updateRow, deleteCar, currentCarSerNum,
 }) => {
-  const compare = (a, b) => {
-    const brandA = a.brand.toLowerCase();
-    const brandB = b.brand.toLowerCase();
+  filteredCars.sort((model1, model2) => {
+    if (model1.brand > model2.brand) return 1;
+    if (model1.brand < model2.brand) return -1;
+    if (model1.model > model2.model) return 1;
+    if (model1.model < model2.model) return -1;
+    return null;
+  });
 
-    let comparison = 0;
-    if (brandA > brandB) {
-      comparison = 1;
-    } else if (brandA < brandB) {
-      comparison = -1;
-    }
-    return comparison;
-  };
-
-  filteredCars.sort(compare);
   return (
     <table>
       <thead>

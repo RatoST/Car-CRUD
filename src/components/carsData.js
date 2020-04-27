@@ -39,6 +39,22 @@ const carsData = [
     serialNum: '2019088214',
     description: 'SUV 4x4 car. ',
   },
+  {
+    brand: 'Nissan',
+    country: 'Japan',
+    model: 'Navarra',
+    year: '2010',
+    serialNum: '2010083174',
+    description: 'Truck 4x4 car.',
+  },
+  {
+    brand: 'Nissan',
+    country: 'Japan',
+    model: 'Micra',
+    year: '2020',
+    serialNum: '202008357',
+    description: 'City car. ',
+  },
 ];
 
 export default carsData;
