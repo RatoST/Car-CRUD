@@ -39,6 +39,7 @@
     "no-confusing-arrow": "off",
     "spaced-comment": "off",
     "no-plusplus": "off",
+    "implicit-arrow-linebreak": "off",
     "jsx-quotes": [2, "prefer-double"],
     "react/jsx-first-prop-new-line": "off",
     "react/jsx-one-expression-per-line": "off",
