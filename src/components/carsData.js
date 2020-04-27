@@ -4,7 +4,7 @@ const carsData = [
     country: 'France',
     model: '5008',
     year: '2014',
-    serialNum: '2014010505',
+    serialNum: '201401056378',
     description: 'Mono-volume family car. ',
   },
   {
@@ -12,7 +12,7 @@ const carsData = [
     country: 'Germany',
     model: '535',
     year: '2016',
-    serialNum: '2016050517',
+    serialNum: '201605053124',
     description: 'Sports limousine car. ',
   },
   {
@@ -20,7 +20,7 @@ const carsData = [
     country: 'France',
     model: '3008',
     year: '2017',
-    serialNum: '2017017536',
+    serialNum: '201701759731',
     description: 'SUV car. ',
   },
   {
@@ -28,7 +28,7 @@ const carsData = [
     country: 'Italy',
     model: 'Punto',
     year: '2006',
-    serialNum: '2006011147',
+    serialNum: '200601134687',
     description: 'City car. ',
   },
   {
@@ -36,7 +36,7 @@ const carsData = [
     country: 'Japan',
     model: 'X-Trail',
     year: '2019',
-    serialNum: '2019088214',
+    serialNum: '201908821344',
     description: 'SUV 4x4 car. ',
   },
   {
@@ -44,7 +44,7 @@ const carsData = [
     country: 'Japan',
     model: 'Navarra',
     year: '2010',
-    serialNum: '2010083174',
+    serialNum: '201008313216',
     description: 'Truck 4x4 car.',
   },
   {
@@ -52,7 +52,7 @@ const carsData = [
     country: 'Japan',
     model: 'Micra',
     year: '2020',
-    serialNum: '202008357',
+    serialNum: '202008355578',
     description: 'City car. ',
   },
   {
@@ -60,16 +60,16 @@ const carsData = [
     country: 'Germany',
     model: 'A8',
     year: '2020',
-    serialNum: '20204332553',
-    description: '',
+    serialNum: '202043325535',
+    description: 'Luxury limo.',
   },
   {
     brand: 'Audi',
     country: 'Germany',
-    model: 'a2',
+    model: 'A2',
     year: '2020',
-    serialNum: '20204882991',
-    description: '',
+    serialNum: '202048829916',
+    description: 'City car.',
   },
 ];
 

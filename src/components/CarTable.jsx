@@ -7,10 +7,10 @@ const CarTable = ({
   filteredCars, updating, updateRow, deleteCar, currentCarSerNum,
 }) => {
   filteredCars.sort((model1, model2) => {
-    if (model1.brand > model2.brand) return 1;
-    if (model1.brand < model2.brand) return -1;
-    if (model1.model > model2.model) return 1;
-    if (model1.model < model2.model) return -1;
+    if (model1.brand.toUpperCase() > model2.brand.toUpperCase()) return 1;
+    if (model1.brand.toUpperCase() < model2.brand.toUpperCase()) return -1;
+    if (model1.model.toUpperCase() > model2.model.toUpperCase()) return 1;
+    if (model1.model.toUpperCase() < model2.model.toUpperCase()) return -1;
     return null;
   });
 
