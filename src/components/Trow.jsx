@@ -4,10 +4,10 @@ import DeleteButton from './DeleteButton';
 import UpdatedTableRow from './UpdatedTableRow';
 
 const Trow = ({
-  doSort, updating, updateRow, deleteCar, currentCarSerNum,
+  sortedCars, updating, updateRow, deleteCar, currentCarSerNum,
 }) => (
   <>
-    {doSort.map((car) => (
+    {sortedCars.map((car) => (
       <tr key={car.id}>
         <UpdatedTableRow
           updating={updating}
@@ -24,7 +24,7 @@ const Trow = ({
   </>
 );
 Trow.propTypes = {
-  doSort: PropTypes.arrayOf(PropTypes.object),
+  sortedCars: PropTypes.arrayOf(PropTypes.object),
   updating: PropTypes.bool,
   updateRow: PropTypes.func,
   deleteCar: PropTypes.func,

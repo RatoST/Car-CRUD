@@ -1,17 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
+import _ from 'lodash';
 import PropTypes from 'prop-types';
 import SortableTH from './SortableTH';
 import Trow from './Trow';
 
+
 const CarTable = ({
   filteredCars, updating, updateRow, deleteCar, currentCarSerNum,
 }) => {
+  const [sortedCars, setSortedCars] = useState(filteredCars);
+
   const doSort = () => {
-    filteredCars.sort((model1, model2) => {
-      if (model1.brand.toUpperCase() > model2.brand.toUpperCase()) return 1;
-      if (model1.brand.toUpperCase() < model2.brand.toUpperCase()) return -1;
-      return null;
-    });
+    _.sortBy(filteredCars, ['brand', 'model']);
   };
 
   const thTitle = 'Brand';
@@ -35,11 +35,11 @@ const CarTable = ({
         </tr>
       </thead>
       <tbody>
-        {doSort.length > 0 ? (
+        {sortedCars.length > 0 ? (
           <Trow
             currentCarSerNum={currentCarSerNum}
             deleteCar={deleteCar}
-            doSort={doSort}
+            sortedCars={sortedCars}
             updating={updating}
             updateRow={updateRow}
           />
