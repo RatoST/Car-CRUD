@@ -42,18 +42,18 @@ const carsData = [
   {
     brand: 'Nissan',
     country: 'Japan',
-    model: 'Navarra',
-    year: '2010',
-    serialNum: '201008313216',
-    description: 'Truck 4x4 car.',
-  },
-  {
-    brand: 'Nissan',
-    country: 'Japan',
     model: 'Micra',
     year: '2020',
     serialNum: '202008355578',
     description: 'City car. ',
+  },
+  {
+    brand: 'Nissan',
+    country: 'Japan',
+    model: 'Navarra',
+    year: '2010',
+    serialNum: '201008313216',
+    description: 'Truck 4x4 car.',
   },
   {
     brand: 'Audi',

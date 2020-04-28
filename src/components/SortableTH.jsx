@@ -1,48 +1,33 @@
 import React, { useState } from 'react';
 
-const SortableTH = ({ arrayOfObj, thTitle }) => {
+const SortableTH = ({ doSort, thTitle }) => {
   const initialThState = null;
   const [thState, setThState] = useState(initialThState);
 
-  const desc = () => {
-    arrayOfObj.sort((obj1, obj2) => {
-      if (obj1.subObj.toUpperCase() > obj2.subObj.toUpperCase()) return 1;
-      if (obj1.subObj.toUpperCase() < obj2.subIbj.toUpperCase()) return -1;
-      return null;
-    });
+  const asc = 1;
+  const desc = -1;
+  const none = null;
+  const arrowUns = <>&#x2195;</>;
+  const arrowDown = <>&#x2193;</>;
+  const arrowUp = <>&#x2191;</>;
+
+  const icon = () => {
+    if (thState === 1) {
+      return arrowDown;
+    } if (thState === -1) {
+      return arrowUp;
+    } return arrowUns;
   };
 
-  const asc = () => {
-    arrayOfObj.sort((obj1, obj2) => {
-      if (obj1.subObj.toUpperCase() > obj2.subObj.toUpperCase()) return -1;
-      if (obj1.subObj.toUpperCase() < obj2.subIbj.toUpperCase()) return 1;
-      return null;
-    });
-  };
-
-  const handleClick = (event) => {
-    event.preventDefault();
-    if (thState === null) {
+  const handleClick = () => {
+    if (thState === none) {
       setThState(asc);
+      doSort();
     } if (thState === asc) {
       setThState(desc);
     } if (thState === desc) {
-      setThState(null);
+      setThState(none);
     }
-  };
-
-  const arrowUns = '&#x2195';
-  const arrowDown = '&#x2193';
-  const arrowUp = '&#x2191';
-
-  const icon = () => {
-    if (thState === null) {
-      return arrowUns;
-    } if (thState === asc) {
-      return arrowDown;
-    } if (thState === desc) {
-      return arrowUp;
-    } return null;
   };
 
   return (
@@ -50,7 +35,8 @@ const SortableTH = ({ arrayOfObj, thTitle }) => {
       <th
         onClick={handleClick}
       >
-        {thTitle}{icon}
+        {thTitle}
+        <span>{icon}</span>
       </th>
     </>
   );

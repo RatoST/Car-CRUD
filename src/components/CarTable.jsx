@@ -4,15 +4,15 @@ import SortableTH from './SortableTH';
 import Trow from './Trow';
 
 const CarTable = ({
-  filteredCars, updating, updateRow, deleteCar, currentCarSerNum,
+  filteredCars, updating, updateRow, deleteCar, currentCarSerNum, thState, asc, desc, none,
 }) => {
-  // filteredCars.sort((model1, model2) => {
-  //   if (model1.brand.toUpperCase() > model2.brand.toUpperCase()) return 1;
-  //   if (model1.brand.toUpperCase() < model2.brand.toUpperCase()) return -1;
-  //   if (model1.model.toUpperCase() > model2.model.toUpperCase()) return 1;
-  //   if (model1.model.toUpperCase() < model2.model.toUpperCase()) return -1;
-  //   return null;
-  // });
+  const doSort = () => {
+    filteredCars.sort((model1, model2) => {
+      if (model1.brand.toUpperCase() > model2.brand.toUpperCase()) return 1;
+      if (model1.brand.toUpperCase() < model2.brand.toUpperCase()) return -1;
+      return none;
+    });
+  };
 
   const thTitle = 'Brand';
 
@@ -23,7 +23,7 @@ const CarTable = ({
           <th />
           <SortableTH
             thTitle={thTitle}
-            arrayOfObj={filteredCars}
+            doSort={doSort}
           />
           {/* <th>Brand</th> */}
           <th>Country</th>
