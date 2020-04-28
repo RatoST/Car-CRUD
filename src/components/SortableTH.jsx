@@ -20,7 +20,6 @@ const SortableTH = ({ arrayOfObj, thTitle }) => {
     });
   };
 
-
   const handleClick = (event) => {
     event.preventDefault();
     if (thState === null) {
@@ -32,12 +31,26 @@ const SortableTH = ({ arrayOfObj, thTitle }) => {
     }
   };
 
+  const arrowUns = '&#x2195';
+  const arrowDown = '&#x2193';
+  const arrowUp = '&#x2191';
+
+  const icon = () => {
+    if (thState === null) {
+      return arrowUns;
+    } if (thState === asc) {
+      return arrowDown;
+    } if (thState === desc) {
+      return arrowUp;
+    } return null;
+  };
+
   return (
     <>
       <th
         onClick={handleClick}
       >
-        {thTitle}
+        {thTitle}{icon}
       </th>
     </>
   );
