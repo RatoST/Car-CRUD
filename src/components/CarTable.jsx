@@ -4,13 +4,13 @@ import SortableTH from './SortableTH';
 import Trow from './Trow';
 
 const CarTable = ({
-  filteredCars, updating, updateRow, deleteCar, currentCarSerNum, thState, asc, desc, none,
+  filteredCars, updating, updateRow, deleteCar, currentCarSerNum,
 }) => {
   const doSort = () => {
     filteredCars.sort((model1, model2) => {
       if (model1.brand.toUpperCase() > model2.brand.toUpperCase()) return 1;
       if (model1.brand.toUpperCase() < model2.brand.toUpperCase()) return -1;
-      return none;
+      return null;
     });
   };
 
@@ -35,11 +35,11 @@ const CarTable = ({
         </tr>
       </thead>
       <tbody>
-        {filteredCars.length > 0 ? (
+        {doSort.length > 0 ? (
           <Trow
             currentCarSerNum={currentCarSerNum}
             deleteCar={deleteCar}
-            filteredCars={filteredCars}
+            doSort={doSort}
             updating={updating}
             updateRow={updateRow}
           />

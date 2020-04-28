@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 const SortableTH = ({ doSort, thTitle }) => {
   const initialThState = null;
@@ -40,6 +41,11 @@ const SortableTH = ({ doSort, thTitle }) => {
       </th>
     </>
   );
+};
+
+SortableTH.propTypes = {
+  doSort: PropTypes.func,
+  thTitle: PropTypes.string,
 };
 
 export default SortableTH;
