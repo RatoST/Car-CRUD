@@ -1,25 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import DeleteButton from './DeleteButton';
-import UpdatedTableRow from './UpdatedTableRow';
+import SortableTH from './SortableTH';
+import Trow from './Trow';
 
 const CarTable = ({
   filteredCars, updating, updateRow, deleteCar, currentCarSerNum,
 }) => {
-  filteredCars.sort((model1, model2) => {
-    if (model1.brand.toUpperCase() > model2.brand.toUpperCase()) return 1;
-    if (model1.brand.toUpperCase() < model2.brand.toUpperCase()) return -1;
-    if (model1.model.toUpperCase() > model2.model.toUpperCase()) return 1;
-    if (model1.model.toUpperCase() < model2.model.toUpperCase()) return -1;
-    return null;
-  });
+  // filteredCars.sort((model1, model2) => {
+  //   if (model1.brand.toUpperCase() > model2.brand.toUpperCase()) return 1;
+  //   if (model1.brand.toUpperCase() < model2.brand.toUpperCase()) return -1;
+  //   if (model1.model.toUpperCase() > model2.model.toUpperCase()) return 1;
+  //   if (model1.model.toUpperCase() < model2.model.toUpperCase()) return -1;
+  //   return null;
+  // });
+
+  const thTitle = 'Brand';
 
   return (
     <table>
       <thead>
         <tr>
           <th />
-          <th>Brand</th>
+          <SortableTH
+            thTitle={thTitle}
+            arrayOfObj={filteredCars}
+          />
+          {/* <th>Brand</th> */}
           <th>Country</th>
           <th>Model</th>
           <th>Year</th>
@@ -30,20 +36,13 @@ const CarTable = ({
       </thead>
       <tbody>
         {filteredCars.length > 0 ? (
-          filteredCars.map((car) => (
-            <tr key={car.id}>
-              <UpdatedTableRow
-                updating={updating}
-                updateRow={updateRow}
-                car={car}
-                currentCarSerNum={currentCarSerNum}
-              />
-              <DeleteButton
-                deleteCar={deleteCar}
-                carId={car.id}
-              />
-            </tr>
-          ))
+          <Trow
+            currentCarSerNum={currentCarSerNum}
+            deleteCar={deleteCar}
+            filteredCars={filteredCars}
+            updating={updating}
+            updateRow={updateRow}
+          />
         ) : (
           <tr>
             <td colSpan={3}>No cars </td>
