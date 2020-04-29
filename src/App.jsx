@@ -8,7 +8,6 @@ import UpdateCarForm from './components/UpdateCarForm';
 import Footer from './components/Footer';
 import SearchBar from './components/SearchBar';
 
-
 const App = () => {
   const initialFormState = {
     id: '',
@@ -62,14 +61,14 @@ const App = () => {
     addingCar(car);
   };
 
-  const [initState] = useState(cars);
+  const [initState] = useState(cars); //not used at the moment
 
   const doSort = (thTitle, thState) => {
     const sortCars = _.orderBy(cars, [thTitle.toLowerCase()], [thState]);
     setCars(sortCars);
   };
 
-  const doSortUns = () => {
+  const doSortUns = () => { // not used at the moment
     setCars(initState);
   };
 

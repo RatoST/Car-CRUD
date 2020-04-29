@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-const SortableTH = ({ doSort, setThTitle /*doSortUns*/ }) => {
+const SortableTH = ({ doSort, doSortUns, setThTitle }) => {
   const asc = 'asc';
   const desc = 'desc';
   const none = null;
@@ -52,7 +52,6 @@ const SortableTH = ({ doSort, setThTitle /*doSortUns*/ }) => {
     <>
       <th
         onClick={clickHandle}
-        className="sortPointer"
       >
         {thTitle}
         <span>{iconState}</span>
@@ -63,7 +62,7 @@ const SortableTH = ({ doSort, setThTitle /*doSortUns*/ }) => {
 
 SortableTH.propTypes = {
   doSort: PropTypes.func,
-  // doSortUns: PropTypes.func, not used at the moment
+  doSortUns: PropTypes.func,
   setThTitle: PropTypes.string,
 };
 

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import SortableTH from './SortableTH';
 import Trow from './Trow';
 
-
 const CarTable = ({
   sortedCars, updating, updateRow, deleteCar, currentCarSerNum, doSort, doSortUns,
 }) => (
@@ -13,7 +12,7 @@ const CarTable = ({
         <th />
         <SortableTH
           doSort={doSort}
-          doSortUns={doSortUns}
+          doSortUns={doSortUns} //not used at the moment
           setThTitle="Brand"
         />
         <SortableTH

@@ -150,3 +150,7 @@ td:first-of-type {
   max-width: 0;
   text-align: left;
 }
+
+.sortPointer {
+  cursor: pointer;
+}
