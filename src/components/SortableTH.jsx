@@ -1,45 +1,64 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-const SortableTH = ({ doSort, thTitle }) => {
-  const initialThState = null;
-  const [thState, setThState] = useState(initialThState);
-
+const SortableTH = ({ doSort, doSortUns, setThTitle }) => {
   const asc = 'asc';
   const desc = 'desc';
   const none = null;
-  // const arrowUns = <>&#x2195;</>;
-  // const arrowDown = <>&#x2193;</>;
-  // const arrowUp = <>&#x2191;</>;
+  const thTitle = setThTitle;
 
-  // const icon = () => {
-  //   if (thState === 1) {
-  //     return arrowDown;
-  //   } if (thState === -1) {
-  //     return arrowUp;
-  //   } return arrowUns;
-  // };
+  const initialState = none;
+  const [thState, setThState] = useState(initialState);
+  const [iconState, setIconState] = useState(initialState);
+
+  const arrowUns = <>&#x2195;</>;
+  const arrowDown = <>&#x2193;</>;
+  const arrowUp = <>&#x2191;</>;
+
+  const iconBeh = () => {
+    const getIcon = () => {
+      if (thState === asc) {
+        return arrowDown;
+      } if (thState === desc) {
+        return arrowUp;
+      } return arrowUns;
+    };
+    setIconState(getIcon);
+  };
 
   const handleClick = () => {
     if (thState === none) {
       setThState(asc);
-      doSort();
     } if (thState === asc) {
       setThState(desc);
-      doSort();
     } if (thState === desc) {
       setThState(none);
-      doSort();
     }
+  };
+
+  const doSortClick = () => {
+    if (thState === asc) {
+      doSort(thTitle, thState);
+    } if (thState === desc) {
+      doSort(thTitle, thState);
+    } if (thState === none) {
+      doSortUns(thTitle, thState);
+    }
+  };
+
+  const clickHandle = () => {
+    handleClick();
+    doSortClick();
+    iconBeh();
   };
 
   return (
     <>
       <th
-        onClick={handleClick}
+        onClick={clickHandle}
       >
         {thTitle}
-        {/* <span>{icon}</span> */}
+        <span>{iconState}</span>
       </th>
     </>
   );
@@ -47,7 +66,8 @@ const SortableTH = ({ doSort, thTitle }) => {
 
 SortableTH.propTypes = {
   doSort: PropTypes.func,
-  thTitle: PropTypes.string,
+  doSortUns: PropTypes.func,
+  setThTitle: PropTypes.string,
 };
 
 export default SortableTH;

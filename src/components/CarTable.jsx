@@ -6,17 +6,19 @@ import Trow from './Trow';
 
 
 const CarTable = ({
-  filteredCars, updating, updateRow, deleteCar, currentCarSerNum, thState,
+  filteredCars, updating, updateRow, deleteCar, currentCarSerNum,
 }) => {
   const [sortedCars, setSortedCars] = useState(filteredCars);
-  const thTitle = 'Brand';
 
-  const doSort = () => {
+
+  const doSort = (thTitle, thState) => {
     const sortCars = _.orderBy(filteredCars, [thTitle.toLowerCase()], [thState]);
     setSortedCars(sortCars);
   };
 
-  // const sortCars = _.orderBy(filteredCars, ['brand', 'model'], ['asc', 'desc']);
+  const doSortUns = () => {
+    setSortedCars(filteredCars);
+  };
 
   return (
     <table>
@@ -24,15 +26,31 @@ const CarTable = ({
         <tr>
           <th />
           <SortableTH
-            thTitle={thTitle}
             doSort={doSort}
+            doSortUns={doSortUns}
+            setThTitle="Brand"
           />
-          {/* <th>Brand</th> */}
-          <th>Country</th>
-          <th>Model</th>
-          <th>Year</th>
+          <SortableTH
+            doSort={doSort}
+            doSortUns={doSortUns}
+            setThTitle="Country"
+          />
+          <SortableTH
+            doSort={doSort}
+            doSortUns={doSortUns}
+            setThTitle="Model"
+          />
+          <SortableTH
+            doSort={doSort}
+            doSortUns={doSortUns}
+            setThTitle="Year"
+          />
           <th>Serial Number</th>
-          <th>Description</th>
+          <SortableTH
+            doSort={doSort}
+            doSortUns={doSortUns}
+            setThTitle="Description"
+          />
           <th>Actions</th>
         </tr>
       </thead>
@@ -61,8 +79,6 @@ CarTable.propTypes = {
   updateRow: PropTypes.func,
   deleteCar: PropTypes.func,
   currentCarSerNum: PropTypes.string,
-  thState: PropTypes.string,
-
 };
 
 export default CarTable;

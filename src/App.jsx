@@ -84,6 +84,7 @@ const App = () => {
             filteredCars={filteredCars}
             updating={updating}
             updateRow={updateRow}
+            setCars={setCars}
           />
         </div>
         <div className="flex-large">
