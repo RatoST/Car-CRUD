@@ -6,15 +6,17 @@ import Trow from './Trow';
 
 
 const CarTable = ({
-  filteredCars, updating, updateRow, deleteCar, currentCarSerNum,
+  filteredCars, updating, updateRow, deleteCar, currentCarSerNum, thState,
 }) => {
   const [sortedCars, setSortedCars] = useState(filteredCars);
+  const thTitle = 'Brand';
 
   const doSort = () => {
-    _.sortBy(filteredCars, ['brand', 'model']);
+    const sortCars = _.orderBy(filteredCars, [thTitle.toLowerCase()], [thState]);
+    setSortedCars(sortCars);
   };
 
-  const thTitle = 'Brand';
+  // const sortCars = _.orderBy(filteredCars, ['brand', 'model'], ['asc', 'desc']);
 
   return (
     <table>
@@ -59,6 +61,7 @@ CarTable.propTypes = {
   updateRow: PropTypes.func,
   deleteCar: PropTypes.func,
   currentCarSerNum: PropTypes.string,
+  thState: PropTypes.string,
 
 };
 

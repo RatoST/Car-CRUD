@@ -5,20 +5,20 @@ const SortableTH = ({ doSort, thTitle }) => {
   const initialThState = null;
   const [thState, setThState] = useState(initialThState);
 
-  const asc = 1;
-  const desc = -1;
+  const asc = 'asc';
+  const desc = 'desc';
   const none = null;
-  const arrowUns = <>&#x2195;</>;
-  const arrowDown = <>&#x2193;</>;
-  const arrowUp = <>&#x2191;</>;
+  // const arrowUns = <>&#x2195;</>;
+  // const arrowDown = <>&#x2193;</>;
+  // const arrowUp = <>&#x2191;</>;
 
-  const icon = () => {
-    if (thState === 1) {
-      return arrowDown;
-    } if (thState === -1) {
-      return arrowUp;
-    } return arrowUns;
-  };
+  // const icon = () => {
+  //   if (thState === 1) {
+  //     return arrowDown;
+  //   } if (thState === -1) {
+  //     return arrowUp;
+  //   } return arrowUns;
+  // };
 
   const handleClick = () => {
     if (thState === none) {
@@ -26,8 +26,10 @@ const SortableTH = ({ doSort, thTitle }) => {
       doSort();
     } if (thState === asc) {
       setThState(desc);
+      doSort();
     } if (thState === desc) {
       setThState(none);
+      doSort();
     }
   };
 
@@ -37,7 +39,7 @@ const SortableTH = ({ doSort, thTitle }) => {
         onClick={handleClick}
       >
         {thTitle}
-        <span>{icon}</span>
+        {/* <span>{icon}</span> */}
       </th>
     </>
   );
