@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import _ from 'lodash';
 import { v4 as uuidv4 } from 'uuid';
 import carsData from './components/carsData';
 import CarTable from './components/CarTable';
@@ -61,11 +62,22 @@ const App = () => {
     addingCar(car);
   };
 
+  const [initState] = useState(cars);
+
+  const doSort = (thTitle, thState) => {
+    const sortCars = _.orderBy(cars, [thTitle.toLowerCase()], [thState]);
+    setCars(sortCars);
+  };
+
+  const doSortUns = () => {
+    setCars(initState);
+  };
+
   const filteredCars = cars.filter((car) =>
     (car.brand.toLowerCase().includes(searchText.toLowerCase()))
-    || (car.model.toLowerCase().includes(searchText.toLowerCase()))
-    || (car.country.toLowerCase().includes(searchText.toLowerCase()))
-    || (car.description.toLowerCase().includes(searchText.toLowerCase())));
+  || (car.model.toLowerCase().includes(searchText.toLowerCase()))
+  || (car.country.toLowerCase().includes(searchText.toLowerCase()))
+  || (car.description.toLowerCase().includes(searchText.toLowerCase())));
 
   return (
     <div className="container">
@@ -74,17 +86,17 @@ const App = () => {
         <div className="flex-large">
           <h2>View cars</h2>
           <SearchBar
-            filteredCars={filteredCars}
             searchText={searchText}
             setSearchText={setSearchText}
           />
           <CarTable
             currentCarSerNum={currentCar.serialNum}
             deleteCar={deleteCar}
-            filteredCars={filteredCars}
             updating={updating}
             updateRow={updateRow}
-            setCars={setCars}
+            sortedCars={filteredCars}
+            doSort={doSort}
+            doSortUns={doSortUns}
           />
         </div>
         <div className="flex-large">
