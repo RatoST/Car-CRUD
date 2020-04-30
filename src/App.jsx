@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import _ from 'lodash';
 import { v4 as uuidv4 } from 'uuid';
 import carsData from './components/carsData';
 import CarTable from './components/CarTable';
@@ -61,17 +60,6 @@ const App = () => {
     addingCar(car);
   };
 
-  const [initState] = useState(cars); //not used at the moment
-
-  const doSort = (thTitle, thState) => {
-    const sortCars = _.orderBy(cars, [thTitle.toLowerCase()], [thState]);
-    setCars(sortCars);
-  };
-
-  const doSortUns = () => { // not used at the moment
-    setCars(initState);
-  };
-
   const filteredCars = cars.filter((car) =>
     (car.brand.toLowerCase().includes(searchText.toLowerCase()))
   || (car.model.toLowerCase().includes(searchText.toLowerCase()))
@@ -94,8 +82,8 @@ const App = () => {
             updating={updating}
             updateRow={updateRow}
             sortedCars={filteredCars}
-            doSort={doSort}
-            doSortUns={doSortUns}
+            cars={cars}
+            setCars={setCars}
           />
         </div>
         <div className="flex-large">
