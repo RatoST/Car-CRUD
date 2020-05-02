@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import AddCarForm from './components/AddCarForm';
 import carsData from './components/carsData';
 import CarTable from './components/CarTable';
-import AddCarForm from './components/AddCarForm';
-import UpdateCarForm from './components/UpdateCarForm';
 import Footer from './components/Footer';
 import SearchBar from './components/SearchBar';
+import UpdateCarForm from './components/UpdateCarForm';
 
 const App = () => {
   const initialFormState = {

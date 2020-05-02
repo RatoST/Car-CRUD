@@ -6,23 +6,22 @@ const ASC = 'asc';
 const DESC = 'desc';
 
 const SortableTH = ({
-  doSort, handleState, sortAttribute, sortOrder, title,
+  doSort, sortAttribute, sortOrder, title,
 }) => {
   const clickHandle = () => {
     doSort(title);
-    handleState();
   };
 
   return (
     <>
       <th
-        onClick={clickHandle}
         className="sortPointer"
+        onClick={clickHandle}
       >
         {title}
         {(sortOrder === NONE && <span className="sortIcon">&#x2195;</span>)}
-        {sortAttribute === title && (sortOrder === ASC && <span>&#x2193;</span>)}
-        {sortAttribute === title && (sortOrder === DESC && <span>&#x2191;</span>)}
+        {sortAttribute === title && (sortOrder === ASC && <span>&#x2191;</span>)}
+        {sortAttribute === title && (sortOrder === DESC && <span>&#x2193;</span>)}
       </th>
     </>
   );
@@ -30,7 +29,6 @@ const SortableTH = ({
 
 SortableTH.propTypes = {
   doSort: PropTypes.func,
-  handleState: PropTypes.func,
   sortAttribute: PropTypes.string,
   sortOrder: PropTypes.string,
   title: PropTypes.string,

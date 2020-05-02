@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import _ from 'lodash';
 import PropTypes from 'prop-types';
-import SortableTH, { ASC, DESC, NONE } from './SortableTH';
 import DeleteButton from './DeleteButton';
+import SortableTH, { ASC, DESC, NONE } from './SortableTH';
 import UpdatedTableRow from './UpdatedTableRow';
 
 const CarTable = ({
@@ -11,7 +11,8 @@ const CarTable = ({
   const [sortOrder, setSortOrder] = useState(NONE);
   const [sortAttribute, setSortAttribute] = useState(NONE);
 
-  const handleState = () => {
+  const doSort = (thTitle) => {
+    setSortAttribute(thTitle);
     if (sortOrder === NONE) {
       setSortOrder(ASC);
     } if (sortOrder === ASC) {
@@ -19,9 +20,6 @@ const CarTable = ({
     } if (sortOrder === DESC) {
       setSortOrder(NONE);
     }
-  };
-  const doSort = (thTitle) => {
-    setSortAttribute(thTitle);
   };
   const tableCars = sortOrder === NONE ? cars
     : (_.orderBy(cars, [sortAttribute.toLowerCase()], [sortOrder]));
@@ -32,52 +30,32 @@ const CarTable = ({
         <tr>
           <th />
           <SortableTH
-            ASC={ASC}
-            DESC={DESC}
             doSort={doSort}
-            handleState={handleState}
-            NONE={NONE}
             sortOrder={sortOrder}
             sortAttribute={sortAttribute}
             title="Brand"
           />
           <SortableTH
-            ASC={ASC}
-            DESC={DESC}
             doSort={doSort}
-            handleState={handleState}
-            NONE={NONE}
             sortOrder={sortOrder}
             sortAttribute={sortAttribute}
             title="Country"
           />
           <SortableTH
-            ASC={ASC}
-            DESC={DESC}
             doSort={doSort}
-            handleState={handleState}
-            NONE={NONE}
             sortOrder={sortOrder}
             sortAttribute={sortAttribute}
             title="Model"
           />
           <SortableTH
-            ASC={ASC}
-            DESC={DESC}
             doSort={doSort}
-            handleState={handleState}
-            NONE={NONE}
             sortOrder={sortOrder}
             sortAttribute={sortAttribute}
             title="Year"
           />
           <th>Serial Number</th>
           <SortableTH
-            ASC={ASC}
-            DESC={DESC}
             doSort={doSort}
-            handleState={handleState}
-            NONE={NONE}
             sortOrder={sortOrder}
             sortAttribute={sortAttribute}
             title="Description"
