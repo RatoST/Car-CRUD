@@ -37,6 +37,7 @@
     "comma-dangle": "error",
     "react/jsx-indent": [2, 2],
     "no-confusing-arrow": "off",
+    "object-curly-newline": "off",
     "spaced-comment": "off",
     "no-plusplus": "off",
     "implicit-arrow-linebreak": "off",
