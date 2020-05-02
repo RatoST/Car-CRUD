@@ -6,7 +6,7 @@ import DeleteButton from './DeleteButton';
 import UpdatedTableRow from './UpdatedTableRow';
 
 const CarTable = ({
-  sortedCars, updating, updateRow, deleteCar, currentCarSerNum, cars,
+  sortedCars, updating, updateRow, deleteCar, currentCarSerNum,
 }) => {
   const none = null;
   const [sortOrder, setSortOrder] = useState(none);
@@ -15,8 +15,8 @@ const CarTable = ({
     setSortOrder(thState);
     setSortAttribute(thTitle);
   };
-  const tableCars = sortOrder === none ? cars
-    : (_.orderBy(cars, [sortAttribute.toLowerCase()], [sortOrder]));
+  const tableCars = sortOrder === none ? sortedCars
+    : (_.orderBy(sortedCars, [sortAttribute.toLowerCase()], [sortOrder]));
 
   return (
     <table>
@@ -74,7 +74,6 @@ const CarTable = ({
 };
 
 CarTable.propTypes = {
-  cars: PropTypes.arrayOf(PropTypes.object),
   sortedCars: PropTypes.arrayOf(PropTypes.object),
   updating: PropTypes.bool,
   updateRow: PropTypes.func,

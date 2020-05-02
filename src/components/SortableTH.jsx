@@ -57,7 +57,7 @@ const SortableTH = ({ doSort, setThTitle }) => {
         className="sortPointer"
       >
         {thTitle}
-        <span>{iconState}</span>
+        <span className="sortIcon">{iconState}</span>
       </th>
     </>
   );
