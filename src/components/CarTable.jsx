@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import _ from 'lodash';
 import PropTypes from 'prop-types';
 import SortableTH from './SortableTH';
@@ -6,18 +6,17 @@ import DeleteButton from './DeleteButton';
 import UpdatedTableRow from './UpdatedTableRow';
 
 const CarTable = ({
-  sortedCars, updating, updateRow, deleteCar, currentCarSerNum, setCars,
+  sortedCars, updating, updateRow, deleteCar, currentCarSerNum, cars,
 }) => {
-  // const [initState] = useState(cars); //not used at the moment
-
+  const none = null;
+  const [sortOrder, setSortOrder] = useState(none);
+  const [sortAttribute, setSortAttribute] = useState(none);
   const doSort = (thTitle, thState) => {
-    const sortCars = _.orderBy(sortedCars, [thTitle.toLowerCase()], [thState]);
-    setCars(sortCars);
+    setSortOrder(thState);
+    setSortAttribute(thTitle);
   };
-
-  // const doSortUns = () => { // not used at the moment
-  //   setCars(initState);
-  // };
+  const tableCars = sortOrder === none ? cars
+    : (_.orderBy(cars, [sortAttribute.toLowerCase()], [sortOrder]));
 
   return (
     <table>
@@ -26,36 +25,31 @@ const CarTable = ({
           <th />
           <SortableTH
             doSort={doSort}
-            // doSortUns={doSortUns} //not used at the moment
             setThTitle="Brand"
           />
           <SortableTH
             doSort={doSort}
-            // doSortUns={doSortUns}
             setThTitle="Country"
           />
           <SortableTH
             doSort={doSort}
-            // doSortUns={doSortUns}
             setThTitle="Model"
           />
           <SortableTH
             doSort={doSort}
-            // doSortUns={doSortUns}
             setThTitle="Year"
           />
           <th>Serial Number</th>
           <SortableTH
             doSort={doSort}
-            // doSortUns={doSortUns}
             setThTitle="Description"
           />
           <th>Actions</th>
         </tr>
       </thead>
       <tbody>
-        {sortedCars.length > 0 ? (
-          sortedCars.map((car) => (
+        {tableCars.length > 0 ? (
+          tableCars.map((car) => (
             <tr key={car.id}>
               <UpdatedTableRow
                 updating={updating}
@@ -80,6 +74,7 @@ const CarTable = ({
 };
 
 CarTable.propTypes = {
+  cars: PropTypes.arrayOf(PropTypes.object),
   setCars: PropTypes.func,
   sortedCars: PropTypes.arrayOf(PropTypes.object),
   updating: PropTypes.bool,

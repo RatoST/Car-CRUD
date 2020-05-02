@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-const SortableTH = ({ doSort, setThTitle /*doSortUns*/ }) => {
+const SortableTH = ({ doSort, setThTitle }) => {
   const asc = 'asc';
   const desc = 'desc';
   const none = null;
@@ -30,13 +30,13 @@ const SortableTH = ({ doSort, setThTitle /*doSortUns*/ }) => {
     } if (thState === asc) {
       setThState(desc);
     } if (thState === desc) {
-      setThState(asc);
+      setThState(none);
     }
   };
 
   const doSortClick = () => {
     if (thState === none) {
-      return null;
+      doSort(thTitle, thState);
     } if (thState === asc) {
       doSort(thTitle, thState);
     } if (thState === desc) {
@@ -65,7 +65,6 @@ const SortableTH = ({ doSort, setThTitle /*doSortUns*/ }) => {
 
 SortableTH.propTypes = {
   doSort: PropTypes.func,
-  // doSortUns: PropTypes.func, not used at the moment
   setThTitle: PropTypes.string,
 };
 

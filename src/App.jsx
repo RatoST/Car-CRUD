@@ -83,7 +83,6 @@ const App = () => {
             updateRow={updateRow}
             sortedCars={filteredCars}
             cars={cars}
-            setCars={setCars}
           />
         </div>
         <div className="flex-large">
