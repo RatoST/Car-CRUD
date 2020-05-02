@@ -11,11 +11,13 @@ const SortableTH = ({ doSort, setThTitle }) => {
   const arrowUp = <>&#x2191;</>;
 
   const [thState, setThState] = useState(none);
-  const [iconState, setIconState] = useState(none);
+  const [iconState, setIconState] = useState(arrowUns);
 
   const iconBeh = () => {
     const getIcon = () => {
-      if (thState === asc) {
+      if (thState === none) {
+        return arrowUns;
+      } if (thState === asc) {
         return arrowDown;
       } if (thState === desc) {
         return arrowUp;
