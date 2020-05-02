@@ -9,10 +9,21 @@ const CarTable = ({
   sortedCars, updating, updateRow, deleteCar, currentCarSerNum,
 }) => {
   const none = null;
+  const asc = 'asc';
+  const desc = 'desc';
   const [sortOrder, setSortOrder] = useState(none);
   const [sortAttribute, setSortAttribute] = useState(none);
-  const doSort = (thTitle, thState) => {
-    setSortOrder(thState);
+
+  const handleState = () => {
+    if (sortOrder === none) {
+      return setSortOrder(asc);
+    } if (sortOrder === asc) {
+      return setSortOrder(desc);
+    } if (sortOrder === desc) {
+      return setSortOrder(none);
+    }
+  };
+  const doSort = (thTitle) => {
     setSortAttribute(thTitle);
   };
   const tableCars = sortOrder === none ? sortedCars
@@ -25,23 +36,33 @@ const CarTable = ({
           <th />
           <SortableTH
             doSort={doSort}
+            handleState={handleState}
+            sortOrder={sortOrder}
             setThTitle="Brand"
           />
           <SortableTH
             doSort={doSort}
+            handleState={handleState}
+            sortOrder={sortOrder}
             setThTitle="Country"
           />
           <SortableTH
             doSort={doSort}
+            handleState={handleState}
+            sortOrder={sortOrder}
             setThTitle="Model"
           />
           <SortableTH
             doSort={doSort}
+            handleState={handleState}
+            sortOrder={sortOrder}
             setThTitle="Year"
           />
           <th>Serial Number</th>
           <SortableTH
             doSort={doSort}
+            handleState={handleState}
+            sortOrder={sortOrder}
             setThTitle="Description"
           />
           <th>Actions</th>
