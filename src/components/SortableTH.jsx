@@ -2,16 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const SortableTH = ({
-  doSort, handleState, setThTitle, sortOrder, sortAttribute,
+  ASC, DESC, doSort, handleState, sortAttribute, sortOrder, title, NONE,
 }) => {
-  const thTitle = setThTitle;
-  const arrowUns = <>&#x2195;</>;
-  const arrowDown = <>&#x2193;</>;
-  const arrowUp = <>&#x2191;</>;
-
   const clickHandle = () => {
+    doSort(title);
     handleState();
-    doSort(thTitle);
   };
 
   return (
@@ -20,21 +15,24 @@ const SortableTH = ({
         onClick={clickHandle}
         className="sortPointer"
       >
-        {thTitle}
-        {(sortOrder === null && <span className="sortIcon">{arrowUns}</span>)}
-        {sortAttribute === thTitle && (sortOrder === 'asc' && <span>{arrowDown}</span>)}
-        {sortAttribute === thTitle && (sortOrder === 'desc' && <span>{arrowUp}</span>)}
+        {title}
+        {(sortOrder === NONE && <span className="sortIcon">&#x2195;</span>)}
+        {sortAttribute === title && (sortOrder === ASC && <span>&#x2193;</span>)}
+        {sortAttribute === title && (sortOrder === DESC && <span>&#x2191;</span>)}
       </th>
     </>
   );
 };
 
 SortableTH.propTypes = {
+  ASC: PropTypes.string,
+  DESC: PropTypes.string,
   doSort: PropTypes.func,
-  sortOrder: PropTypes.string,
   handleState: PropTypes.func,
-  setThTitle: PropTypes.string,
+  NONE: PropTypes.string,
   sortAttribute: PropTypes.string,
+  sortOrder: PropTypes.string,
+  title: PropTypes.string,
 };
 
 export default SortableTH;

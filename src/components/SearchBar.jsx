@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 
 const SearchBar = ({ searchText, setSearchText }) => {
   const handleChange = (event) => {
-    const newValue = event.target.value;
-    setSearchText(newValue);
+    const searchValue = event.target.value;
+    setSearchText(searchValue);
   };
 
   return (

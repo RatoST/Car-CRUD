@@ -23,13 +23,13 @@ const AddCarForm = ({ addCar, initialFormState, setAdding }) => {
         car={car}
         handleInputChange={handleInputChange}
       />
-      <button type="submit" className="button add-button">Add new car</button>
+      <button className="button add-button" type="submit">Add new car</button>
       <button
-        type="submit"
+        className="button cancel-button"
         onClick={() => {
           setAdding(false);
         }}
-        className="button cancel-button"
+        type="submit"
       >
         Cancel
       </button>

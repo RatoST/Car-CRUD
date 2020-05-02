@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const UpdatedTableRow = ({
-  updating, updateRow, car, currentCarSerNum,
+  car, currentCarSerNum, updating, updateRow,
 }) => {
   const clickHandle = () => {
     updateRow(car);
@@ -62,8 +62,6 @@ const UpdatedTableRow = ({
 };
 
 UpdatedTableRow.propTypes = {
-  updating: PropTypes.bool,
-  updateRow: PropTypes.func,
   car: PropTypes.shape({
     id: PropTypes.string,
     brand: PropTypes.string,
@@ -74,7 +72,8 @@ UpdatedTableRow.propTypes = {
     description: PropTypes.string,
   }),
   currentCarSerNum: PropTypes.string,
-
+  updating: PropTypes.bool,
+  updateRow: PropTypes.func,
 };
 
 export default UpdatedTableRow;

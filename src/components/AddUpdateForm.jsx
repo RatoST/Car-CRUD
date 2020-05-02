@@ -7,55 +7,55 @@ const AddUpdateForm = ({ car, handleInputChange }) => (
     <label>
       Brand
       <input
-        type="text"
         name="brand"
-        value={car.brand}
         onChange={handleInputChange}
+        type="text"
+        value={car.brand}
       />
     </label>
     <label>
       Country
       <input
-        type="text"
         name="country"
-        value={car.country}
         onChange={handleInputChange}
+        type="text"
+        value={car.country}
       />
     </label>
     <label>
       Model
       <input
-        type="text"
         name="model"
-        value={car.model}
         onChange={handleInputChange}
+        type="text"
+        value={car.model}
       />
     </label>
     <label>
       Year
       <input
-        type="text"
         name="year"
-        value={car.year}
         onChange={handleInputChange}
+        type="text"
+        value={car.year}
       />
     </label>
     <label>
       Serial Number
       <input
-        type="text"
         name="serialNum"
-        value={car.serialNum}
         onChange={handleInputChange}
+        type="text"
+        value={car.serialNum}
       />
     </label>
     <label>
       Description
       <input
-        type="text"
         name="description"
-        value={car.description}
         onChange={handleInputChange}
+        type="text"
+        value={car.description}
       />
     </label>
   </>

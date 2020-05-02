@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const DeleteButton = ({ deleteCar, carId }) => (
+const DeleteButton = ({ carId, deleteCar }) => (
   <td>
     <button type="button"
       className="button delete-button"
@@ -14,8 +14,8 @@ const DeleteButton = ({ deleteCar, carId }) => (
 );
 
 DeleteButton.propTypes = {
-  deleteCar: PropTypes.func,
   carId: PropTypes.string,
+  deleteCar: PropTypes.func,
 };
 
 export default DeleteButton;

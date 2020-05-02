@@ -21,11 +21,11 @@ const App = () => {
   const addId = (obj) => ({ ...obj, id: uuidv4() });
   const addIds = (obj) => obj.map(addId);
 
+  const [adding, setAdding] = useState(false);
   const [cars, setCars] = useState(addIds(carsData));
   const [currentCar, setCurrentCar] = useState(initialFormState);
-  const [updating, setUpdating] = useState(false);
-  const [adding, setAdding] = useState(false);
   const [searchText, setSearchText] = useState('');
+  const [updating, setUpdating] = useState(false);
 
   const addCar = (car) => {
     setCars([...cars, addId(car)]);
@@ -77,12 +77,11 @@ const App = () => {
             setSearchText={setSearchText}
           />
           <CarTable
+            cars={filteredCars}
             currentCarSerNum={currentCar.serialNum}
             deleteCar={deleteCar}
             updating={updating}
             updateRow={updateRow}
-            sortedCars={filteredCars}
-            cars={cars}
           />
         </div>
         <div className="flex-large">
@@ -90,8 +89,8 @@ const App = () => {
             <div>
               <h2>Edit car</h2>
               <UpdateCarForm
-                setUpdating={setUpdating}
                 currentCar={currentCar}
+                setUpdating={setUpdating}
                 updateCar={updateExistCar}
               />
             </div>
@@ -100,8 +99,8 @@ const App = () => {
             <div>
               <h2>Add cars</h2>
               <AddCarForm
-                initialFormState={initialFormState}
                 addCar={addCar}
+                initialFormState={initialFormState}
                 setAdding={setAdding}
               />
             </div>
@@ -109,11 +108,11 @@ const App = () => {
         </div>
         {!adding && (!updating && (
           <button
-            type="submit"
             className="button add-button new-button"
             onClick={clickHandle}
             onKeyDown={keyDownHandle}
             role="presentation"
+            type="submit"
           >
             Add new car
           </button>

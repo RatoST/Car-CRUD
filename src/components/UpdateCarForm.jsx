@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import AddUpdateForm from './AddUpdateForm';
 
 const UpdateCarForm = ({
-  currentCar, updateCar, setUpdating,
+  currentCar, setUpdating, updateCar,
 }) => {
   const [car, setCar] = useState(currentCar);
 
@@ -52,8 +52,8 @@ UpdateCarForm.propTypes = {
     serialNum: PropTypes.string,
     description: PropTypes.string,
   }),
-  updateCar: PropTypes.func,
   setUpdating: PropTypes.func,
+  updateCar: PropTypes.func,
 };
 
 export default UpdateCarForm;

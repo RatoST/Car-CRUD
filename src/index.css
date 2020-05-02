@@ -156,6 +156,5 @@ td:first-of-type {
 }
 
 .sortIcon {
-  color:gray;
-  filter: brightness(0.5);
+  color:#E1C699 ;
 }

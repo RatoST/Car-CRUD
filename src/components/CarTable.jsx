@@ -6,28 +6,28 @@ import DeleteButton from './DeleteButton';
 import UpdatedTableRow from './UpdatedTableRow';
 
 const CarTable = ({
-  sortedCars, updating, updateRow, deleteCar, currentCarSerNum,
+  cars, currentCarSerNum, deleteCar, updating, updateRow,
 }) => {
-  const none = null;
-  const asc = 'asc';
-  const desc = 'desc';
-  const [sortOrder, setSortOrder] = useState(none);
-  const [sortAttribute, setSortAttribute] = useState(none);
+  const NONE = 'NONE';
+  const ASC = 'asc';
+  const DESC = 'desc';
+  const [sortOrder, setSortOrder] = useState(NONE);
+  const [sortAttribute, setSortAttribute] = useState(NONE);
 
   const handleState = () => {
-    if (sortOrder === none) {
-      return setSortOrder(asc);
-    } if (sortOrder === asc) {
-      return setSortOrder(desc);
-    } if (sortOrder === desc) {
-      return setSortOrder(none);
-    } return null;
+    if (sortOrder === NONE) {
+      setSortOrder(ASC);
+    } if (sortOrder === ASC) {
+      setSortOrder(DESC);
+    } if (sortOrder === DESC) {
+      setSortOrder(NONE);
+    }
   };
   const doSort = (thTitle) => {
     setSortAttribute(thTitle);
   };
-  const tableCars = sortOrder === none ? sortedCars
-    : (_.orderBy(sortedCars, [sortAttribute.toLowerCase()], [sortOrder]));
+  const tableCars = sortOrder === NONE ? cars
+    : (_.orderBy(cars, [sortAttribute.toLowerCase()], [sortOrder]));
 
   return (
     <table>
@@ -35,40 +35,55 @@ const CarTable = ({
         <tr>
           <th />
           <SortableTH
+            ASC={ASC}
+            DESC={DESC}
             doSort={doSort}
             handleState={handleState}
+            NONE={NONE}
             sortOrder={sortOrder}
             sortAttribute={sortAttribute}
-            setThTitle="Brand"
+            title="Brand"
           />
           <SortableTH
+            ASC={ASC}
+            DESC={DESC}
             doSort={doSort}
             handleState={handleState}
+            NONE={NONE}
             sortOrder={sortOrder}
             sortAttribute={sortAttribute}
-            setThTitle="Country"
+            title="Country"
           />
           <SortableTH
+            ASC={ASC}
+            DESC={DESC}
             doSort={doSort}
             handleState={handleState}
+            NONE={NONE}
             sortOrder={sortOrder}
             sortAttribute={sortAttribute}
-            setThTitle="Model"
+            title="Model"
           />
           <SortableTH
+            ASC={ASC}
+            DESC={DESC}
             doSort={doSort}
             handleState={handleState}
+            NONE={NONE}
             sortOrder={sortOrder}
             sortAttribute={sortAttribute}
-            setThTitle="Year"
+            title="Year"
           />
           <th>Serial Number</th>
           <SortableTH
+            ASC={ASC}
+            DESC={DESC}
             doSort={doSort}
             handleState={handleState}
+            NONE={NONE}
             sortOrder={sortOrder}
             sortAttribute={sortAttribute}
-            setThTitle="Description"
+            title="Description"
           />
           <th>Actions</th>
         </tr>
@@ -78,14 +93,14 @@ const CarTable = ({
           tableCars.map((car) => (
             <tr key={car.id}>
               <UpdatedTableRow
-                updating={updating}
-                updateRow={updateRow}
                 car={car}
                 currentCarSerNum={currentCarSerNum}
+                updating={updating}
+                updateRow={updateRow}
               />
               <DeleteButton
-                deleteCar={deleteCar}
                 carId={car.id}
+                deleteCar={deleteCar}
               />
             </tr>
           ))
@@ -100,7 +115,7 @@ const CarTable = ({
 };
 
 CarTable.propTypes = {
-  sortedCars: PropTypes.arrayOf(PropTypes.object),
+  cars: PropTypes.arrayOf(PropTypes.object),
   updating: PropTypes.bool,
   updateRow: PropTypes.func,
   deleteCar: PropTypes.func,
