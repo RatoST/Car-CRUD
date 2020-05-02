@@ -75,7 +75,6 @@ const CarTable = ({
 
 CarTable.propTypes = {
   cars: PropTypes.arrayOf(PropTypes.object),
-  setCars: PropTypes.func,
   sortedCars: PropTypes.arrayOf(PropTypes.object),
   updating: PropTypes.bool,
   updateRow: PropTypes.func,
