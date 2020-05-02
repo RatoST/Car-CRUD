@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { ASC, DESC, NONE } from './CarTable';
 
 const SortableTH = ({
-  ASC, DESC, doSort, handleState, sortAttribute, sortOrder, title, NONE,
+  doSort, handleState, sortAttribute, sortOrder, title,
 }) => {
   const clickHandle = () => {
     doSort(title);
@@ -25,11 +26,8 @@ const SortableTH = ({
 };
 
 SortableTH.propTypes = {
-  ASC: PropTypes.string,
-  DESC: PropTypes.string,
   doSort: PropTypes.func,
   handleState: PropTypes.func,
-  NONE: PropTypes.string,
   sortAttribute: PropTypes.string,
   sortOrder: PropTypes.string,
   title: PropTypes.string,

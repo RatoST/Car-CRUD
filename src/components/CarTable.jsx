@@ -5,12 +5,13 @@ import SortableTH from './SortableTH';
 import DeleteButton from './DeleteButton';
 import UpdatedTableRow from './UpdatedTableRow';
 
+const NONE = 'NONE';
+const ASC = 'asc';
+const DESC = 'desc';
+
 const CarTable = ({
   cars, currentCarSerNum, deleteCar, updating, updateRow,
 }) => {
-  const NONE = 'NONE';
-  const ASC = 'asc';
-  const DESC = 'desc';
   const [sortOrder, setSortOrder] = useState(NONE);
   const [sortAttribute, setSortAttribute] = useState(NONE);
 
@@ -123,3 +124,4 @@ CarTable.propTypes = {
 };
 
 export default CarTable;
+export { ASC, DESC, NONE };
