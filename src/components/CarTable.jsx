@@ -21,7 +21,7 @@ const CarTable = ({
       return setSortOrder(desc);
     } if (sortOrder === desc) {
       return setSortOrder(none);
-    }
+    } return null;
   };
   const doSort = (thTitle) => {
     setSortAttribute(thTitle);
@@ -38,24 +38,28 @@ const CarTable = ({
             doSort={doSort}
             handleState={handleState}
             sortOrder={sortOrder}
+            sortAttribute={sortAttribute}
             setThTitle="Brand"
           />
           <SortableTH
             doSort={doSort}
             handleState={handleState}
             sortOrder={sortOrder}
+            sortAttribute={sortAttribute}
             setThTitle="Country"
           />
           <SortableTH
             doSort={doSort}
             handleState={handleState}
             sortOrder={sortOrder}
+            sortAttribute={sortAttribute}
             setThTitle="Model"
           />
           <SortableTH
             doSort={doSort}
             handleState={handleState}
             sortOrder={sortOrder}
+            sortAttribute={sortAttribute}
             setThTitle="Year"
           />
           <th>Serial Number</th>
@@ -63,6 +67,7 @@ const CarTable = ({
             doSort={doSort}
             handleState={handleState}
             sortOrder={sortOrder}
+            sortAttribute={sortAttribute}
             setThTitle="Description"
           />
           <th>Actions</th>

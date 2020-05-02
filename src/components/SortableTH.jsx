@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const SortableTH = ({
-  doSort, handleState, setThTitle, sortOrder,
+  doSort, handleState, setThTitle, sortOrder, sortAttribute,
 }) => {
   const thTitle = setThTitle;
   const arrowUns = <>&#x2195;</>;
@@ -21,9 +21,9 @@ const SortableTH = ({
         className="sortPointer"
       >
         {thTitle}
-        {sortOrder === null && <span className="sortIcon">{arrowUns}</span>}
-        {sortOrder === 'asc' && <span>{arrowDown}</span>}
-        {sortOrder === 'desc' && <span>{arrowUp}</span>}
+        {sortAttribute === thTitle && (sortOrder === null && <span className="sortIcon">{arrowUns}</span>)}
+        {sortAttribute === thTitle && (sortOrder === 'asc' && <span>{arrowDown}</span>)}
+        {sortAttribute === thTitle && (sortOrder === 'desc' && <span>{arrowUp}</span>)}
       </th>
     </>
   );
@@ -34,6 +34,7 @@ SortableTH.propTypes = {
   sortOrder: PropTypes.string,
   handleState: PropTypes.func,
   setThTitle: PropTypes.string,
+  sortAttribute: PropTypes.string,
 };
 
 export default SortableTH;
