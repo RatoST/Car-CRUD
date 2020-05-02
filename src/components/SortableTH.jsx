@@ -21,7 +21,7 @@ const SortableTH = ({
         className="sortPointer"
       >
         {thTitle}
-        {sortAttribute === thTitle && (sortOrder === null && <span className="sortIcon">{arrowUns}</span>)}
+        {(sortOrder === null && <span className="sortIcon">{arrowUns}</span>)}
         {sortAttribute === thTitle && (sortOrder === 'asc' && <span>{arrowDown}</span>)}
         {sortAttribute === thTitle && (sortOrder === 'desc' && <span>{arrowUp}</span>)}
       </th>
