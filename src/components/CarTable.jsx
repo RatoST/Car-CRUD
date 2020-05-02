@@ -1,13 +1,9 @@
 import React, { useState } from 'react';
 import _ from 'lodash';
 import PropTypes from 'prop-types';
-import SortableTH from './SortableTH';
+import SortableTH, { ASC, DESC, NONE } from './SortableTH';
 import DeleteButton from './DeleteButton';
 import UpdatedTableRow from './UpdatedTableRow';
-
-const NONE = 'NONE';
-const ASC = 'asc';
-const DESC = 'desc';
 
 const CarTable = ({
   cars, currentCarSerNum, deleteCar, updating, updateRow,
@@ -124,4 +120,3 @@ CarTable.propTypes = {
 };
 
 export default CarTable;
-export { ASC, DESC, NONE };

@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ASC, DESC, NONE } from './CarTable';
+
+const NONE = 'NONE';
+const ASC = 'asc';
+const DESC = 'desc';
 
 const SortableTH = ({
   doSort, handleState, sortAttribute, sortOrder, title,
@@ -34,3 +37,4 @@ SortableTH.propTypes = {
 };
 
 export default SortableTH;
+export { ASC, DESC, NONE };
