@@ -5,11 +5,21 @@ const NONE = 'NONE';
 const ASC = 'asc';
 const DESC = 'desc';
 
+
 const SortableTH = ({
   doSort, sortAttribute, sortOrder, title,
 }) => {
   const clickHandle = () => {
     doSort(title, sortOrder);
+  };
+  const resolveIcon = () => {
+    if (title !== sortAttribute || sortOrder === NONE) {
+      return <span className="sortIcon">&#x2195;</span>;
+    }
+    if (sortOrder === ASC) {
+      return <span>&#x2191;</span>;
+    } // DESC:
+    return <span>&#x2193;</span>;
   };
 
   return (
@@ -19,9 +29,7 @@ const SortableTH = ({
         onClick={clickHandle}
       >
         {title}
-        {(sortOrder === NONE && <span className="sortIcon">&#x2195;</span>)}
-        {sortAttribute === title && (sortOrder === ASC && <span>&#x2191;</span>)}
-        {sortAttribute === title && (sortOrder === DESC && <span>&#x2193;</span>)}
+        {resolveIcon()}
       </th>
     </>
   );
