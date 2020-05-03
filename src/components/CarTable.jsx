@@ -14,11 +14,11 @@ const CarTable = ({
   const doSort = (thTitle, thOrder) => {
     if (thTitle !== sortAttribute) {
       setSortOrder(ASC);
-    } if (thOrder === NONE) {
+    } else if (thOrder === NONE) {
       setSortOrder(ASC);
-    } if (thOrder === ASC) {
+    } else if (thOrder === ASC) {
       setSortOrder(DESC);
-    } if (thOrder === DESC) {
+    } else if (thOrder === DESC) {
       setSortOrder(NONE);
     }
     setSortAttribute(thTitle);
