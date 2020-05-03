@@ -11,15 +11,17 @@ const CarTable = ({
   const [sortOrder, setSortOrder] = useState(NONE);
   const [sortAttribute, setSortAttribute] = useState(NONE);
 
-  const doSort = (thTitle) => {
-    setSortAttribute(thTitle);
-    if (sortOrder === NONE) {
+  const doSort = (thTitle, thOrder) => {
+    if (thTitle !== sortAttribute) {
       setSortOrder(ASC);
-    } if (sortOrder === ASC) {
+    } if (thOrder === NONE) {
+      setSortOrder(ASC);
+    } if (thOrder === ASC) {
       setSortOrder(DESC);
-    } if (sortOrder === DESC) {
+    } if (thOrder === DESC) {
       setSortOrder(NONE);
     }
+    setSortAttribute(thTitle);
   };
   const tableCars = sortOrder === NONE ? cars
     : (_.orderBy(cars, [sortAttribute.toLowerCase()], [sortOrder]));

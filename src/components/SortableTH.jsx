@@ -9,7 +9,7 @@ const SortableTH = ({
   doSort, sortAttribute, sortOrder, title,
 }) => {
   const clickHandle = () => {
-    doSort(title);
+    doSort(title, sortOrder);
   };
 
   return (
