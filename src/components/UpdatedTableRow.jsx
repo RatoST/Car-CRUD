@@ -12,6 +12,13 @@ const UpdatedTableRow = ({
     updateRow(car);
   };
 
+  const checkIfNumber = (value) => {
+    if (isNaN(Number(value))) {
+      return value;
+    }
+    return Number(value);
+  };
+
   return (
     <>
       <td>{car.serialNum === currentCarSerNum && updating && <span> &#x270E;</span> }</td>
@@ -34,7 +41,7 @@ const UpdatedTableRow = ({
         onKeyDown={keyDownHandle}
         role="presentation"
       >
-        {car.model}
+        {checkIfNumber(car.model)}
       </td>
       <td
         onClick={clickHandle}
