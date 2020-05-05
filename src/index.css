@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@300;500&display=swap');
+
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Inconsolata', Arial, Helvetica, sans-serif;
 }
 
 footer {
@@ -29,6 +31,7 @@ label {
   border-radius: 4px;
   background: #535253;
   color: #ffffff;
+  font-family: 'Inconsolata';
   font-weight: 600;
   font-size: 1rem;
   text-transform: none;
@@ -110,6 +113,17 @@ label {
     margin-bottom: 0; 
   } 
 }                 
+
+.formTitle {
+  font-weight: bold;
+}
+
+.formWarning {
+  font-weight: 300;
+  color:red;
+  font-size: 1rem;
+}
+
 
 /* Tables */
 table {

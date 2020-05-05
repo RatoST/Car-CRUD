@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 const AddUpdateForm = ({ car, handleInputChange }) => {
   const validateEmpty = (inputText) => {
-    if (inputText.length > 1) {
+    if (inputText.length > 0) {
       return true;
     }
     return 'Need to have at least 1 character.';
@@ -49,8 +49,9 @@ const AddUpdateForm = ({ car, handleInputChange }) => {
 
   return (
     <>
-      <label>
+      <label className="formTitle">
         Brand
+        <span className="formWarning"> {validateEmpty(car.brand)}</span>
         <input
           name="brand"
           onChange={handleInputChange}
@@ -58,8 +59,9 @@ const AddUpdateForm = ({ car, handleInputChange }) => {
           value={car.brand}
         />
       </label>
-      <label>
+      <label className="formTitle">
         Country
+        <span className="formWarning"> {validateEmpty(car.country)}</span>
         <input
           name="country"
           onChange={handleInputChange}
@@ -67,8 +69,9 @@ const AddUpdateForm = ({ car, handleInputChange }) => {
           value={car.country}
         />
       </label>
-      <label>
+      <label className="formTitle">
         Model
+        <span className="formWarning"> {validateEmpty(car.model)}</span>
         <input
           name="model"
           onChange={handleInputChange}
@@ -76,7 +79,7 @@ const AddUpdateForm = ({ car, handleInputChange }) => {
           value={car.model}
         />
       </label>
-      <label>
+      <label className="formTitle">
         Year
         <input
           name="year"
@@ -85,7 +88,7 @@ const AddUpdateForm = ({ car, handleInputChange }) => {
           value={car.year}
         />
       </label>
-      <label>
+      <label className="formTitle">
         Serial Number
         <input
           name="serialNum"
@@ -94,7 +97,7 @@ const AddUpdateForm = ({ car, handleInputChange }) => {
           value={car.serialNum}
         />
       </label>
-      <label>
+      <label className="formTitle">
         Description
         <input
           name="description"
