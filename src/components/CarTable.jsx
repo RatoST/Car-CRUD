@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import _ from 'lodash';
+import _, { get } from 'lodash';
 import PropTypes from 'prop-types';
 import DeleteButton from './DeleteButton';
 import SortableTH, { ASC, DESC, NONE } from './SortableTH';
@@ -23,8 +23,22 @@ const CarTable = ({
     }
     setSortAttribute(thTitle);
   };
+
+  const toNumber = (value) => {
+    if (isNaN(Number(value))) {
+      return value;
+    }
+    return Number(value);
+  };
+
+  const getCarAttNum = (car) => {
+    const attr = get(car, sortAttribute.toLowerCase());
+    const ret = toNumber(attr);
+    return ret;
+  };
+
   const tableCars = sortOrder === NONE ? cars
-    : (_.orderBy(cars, [sortAttribute.toLowerCase()], [sortOrder]));
+    : (_.orderBy(cars, getCarAttNum, [sortOrder]));
 
   return (
     <table>
@@ -72,6 +86,7 @@ const CarTable = ({
               <UpdatedTableRow
                 car={car}
                 currentCarSerNum={currentCarSerNum}
+                sortAttribute={sortAttribute}
                 updating={updating}
                 updateRow={updateRow}
               />
