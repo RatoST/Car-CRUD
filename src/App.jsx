@@ -17,8 +17,13 @@ const App = () => {
     serialNum: '',
     description: '',
   };
-
-  const addId = (obj) => ({ ...obj, id: uuidv4() });
+  // const addId = (obj) => ({ ...obj, id: uuidv4() });
+  const addId = obj => {
+    const uid = uuidv4();
+    const ret = { ...obj };
+    ret.id = uid;
+    return ret;
+  };
   const addIds = (obj) => obj.map(addId);
 
   const [adding, setAdding] = useState(false);
