@@ -16,12 +16,18 @@ const UpdateCarForm = ({
     setCar(currentCar);
   }, [currentCar]);
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    updateCar(car);
+  };
+
+  const handleCancel = () => {
+    setUpdating(false);
+  };
+
   return (
     <form
-      onSubmit={(event) => {
-        event.preventDefault();
-        updateCar(car);
-      }}
+      onSubmit={handleSubmit}
     >
       <AddUpdateForm
         car={car}
@@ -30,9 +36,7 @@ const UpdateCarForm = ({
       <button type="submit" className="button add-button">Update car</button>
       <button
         type="submit"
-        onClick={() => {
-          setUpdating(false);
-        }}
+        onClick={handleCancel}
         className="button cancel-button"
       >
         Cancel

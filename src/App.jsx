@@ -17,7 +17,7 @@ const App = () => {
     serialNum: '',
     description: '',
   };
-  // const addId = (obj) => ({ ...obj, id: uuidv4() });
+
   const addId = obj => {
     const uid = uuidv4();
     const ret = { ...obj };
@@ -32,13 +32,9 @@ const App = () => {
   const [searchText, setSearchText] = useState('');
   const [updating, setUpdating] = useState(false);
 
-  // const addCar = (car) => {
-  //   setCars([...cars, addId(car)]);
-  // };
-
   const addCar = car => {
-    const newCar = car;
-    const newState = [...cars, addId(newCar)];
+    const newCar = addId(car);
+    const newState = [...cars, newCar];
     setCars(newState);
   };
 

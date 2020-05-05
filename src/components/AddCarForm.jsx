@@ -10,14 +10,20 @@ const AddCarForm = ({ addCar, initialFormState, setAdding }) => {
     setCar({ ...car, [name]: value });
   };
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (!car.brand || !car.country);
+    addCar(car);
+    setCar(initialFormState);
+  };
+
+  const handleCancel = () => {
+    setAdding(false);
+  };
+
   return (
     <form
-      onSubmit={(event) => {
-        event.preventDefault();
-        if (!car.brand || !car.country) return;
-        addCar(car);
-        setCar(initialFormState);
-      }}
+      onSubmit={handleSubmit}
     >
       <AddUpdateForm
         car={car}
@@ -26,9 +32,7 @@ const AddCarForm = ({ addCar, initialFormState, setAdding }) => {
       <button className="button add-button" type="submit">Add new car</button>
       <button
         className="button cancel-button"
-        onClick={() => {
-          setAdding(false);
-        }}
+        onClick={handleCancel}
         type="submit"
       >
         Cancel
