@@ -3,46 +3,48 @@ import PropTypes from 'prop-types';
 
 
 const AddUpdateForm = ({ car, handleInputChange }) => {
-
-  const N = 3;
-  const M = 10;
-
   const validateEmpty = (inputText) => {
-    if (inputText > 1) {
+    if (inputText.length > 1) {
       return true;
-    } return 'Need to have at least 1 character.';
+    }
+    return 'Need to have at least 1 character.';
   };
 
   const validateNumber = (inputText) => {
-    if (typeof (inputText) === 'number') {
+    if (typeof inputText === 'number') {
       return true;
-    } return false;
+    }
+    return false;
   };
 
-  const validateMinLength = (inputText) => {
+  const validateMinLength = (inputText, N) => {
     const inputLength = inputText.length;
     if (inputLength >= N) {
       return true;
-    } return `Need to have at least ${N} characters.`;
+    }
+    return `Need to have at least ${N} characters.`;
   };
 
-  const validateMaxLength = (inputText) => {
+  const validateMaxLength = (inputText, M) => {
     const inputLength = inputText.length;
     if (inputLength <= M) {
       return true;
-    } return `Max of ${M} characters allowed.`;
+    }
+    return `Max of ${M} characters allowed.`;
   };
 
   const validateMin = (inputText, inputNum) => {
-    if (typeof (inputText) === 'number' && inputText > inputNum) {
+    if (typeof inputText === 'number' && inputText > inputNum) {
       return true;
-    } return false;
+    }
+    return false;
   };
 
   const validateMax = (inputText, inputNum) => {
-    if (typeof (inputText) === 'number' && inputText < inputNum) {
+    if (typeof inputText === 'number' && inputText < inputNum) {
       return true;
-    } return false;
+    }
+    return false;
   };
 
   return (
