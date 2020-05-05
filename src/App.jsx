@@ -24,7 +24,7 @@ const App = () => {
     ret.id = uid;
     return ret;
   };
-  const addIds = (obj) => obj.map(addId);
+  const addIds = (arr) => arr.map(addId);
 
   const [adding, setAdding] = useState(false);
   const [cars, setCars] = useState(addIds(carsData));
@@ -32,13 +32,20 @@ const App = () => {
   const [searchText, setSearchText] = useState('');
   const [updating, setUpdating] = useState(false);
 
-  const addCar = (car) => {
-    setCars([...cars, addId(car)]);
+  // const addCar = (car) => {
+  //   setCars([...cars, addId(car)]);
+  // };
+
+  const addCar = car => {
+    const newCar = car;
+    const newState = [...cars, addId(newCar)];
+    setCars(newState);
   };
 
   const deleteCar = (id) => {
     setUpdating(false);
-    setCars(cars.filter((car) => car.id !== id));
+    const filterCars = cars.filter((car) => car.id !== id);
+    setCars(filterCars);
   };
 
   const updateRow = (car) => {
@@ -49,7 +56,8 @@ const App = () => {
 
   const updateExistCar = (updateCar) => {
     setUpdating(false);
-    setCars(cars.map((car) => (car.id === updateCar.id ? updateCar : car)));
+    const mapCars = cars.map((car) => (car.id === updateCar.id ? updateCar : car));
+    setCars(mapCars);
   };
 
   const addingCar = () => {
@@ -69,6 +77,7 @@ const App = () => {
     (car.brand.toLowerCase().includes(searchText.toLowerCase()))
   || (car.model.toLowerCase().includes(searchText.toLowerCase()))
   || (car.country.toLowerCase().includes(searchText.toLowerCase()))
+  || (car.year.toLowerCase().includes(searchText.toLowerCase()))
   || (car.description.toLowerCase().includes(searchText.toLowerCase())));
 
   return (
