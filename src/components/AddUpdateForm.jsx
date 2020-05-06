@@ -9,7 +9,7 @@ const AddUpdateForm = ({
     if (inputText.length > 0) {
       return true;
     }
-    return 'Need to have at least 1 character.';
+    return 'empty';
   };
 
   const validateMaxLength = (inputText, M) => {
@@ -17,69 +17,75 @@ const AddUpdateForm = ({
     if (inputLength <= M) {
       return true;
     }
-    return `Max of ${M} characters allowed.`;
+    return 'maxLength';
   };
 
   const validateNumDigit = (inputText, X) => {
     const input = Number(inputText);
     if (typeof input === 'number' && inputText.length === X) {
-      return 'true';
+      return true;
     }
-    return 'false';
+    return '4num';
   };
 
-  const validationResult = () => {
-    validateEmpty(car.brand);
-    validateEmpty(car.country);
-    validateEmpty(car.model);
-    validateNumDigit(car.year, 4);
-    validateNumDigit(car.serialNum, 12);
-    validateEmpty(car.description);
-    validateMaxLength(car.description, 30);
-  };
+  // const validationResult = () => {
+  //   validateEmpty(car.brand);
+  //   validateEmpty(car.country);
+  //   validateEmpty(car.model);
+  //   validateNumDigit(car.year, 4);
+  //   validateNumDigit(car.serialNum, 12);
+  //   validateEmpty(car.description);
+  //   validateMaxLength(car.description, 30);
+  // };
 
   return (
     <>
       <Field
-        name="Brand"
+        fName="Brand"
+        name="brand"
         onChange={handleInputChange}
         type="text"
         validate={validateEmpty}
         value={car.brand}
       />
       <Field
-        name="Country"
+        fName="Country"
+        name="country"
         onChange={handleInputChange}
         type="text"
         validate={validateEmpty}
         value={car.country}
       />
       <Field
-        name="Model"
+        fName="Model"
+        name="model"
         onChange={handleInputChange}
         type="text"
         validate={validateEmpty}
         value={car.model}
       />
       <Field
-        name="Year"
+        fName="Year"
+        name="year"
         onChange={handleInputChange}
         type="text"
-        validate={validateEmpty}
+        validate={validateNumDigit(car.year, 4)}
         value={car.year}
       />
       <Field
-        name="Serial number"
+        fName="Serial number"
+        name="serialNum"
         onChange={handleInputChange}
         type="text"
-        validate={validateEmpty}
+        validate={validateNumDigit(car.serialNum, 12)}
         value={car.serialNum}
       />
       <Field
-        name="Description"
+        fName="Description"
+        name="description"
         onChange={handleInputChange}
         type="text"
-        validate={validateEmpty}
+        validate={validateMaxLength(car.description, 30)}
         value={car.description}
       />
     </>

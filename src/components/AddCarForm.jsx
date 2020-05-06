@@ -15,7 +15,7 @@ const AddCarForm = ({ addCar, initialFormState, setAdding, validationResult }) =
     if (!car.brand || !car.country) return;
     addCar(car);
     setCar(initialFormState);
-    validationResult();
+    // validationResult();
   };
 
   const handleCancel = () => {
