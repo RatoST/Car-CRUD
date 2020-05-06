@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Field from './Field';
 
 
 const AddUpdateForm = ({
@@ -39,66 +40,48 @@ const AddUpdateForm = ({
 
   return (
     <>
-      <label className="formTitle">
-        Brand
-        <input
-          name="brand"
-          onChange={handleInputChange}
-          type="text"
-          value={car.brand}
-        />
-        <span className="formWarning"> {}</span>
-      </label>
-      <label className="formTitle">
-        Country
-        <input
-          name="country"
-          onChange={handleInputChange}
-          type="text"
-          value={car.country}
-        />
-        <span className="formWarning"> {}</span>
-      </label>
-      <label className="formTitle">
-        Model
-        <input
-          name="model"
-          onChange={handleInputChange}
-          type="text"
-          value={car.model}
-        />
-        <span className="formWarning"> {}</span>
-      </label>
-      <label className="formTitle">
-        Year
-        <input
-          name="year"
-          onChange={handleInputChange}
-          type="text"
-          value={car.year}
-        />
-        <span className="formWarning">{}</span>
-      </label>
-      <label className="formTitle">
-        Serial Number
-        <input
-          name="serialNum"
-          onChange={handleInputChange}
-          type="text"
-          value={car.serialNum}
-        />
-        <span className="formWarning"> {}</span>
-      </label>
-      <label className="formTitle">
-        Description
-        <input
-          name="description"
-          onChange={handleInputChange}
-          type="text"
-          value={car.description}
-        />
-        <span className="formWarning"> {}</span>
-      </label>
+      <Field
+        name="Brand"
+        onChange={handleInputChange}
+        type="text"
+        validate={validateEmpty}
+        value={car.brand}
+      />
+      <Field
+        name="Country"
+        onChange={handleInputChange}
+        type="text"
+        validate={validateEmpty}
+        value={car.country}
+      />
+      <Field
+        name="Model"
+        onChange={handleInputChange}
+        type="text"
+        validate={validateEmpty}
+        value={car.model}
+      />
+      <Field
+        name="Year"
+        onChange={handleInputChange}
+        type="text"
+        validate={validateEmpty}
+        value={car.year}
+      />
+      <Field
+        name="Serial number"
+        onChange={handleInputChange}
+        type="text"
+        validate={validateEmpty}
+        value={car.serialNum}
+      />
+      <Field
+        name="Description"
+        onChange={handleInputChange}
+        type="text"
+        validate={validateEmpty}
+        value={car.description}
+      />
     </>
   );
 };
