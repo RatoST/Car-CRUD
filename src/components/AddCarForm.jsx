@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import AddUpdateForm from './AddUpdateForm';
 
-const AddCarForm = ({ addCar, initialFormState, setAdding }) => {
+const AddCarForm = ({ addCar, initialFormState, setAdding, validationResult }) => {
   const [car, setCar] = useState(initialFormState);
 
   const handleInputChange = (event) => {
@@ -12,9 +12,10 @@ const AddCarForm = ({ addCar, initialFormState, setAdding }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (!car.brand || !car.country);
+    if (!car.brand || !car.country) return;
     addCar(car);
     setCar(initialFormState);
+    validationResult();
   };
 
   const handleCancel = () => {
