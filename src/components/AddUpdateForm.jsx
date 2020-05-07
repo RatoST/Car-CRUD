@@ -9,34 +9,32 @@ const AddUpdateForm = ({
     if (inputText.length > 0) {
       return true;
     }
-    return 'empty';
+    return 'Need to have at least 1 character.';
   };
 
-  const validateMaxLength = (inputText, M) => {
+  const validateMaxLength = (inputText, X, M) => {
     const inputLength = inputText.length;
-    if (inputLength <= M) {
+    if (inputLength > X && inputLength <= M) {
       return true;
     }
-    return 'maxLength';
+    return `Necessary value from ${X} to ${M}.`;
   };
 
-  const validateNumDigit = (inputText, X) => {
+  const validate4Digit = (inputText) => {
     const input = Number(inputText);
-    if (typeof input === 'number' && inputText.length === X) {
+    if (typeof input === 'number' && inputText.length === 4) {
       return true;
     }
-    return '4num';
+    return 'Input needs to have 4 numbers.';
   };
 
-  // const validationResult = () => {
-  //   validateEmpty(car.brand);
-  //   validateEmpty(car.country);
-  //   validateEmpty(car.model);
-  //   validateNumDigit(car.year, 4);
-  //   validateNumDigit(car.serialNum, 12);
-  //   validateEmpty(car.description);
-  //   validateMaxLength(car.description, 30);
-  // };
+  const validate12Digit = (inputText) => {
+    const input = Number(inputText);
+    if (typeof input === 'number' && inputText.length === 12) {
+      return true;
+    }
+    return 'Input needs to have 12 numbers.';
+  };
 
   return (
     <>
@@ -45,7 +43,7 @@ const AddUpdateForm = ({
         name="brand"
         onChange={handleInputChange}
         type="text"
-        validate={validateEmpty}
+        validate={validateEmpty(car.brand)}
         value={car.brand}
       />
       <Field
@@ -53,7 +51,7 @@ const AddUpdateForm = ({
         name="country"
         onChange={handleInputChange}
         type="text"
-        validate={validateEmpty}
+        validate={validateEmpty(car.country)}
         value={car.country}
       />
       <Field
@@ -61,7 +59,7 @@ const AddUpdateForm = ({
         name="model"
         onChange={handleInputChange}
         type="text"
-        validate={validateEmpty}
+        validate={validateEmpty(car.model)}
         value={car.model}
       />
       <Field
@@ -69,7 +67,7 @@ const AddUpdateForm = ({
         name="year"
         onChange={handleInputChange}
         type="text"
-        validate={validateNumDigit(car.year, 4)}
+        validate={validate4Digit(car.year)}
         value={car.year}
       />
       <Field
@@ -77,7 +75,7 @@ const AddUpdateForm = ({
         name="serialNum"
         onChange={handleInputChange}
         type="text"
-        validate={validateNumDigit(car.serialNum, 12)}
+        validate={validate12Digit(car.serialNum)}
         value={car.serialNum}
       />
       <Field
@@ -85,7 +83,7 @@ const AddUpdateForm = ({
         name="description"
         onChange={handleInputChange}
         type="text"
-        validate={validateMaxLength(car.description, 30)}
+        validate={validateMaxLength(car.description, 5, 30)}
         value={car.description}
       />
     </>
