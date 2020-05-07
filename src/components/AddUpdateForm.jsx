@@ -37,7 +37,7 @@ const AddUpdateForm = ({
   };
 
   return (
-    <>
+    <div className="flex-container">
       <Field
         fName="Brand"
         name="brand"
@@ -86,7 +86,7 @@ const AddUpdateForm = ({
         validate={validateMaxLength(car.description, 5, 30)}
         value={car.description}
       />
-    </>
+    </div>
   );
 };
 

@@ -7,6 +7,7 @@ const Field = ({ fName, name, onChange, type, validate, value }) => {
     <label className="formTitle">
       {fName}
       <input
+        className="formInput"
         name={name}
         onChange={onChange}
         type={type}

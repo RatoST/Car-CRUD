@@ -9,8 +9,9 @@ const SearchBar = ({ searchText, setSearchText }) => {
 
   return (
     <>
-      <label>
+      <label className="searchBarLabel">
         <input
+          className="searchBarInput"
           onChange={handleChange}
           placeholder="Search"
           type="text"

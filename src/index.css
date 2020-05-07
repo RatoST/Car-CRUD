@@ -10,19 +10,19 @@ footer {
   text-align: center;
 }
 
-input, select, textarea {
+/* input, select, textarea {
   width: 100%;
   padding: 12px;
   border: 1px solid #ccc;
   border-radius: 4px;
   resize: vertical;
-}
+} */
              
-label {
+/* label {
   margin: 5px 0 0 5px;
   padding: 12px 12px 12px 0;
   display: inline-block;
-} 
+}  */
 
 /* Buttons */
 .button, [type=submit], [type=reset], [type=button] {
@@ -56,14 +56,14 @@ label {
   border: 1px solid #535253;
   background: #535253;
   color: #ffffff;
-  margin: 0 10px 0 0;
+  margin: 10px 10px 0 0;
 }
 
 .cancel-button {
   background:transparent ;
   border: 1px solid #cdcdcd;
   color: #4e4e4e;
-  margin: 0 0 0 10px;
+  margin: 10px 0 0 10px;
 }
   
 .delete-button {
@@ -106,8 +106,13 @@ label {
   padding-right: 1rem; 
 }
 
+.flex-container {
+  display: flex;
+  flex-direction: column;
+}
+
 /* Large screen breakpoint */
-@media (min-width: 1000px) {
+@media (min-width: 800px) {
   .flex-large {
     flex: 1;
     margin-bottom: 0; 
@@ -115,15 +120,38 @@ label {
 }                 
 
 .formTitle {
-  font-weight: bold;
+  font-weight: bold;  
+  margin:10px;
+}
+
+.formInput {
+  display:block ;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin: 5px;
+  padding: 12px;
+  resize: vertical;
+  width: 50%;
 }
 
 .formWarning {
-  font-weight: 300;
   color:red;
-  font-size: 1rem;
+  font-size: .8rem;
+  font-weight: 300;
+  margin:0 0 10px 0;  
 }
 
+.searchBarLabel {
+  margin: 5px 0 0 5px;
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+
+.searchBarInput {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+}
 
 /* Tables */
 table {

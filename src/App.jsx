@@ -94,7 +94,7 @@ const App = () => {
             updateRow={updateRow}
           />
         </div>
-        <div className="flex-large">
+        <div className="flex-container flex-large">
           {updating && (
             <div>
               <h2>Edit car</h2>
