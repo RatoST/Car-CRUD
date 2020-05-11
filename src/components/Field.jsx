@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Field = ({ fName, name, onChange, type, validate, value }) => {
+const Field = ({ fName, name, onChange, type, validate, value, validateState }) => {
 
   return (
     <label className="formTitle">
@@ -13,7 +13,7 @@ const Field = ({ fName, name, onChange, type, validate, value }) => {
         type={type}
         value={value}
       />
-      <span className="formWarning"> {validate}</span>
+      <span className="formWarning"> {validateState ? validate : '' }</span>
     </label>
   );
 };
@@ -25,6 +25,7 @@ Field.propTypes = {
   type: PropTypes.string,
   validate: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  validateState: PropTypes.bool,
 };
 
 export default Field;

@@ -4,7 +4,7 @@ import Field from './Field';
 
 
 const AddUpdateForm = ({
-  car, handleInputChange }) => {
+  car, handleInputChange, validateState, setValidateExe }) => {
   const validateEmpty = (inputText) => {
     if (inputText.length > 0) {
       return true;
@@ -36,6 +36,13 @@ const AddUpdateForm = ({
     return 'Input needs to have 12 numbers.';
   };
 
+  const validationResult = () => {
+    if (validateEmpty && validateMaxLength && validate4Digit && validate12Digit) {
+      return setValidateExe(true);
+    }
+    return setValidateExe(false);
+  };
+
   return (
     <div className="flex-container">
       <Field
@@ -45,6 +52,7 @@ const AddUpdateForm = ({
         type="text"
         validate={validateEmpty(car.brand)}
         value={car.brand}
+        validateState={validateState}
       />
       <Field
         fName="Country"
@@ -53,6 +61,7 @@ const AddUpdateForm = ({
         type="text"
         validate={validateEmpty(car.country)}
         value={car.country}
+        validateState={validateState}
       />
       <Field
         fName="Model"
@@ -61,6 +70,7 @@ const AddUpdateForm = ({
         type="text"
         validate={validateEmpty(car.model)}
         value={car.model}
+        validateState={validateState}
       />
       <Field
         fName="Year"
@@ -69,6 +79,7 @@ const AddUpdateForm = ({
         type="text"
         validate={validate4Digit(car.year)}
         value={car.year}
+        validateState={validateState}
       />
       <Field
         fName="Serial number"
@@ -77,6 +88,7 @@ const AddUpdateForm = ({
         type="text"
         validate={validate12Digit(car.serialNum)}
         value={car.serialNum}
+        validateState={validateState}
       />
       <Field
         fName="Description"
@@ -85,6 +97,7 @@ const AddUpdateForm = ({
         type="text"
         validate={validateMaxLength(car.description, 5, 30)}
         value={car.description}
+        validateState={validateState}
       />
     </div>
   );
@@ -101,6 +114,8 @@ AddUpdateForm.propTypes = {
     description: PropTypes.string,
   }),
   handleInputChange: PropTypes.func,
+  setValidateExe: PropTypes.func,
+  validateState: PropTypes.bool,
 };
 
 export default AddUpdateForm;

@@ -31,11 +31,14 @@ const App = () => {
   const [currentCar, setCurrentCar] = useState(initialFormState);
   const [searchText, setSearchText] = useState('');
   const [updating, setUpdating] = useState(false);
+  const [validateState, setValidateState] = useState(false);
+  const [validateExe, setValidateExe] = useState(false);
 
   const addCar = car => {
     const newCar = addId(car);
     const newState = [...cars, newCar];
     setCars(newState);
+    setValidateState(false);
   };
 
   const deleteCar = (id) => {
@@ -54,6 +57,7 @@ const App = () => {
     setUpdating(false);
     const mapCars = cars.map((car) => (car.id === updateCar.id ? updateCar : car));
     setCars(mapCars);
+    setValidateState(false);
   };
 
   const addingCar = () => {
@@ -102,6 +106,9 @@ const App = () => {
                 currentCar={currentCar}
                 setUpdating={setUpdating}
                 updateCar={updateExistCar}
+                validateState={validateState}
+                setValidateState={setValidateState}
+                validateExe={validateExe}
               />
             </div>
           )}
@@ -112,6 +119,10 @@ const App = () => {
                 addCar={addCar}
                 initialFormState={initialFormState}
                 setAdding={setAdding}
+                validateState={validateState}
+                setValidateState={setValidateState}
+                validateExe={validateExe}
+                setValidateExe={setValidateExe}
               />
             </div>
           )}
