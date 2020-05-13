@@ -34,6 +34,17 @@ const Field = ({ fName, minLength, maxLength, name, onChange, type, value }) => 
     return `Input needs to have ${X} numbers.`;
   };
 
+  const validate = () => {
+    if (name === 'year') {
+      return validateDigit(value, 4);
+    } if (name === 'serialNum') {
+      return validateDigit(value, 12);
+    } if (name === 'description') {
+      return validateMaxLength(value, 30);
+    }
+    return true;
+  };
+
   return (
     <label className="formTitle">
       {fName}
@@ -43,9 +54,9 @@ const Field = ({ fName, minLength, maxLength, name, onChange, type, value }) => 
         onChange={onChange}
         type={type}
         value={value}
-        required="true"
+        required
       />
-      {/* <span className="formWarning"> {}</span> */}
+      <span className="formWarning"> {validate}</span>
     </label>
   );
 };
