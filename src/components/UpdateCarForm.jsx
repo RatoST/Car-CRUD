@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import AddUpdateForm from './AddUpdateForm';
 
 const UpdateCarForm = ({
-  currentCar, setUpdating, updateCar, validateExe, setValidateState,
+  currentCar, setUpdating, updateCar,
 }) => {
   const [car, setCar] = useState(currentCar);
 
@@ -23,20 +23,11 @@ const UpdateCarForm = ({
 
   const handleCancel = () => {
     setUpdating(false);
-    setValidateState(false);
-  };
-
-  const handleValidate = (event) => {
-    setValidateState(true);
-    if (validateExe === true) {
-      return handleSubmit(event);
-    }
-    return event.preventDefault();
   };
 
   return (
     <form
-      onSubmit={handleValidate}
+      onSubmit={handleSubmit}
     >
       <AddUpdateForm
         car={car}
@@ -66,9 +57,7 @@ UpdateCarForm.propTypes = {
     description: PropTypes.string,
   }),
   setUpdating: PropTypes.func,
-  setValidateState: PropTypes.func,
   updateCar: PropTypes.func,
-  validateExe: PropTypes.bool,
 };
 
 export default UpdateCarForm;

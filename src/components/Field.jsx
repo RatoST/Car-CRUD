@@ -1,7 +1,38 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Field = ({ fName, name, onChange, type, validate, value, validateState }) => {
+const Field = ({ fName, minLength, maxLength, name, onChange, type, value }) => {
+
+  const validateEmpty = (inputText) => {
+    if (inputText.length > 0) {
+      return true;
+    }
+    return 'Need to have at least 1 character.';
+  };
+
+  const validateMinLength = (inputText, N) => {
+    const inputLength = inputText.length;
+    if (inputLength >= N) {
+      return true;
+    }
+    return `Need to have at least ${N} characters.`;
+  };
+
+  const validateMaxLength = (inputText, M) => {
+    const inputLength = inputText.length;
+    if (inputLength <= M) {
+      return true;
+    }
+    return `Max of ${M} characters allowed.`;
+  };
+
+  const validateDigit = (inputText, X) => {
+    const input = Number(inputText);
+    if (typeof input === 'number' && inputText.length === X) {
+      return true;
+    }
+    return `Input needs to have ${X} numbers.`;
+  };
 
   return (
     <label className="formTitle">
@@ -12,20 +43,21 @@ const Field = ({ fName, name, onChange, type, validate, value, validateState }) 
         onChange={onChange}
         type={type}
         value={value}
+        required="true"
       />
-      <span className="formWarning"> {validateState ? validate : '' }</span>
+      {/* <span className="formWarning"> {}</span> */}
     </label>
   );
 };
 
 Field.propTypes = {
   fName: PropTypes.string,
+  minLength: PropTypes.string,
+  maxLength: PropTypes.string,
   name: PropTypes.string,
   onChange: PropTypes.func,
   type: PropTypes.string,
-  validate: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  validateState: PropTypes.bool,
 };
 
 export default Field;

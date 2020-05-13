@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import AddUpdateForm from './AddUpdateForm';
 
 const AddCarForm = ({
-  addCar, initialFormState, setAdding, validateState, setValidateState, validateExe,
-  setValidateExe }) => {
+  addCar, initialFormState, setAdding }) => {
   const [car, setCar] = useState(initialFormState);
 
   const handleInputChange = (event) => {
@@ -17,31 +16,19 @@ const AddCarForm = ({
     if (!car.brand || !car.country) return;
     addCar(car);
     setCar(initialFormState);
-    setValidateState(true);
   };
 
   const handleCancel = () => {
     setAdding(false);
-    setValidateState(false);
-  };
-
-  const handleValidate = (event) => {
-    setValidateState(true);
-    if (validateExe === true) {
-      return handleSubmit(event);
-    }
-    return event.preventDefault();
   };
 
   return (
     <form
-      onSubmit={handleValidate}
+      onSubmit={handleSubmit}
     >
       <AddUpdateForm
         car={car}
         handleInputChange={handleInputChange}
-        validateState={validateState}
-        setValidateExe={setValidateExe}
       />
       <button className="button add-button" type="submit">Add new car</button>
       <button
@@ -67,10 +54,6 @@ AddCarForm.propTypes = {
     description: PropTypes.string,
   }),
   setAdding: PropTypes.func,
-  setValidateExe: PropTypes.func,
-  setValidateState: PropTypes.func,
-  validateExe: PropTypes.bool,
-  validateState: PropTypes.bool,
 };
 
 export default AddCarForm;
