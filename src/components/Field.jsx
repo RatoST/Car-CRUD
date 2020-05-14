@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Field = ({ fName, minLength, maxLength, name, onChange, type, value }) => {
+const Field = ({ fName, min, max, name, onChange, type, value }) => {
 
   const validateEmpty = (inputText) => {
     if (inputText.length > 0) {
@@ -34,15 +34,18 @@ const Field = ({ fName, minLength, maxLength, name, onChange, type, value }) => 
     return `Input needs to have ${X} numbers.`;
   };
 
-  const validate = () => {
-    if (name === 'year') {
-      return validateDigit(value, 4);
-    } if (name === 'serialNum') {
-      return validateDigit(value, 12);
-    } if (name === 'description') {
-      return validateMaxLength(value, 30);
+  const validateMin = (inputText, inputNum) => {
+    if (typeof inputText === 'number' && inputText < inputNum) {
+      return true;
     }
-    return true;
+    return `Input needs to have ${inputNum} numbers.`;
+  };
+
+  const validateMax = (inputText, inputNum) => {
+    if (typeof inputText === 'number' && inputText > inputNum) {
+      return true;
+    }
+    return `Input needs to have ${inputNum} numbers.`;
   };
 
   return (
@@ -56,7 +59,7 @@ const Field = ({ fName, minLength, maxLength, name, onChange, type, value }) => 
         value={value}
         required
       />
-      <span className="formWarning"> {validate}</span>
+      <span className="formWarning"> {(type === 'number') ? validateMin(value, min) : '' }</span>
     </label>
   );
 };

@@ -10,8 +10,6 @@ const AddUpdateForm = ({
     <div className="flex-container">
       <Field
         fName="Brand"
-        minLength="2"
-        maxLength="20"
         name="brand"
         onChange={handleInputChange}
         type="text"
@@ -19,8 +17,6 @@ const AddUpdateForm = ({
       />
       <Field
         fName="Country"
-        minLength="2"
-        maxLength="20"
         name="country"
         onChange={handleInputChange}
         type="text"
@@ -29,16 +25,13 @@ const AddUpdateForm = ({
       <Field
         fName="Model"
         name="model"
-        minLength="1"
-        maxLength="20"
         onChange={handleInputChange}
         type="text"
         value={car.model}
       />
       <Field
         fName="Year"
-        minLength="4"
-        maxLength="5"
+        min="4"
         name="year"
         onChange={handleInputChange}
         type="number"
@@ -46,8 +39,7 @@ const AddUpdateForm = ({
       />
       <Field
         fName="Serial number"
-        minLength="12"
-        maxLength="13"
+        min="12"
         name="serialNum"
         onChange={handleInputChange}
         type="number"
@@ -55,8 +47,6 @@ const AddUpdateForm = ({
       />
       <Field
         fName="Description"
-        minLength="5"
-        maxLength="30"
         name="description"
         onChange={handleInputChange}
         type="text"
