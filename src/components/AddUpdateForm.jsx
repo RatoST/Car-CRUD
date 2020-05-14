@@ -31,7 +31,7 @@ const AddUpdateForm = ({
       />
       <Field
         fName="Year"
-        min="4"
+        numOfDigit="4"
         name="year"
         onChange={handleInputChange}
         type="number"
@@ -39,7 +39,7 @@ const AddUpdateForm = ({
       />
       <Field
         fName="Serial number"
-        min="12"
+        numOfDigit="12"
         name="serialNum"
         onChange={handleInputChange}
         type="number"
@@ -47,6 +47,7 @@ const AddUpdateForm = ({
       />
       <Field
         fName="Description"
+        maxLength="30"
         name="description"
         onChange={handleInputChange}
         type="text"

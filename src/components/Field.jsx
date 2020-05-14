@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Field = ({ fName, name, onChange, type, value }) => {
+const Field = ({ fName, maxLength, name, numOfDigit, onChange, type, value }) => {
   const validateEmpty = (inputText) => {
     if (inputText.length > 0) {
       return true;
@@ -16,14 +16,6 @@ const Field = ({ fName, name, onChange, type, value }) => {
     }
     return 'Need to be a number. ';
   };
-
-  // const validateMinLength = (inputText, N) => {
-  //   const inputLength = inputText.length;
-  //   if (inputLength >= N) {
-  //     return true;
-  //   }
-  //   return `Need to have at least ${N} characters. `;
-  // };
 
   const validateMaxLength = (inputText, M) => {
     const inputLength = inputText.length;
@@ -41,20 +33,6 @@ const Field = ({ fName, name, onChange, type, value }) => {
     return `Input needs to have ${X} numbers. `;
   };
 
-  // const validateMin = (inputText, inputNum) => {
-  //   if (typeof inputText === 'number' && inputText < inputNum) {
-  //     return true;
-  //   }
-  //   return `Input must have min ${inputNum} number. `;
-  // };
-
-  // const validateMax = (inputText, inputNum) => {
-  //   if (typeof inputText === 'number' && inputText > inputNum) {
-  //     return true;
-  //   }
-  //   return `Input can have max ${inputNum} numbers. `;
-  // };
-
   const validate = () => {
     const validationErrors = [];
     if (type === 'number') {
@@ -69,36 +47,21 @@ const Field = ({ fName, name, onChange, type, value }) => {
         validationErrors.push(typeError);
       }
     }
-    // if (type === 'number') {
-    //   const typeError = validateMin(value, 4);
-    //   if (typeError) {
-    //     validationErrors.push(typeError);
-    //   }
-    // }
-    // if (type === 'number') {
-    //   const typeError = validateMax(value, 12);
-    //   if (typeError) {
-    //     validationErrors.push(typeError);
-    //   }
-    // }
-    if (name === 'year') {
-      const typeError = validateDigit(value, 4);
+
+    if (type === 'number') {
+      const typeError = validateDigit(value, numOfDigit);
       if (typeError) {
         validationErrors.push(typeError);
       }
     }
-    if (name === 'serialNum') {
-      const typeError = validateDigit(value, 12);
+
+    if (type === 'text') {
+      const typeError = validateMaxLength(value, maxLength);
       if (typeError) {
         validationErrors.push(typeError);
       }
     }
-    if (name === 'description') {
-      const typeError = validateMaxLength(value, 30);
-      if (typeError) {
-        validationErrors.push(typeError);
-      }
-    }
+
     // other checks
     return validationErrors;
   };
