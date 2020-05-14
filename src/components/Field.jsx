@@ -46,14 +46,14 @@ const Field = ({ fName, min, max, name, onChange, type, value }) => {
     if (typeof inputText === 'number' && inputText < inputNum) {
       return true;
     }
-    return `Input needs to have ${inputNum} number. `;
+    return `Input must have min ${inputNum} number. `;
   };
 
   const validateMax = (inputText, inputNum) => {
     if (typeof inputText === 'number' && inputText > inputNum) {
       return true;
     }
-    return `Input needs to have ${inputNum} numbers. `;
+    return `Input can have max ${inputNum} numbers. `;
   };
 
   const validate = () => {
@@ -71,7 +71,7 @@ const Field = ({ fName, min, max, name, onChange, type, value }) => {
       }
     }
     if (type === 'number') {
-      const typeError = validateMin(value, 1);
+      const typeError = validateMin(value, 4);
       if (typeError) {
         validationErrors.push(typeError);
       }
