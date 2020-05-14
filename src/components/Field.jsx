@@ -48,6 +48,19 @@ const Field = ({ fName, min, max, name, onChange, type, value }) => {
     return `Input needs to have ${inputNum} numbers.`;
   };
 
+  const validate = () => {
+    const validationErrors = [];
+    if (type === 'number') {
+      const typeError = validateIsNumeric(value);
+      if (typeError) {
+        validationErrors.push(typeError);
+      }
+    }
+    // other checks
+  };
+
+  const errors = validate();
+
   return (
     <label className="formTitle">
       {fName}
@@ -59,7 +72,7 @@ const Field = ({ fName, min, max, name, onChange, type, value }) => {
         value={value}
         required
       />
-      <span className="formWarning"> {(type === 'number') ? validateMin(value, min) : '' }</span>
+      {errors.map(e => <span className="formWarning">{e}</span>)}
     </label>
   );
 };
