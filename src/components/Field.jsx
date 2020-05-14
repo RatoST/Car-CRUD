@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Field = ({ fName, maxLength, name, numOfDigit, onChange, type, value }) => {
+const Field = ({ fName, min, max, maxLength, name, numOfDigit, onChange, type, value }) => {
   const validateEmpty = (inputText) => {
     if (inputText.length > 0) {
       return true;
@@ -25,12 +25,26 @@ const Field = ({ fName, maxLength, name, numOfDigit, onChange, type, value }) =>
     return `Max of ${M} characters allowed. `;
   };
 
-  const validateDigit = (inputText, X) => {
-    const input = Number(inputText);
-    if (typeof input === 'number' && inputText.length === X) {
+  // const validateDigit = (inputText, X) => {
+  //   const input = Number(inputText);
+  //   if (typeof input === 'number' && inputText.length === X) {
+  //     return true;
+  //   }
+  //   return `Input needs to have ${X} numbers. `;
+  // };
+
+  const validateMin = (inputText, inputNum) => {
+    if (typeof inputText === 'number' && inputText > inputNum) {
       return true;
     }
-    return `Input needs to have ${X} numbers. `;
+    return `Input should be less than ${inputNum} . `;
+  };
+
+  const validateMax = (inputText, inputNum) => {
+    if (typeof inputText === 'number' && inputText < inputNum) {
+      return true;
+    }
+    return `Input should be more than ${inputNum} . `;
   };
 
   const validate = () => {
@@ -47,9 +61,14 @@ const Field = ({ fName, maxLength, name, numOfDigit, onChange, type, value }) =>
         validationErrors.push(typeError);
       }
     }
-
     if (type === 'number') {
-      const typeError = validateDigit(value, numOfDigit);
+      const typeError = validateMin(value, min);
+      if (typeError) {
+        validationErrors.push(typeError);
+      }
+    }
+    if (type === 'number') {
+      const typeError = validateMax(value, max);
       if (typeError) {
         validationErrors.push(typeError);
       }
