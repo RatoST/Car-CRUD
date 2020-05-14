@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Field = ({ fName, min, max, name, onChange, type, value }) => {
-
+const Field = ({ fName, name, onChange, type, value }) => {
   const validateEmpty = (inputText) => {
     if (inputText.length > 0) {
       return true;
@@ -18,13 +17,13 @@ const Field = ({ fName, min, max, name, onChange, type, value }) => {
     return 'Need to be a number. ';
   };
 
-  const validateMinLength = (inputText, N) => {
-    const inputLength = inputText.length;
-    if (inputLength >= N) {
-      return true;
-    }
-    return `Need to have at least ${N} characters. `;
-  };
+  // const validateMinLength = (inputText, N) => {
+  //   const inputLength = inputText.length;
+  //   if (inputLength >= N) {
+  //     return true;
+  //   }
+  //   return `Need to have at least ${N} characters. `;
+  // };
 
   const validateMaxLength = (inputText, M) => {
     const inputLength = inputText.length;
@@ -42,19 +41,19 @@ const Field = ({ fName, min, max, name, onChange, type, value }) => {
     return `Input needs to have ${X} numbers. `;
   };
 
-  const validateMin = (inputText, inputNum) => {
-    if (typeof inputText === 'number' && inputText < inputNum) {
-      return true;
-    }
-    return `Input must have min ${inputNum} number. `;
-  };
+  // const validateMin = (inputText, inputNum) => {
+  //   if (typeof inputText === 'number' && inputText < inputNum) {
+  //     return true;
+  //   }
+  //   return `Input must have min ${inputNum} number. `;
+  // };
 
-  const validateMax = (inputText, inputNum) => {
-    if (typeof inputText === 'number' && inputText > inputNum) {
-      return true;
-    }
-    return `Input can have max ${inputNum} numbers. `;
-  };
+  // const validateMax = (inputText, inputNum) => {
+  //   if (typeof inputText === 'number' && inputText > inputNum) {
+  //     return true;
+  //   }
+  //   return `Input can have max ${inputNum} numbers. `;
+  // };
 
   const validate = () => {
     const validationErrors = [];
@@ -70,18 +69,18 @@ const Field = ({ fName, min, max, name, onChange, type, value }) => {
         validationErrors.push(typeError);
       }
     }
-    if (type === 'number') {
-      const typeError = validateMin(value, 4);
-      if (typeError) {
-        validationErrors.push(typeError);
-      }
-    }
-    if (type === 'number') {
-      const typeError = validateMax(value, 12);
-      if (typeError) {
-        validationErrors.push(typeError);
-      }
-    }
+    // if (type === 'number') {
+    //   const typeError = validateMin(value, 4);
+    //   if (typeError) {
+    //     validationErrors.push(typeError);
+    //   }
+    // }
+    // if (type === 'number') {
+    //   const typeError = validateMax(value, 12);
+    //   if (typeError) {
+    //     validationErrors.push(typeError);
+    //   }
+    // }
     if (name === 'year') {
       const typeError = validateDigit(value, 4);
       if (typeError) {
@@ -124,8 +123,6 @@ const Field = ({ fName, min, max, name, onChange, type, value }) => {
 
 Field.propTypes = {
   fName: PropTypes.string,
-  minLength: PropTypes.string,
-  maxLength: PropTypes.string,
   name: PropTypes.string,
   onChange: PropTypes.func,
   type: PropTypes.string,
