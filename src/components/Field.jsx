@@ -7,7 +7,15 @@ const Field = ({ fName, min, max, name, onChange, type, value }) => {
     if (inputText.length > 0) {
       return true;
     }
-    return 'Need to have at least 1 character.';
+    return 'Need to have at least 1 character. ';
+  };
+
+  const validateIsNumeric = (inputText) => {
+    const input = Number(inputText);
+    if (typeof input === 'number') {
+      return true;
+    }
+    return 'Need to be a number. ';
   };
 
   const validateMinLength = (inputText, N) => {
@@ -15,7 +23,7 @@ const Field = ({ fName, min, max, name, onChange, type, value }) => {
     if (inputLength >= N) {
       return true;
     }
-    return `Need to have at least ${N} characters.`;
+    return `Need to have at least ${N} characters. `;
   };
 
   const validateMaxLength = (inputText, M) => {
@@ -23,7 +31,7 @@ const Field = ({ fName, min, max, name, onChange, type, value }) => {
     if (inputLength <= M) {
       return true;
     }
-    return `Max of ${M} characters allowed.`;
+    return `Max of ${M} characters allowed. `;
   };
 
   const validateDigit = (inputText, X) => {
@@ -31,21 +39,21 @@ const Field = ({ fName, min, max, name, onChange, type, value }) => {
     if (typeof input === 'number' && inputText.length === X) {
       return true;
     }
-    return `Input needs to have ${X} numbers.`;
+    return `Input needs to have ${X} numbers. `;
   };
 
   const validateMin = (inputText, inputNum) => {
     if (typeof inputText === 'number' && inputText < inputNum) {
       return true;
     }
-    return `Input needs to have ${inputNum} numbers.`;
+    return `Input needs to have ${inputNum} number. `;
   };
 
   const validateMax = (inputText, inputNum) => {
     if (typeof inputText === 'number' && inputText > inputNum) {
       return true;
     }
-    return `Input needs to have ${inputNum} numbers.`;
+    return `Input needs to have ${inputNum} numbers. `;
   };
 
   const validate = () => {
@@ -56,7 +64,44 @@ const Field = ({ fName, min, max, name, onChange, type, value }) => {
         validationErrors.push(typeError);
       }
     }
+    if (type === 'text') {
+      const typeError = validateEmpty(value);
+      if (typeError) {
+        validationErrors.push(typeError);
+      }
+    }
+    if (type === 'number') {
+      const typeError = validateMin(value, 1);
+      if (typeError) {
+        validationErrors.push(typeError);
+      }
+    }
+    if (type === 'number') {
+      const typeError = validateMax(value, 12);
+      if (typeError) {
+        validationErrors.push(typeError);
+      }
+    }
+    if (name === 'year') {
+      const typeError = validateDigit(value, 4);
+      if (typeError) {
+        validationErrors.push(typeError);
+      }
+    }
+    if (name === 'serialNum') {
+      const typeError = validateDigit(value, 12);
+      if (typeError) {
+        validationErrors.push(typeError);
+      }
+    }
+    if (name === 'description') {
+      const typeError = validateMaxLength(value, 30);
+      if (typeError) {
+        validationErrors.push(typeError);
+      }
+    }
     // other checks
+    return validationErrors;
   };
 
   const errors = validate();
