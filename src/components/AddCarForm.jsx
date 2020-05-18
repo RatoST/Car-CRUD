@@ -5,12 +5,10 @@ import AddUpdateForm from './AddUpdateForm';
 const AddCarForm = ({
   addCar, initialFormState, setAdding }) => {
   const [car, setCar] = useState(initialFormState);
-  const [isDirty, setIsDirty] = useState(false);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setCar({ ...car, [name]: value });
-    setIsDirty(true);
   };
 
   const handleSubmit = (event) => {
@@ -18,12 +16,10 @@ const AddCarForm = ({
     if (!car.brand || !car.country) return;
     addCar(car);
     setCar(initialFormState);
-    setIsDirty(false);
   };
 
   const handleCancel = () => {
     setAdding(false);
-    setIsDirty(false);
   };
 
   return (
@@ -33,7 +29,6 @@ const AddCarForm = ({
       <AddUpdateForm
         car={car}
         handleInputChange={handleInputChange}
-        isDirty={isDirty}
       />
       <button className="button add-button" type="submit">Add new car</button>
       <button

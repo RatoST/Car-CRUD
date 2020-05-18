@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
 
-const Field = ({ fName, isDirty, min, max, maxLength, name, onChange, type, value }) => {
+const Field = ({ fName, min, max, maxLength, name, onChange, type, value }) => {
+  const [isDirty, setIsDirty] = useState(false);
   const NONE = '';
 
   const validateEmpty = (inputText) => {
@@ -80,6 +81,12 @@ const Field = ({ fName, isDirty, min, max, maxLength, name, onChange, type, valu
     return validationErrors;
   };
 
+  const handleChange = (event) => {
+    event.preventDefault();
+    onChange(event);
+    setIsDirty(true);
+  };
+
   const errors = validate();
 
   return (
@@ -88,7 +95,7 @@ const Field = ({ fName, isDirty, min, max, maxLength, name, onChange, type, valu
       <input
         className="formInput"
         name={name}
-        onChange={onChange}
+        onChange={handleChange}
         type={type}
         value={value}
         required
@@ -100,7 +107,6 @@ const Field = ({ fName, isDirty, min, max, maxLength, name, onChange, type, valu
 
 Field.propTypes = {
   fName: PropTypes.string,
-  isDirty: PropTypes.bool,
   max: PropTypes.number,
   maxLength: PropTypes.string,
   min: PropTypes.number,

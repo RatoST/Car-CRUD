@@ -4,13 +4,12 @@ import Field from './Field';
 
 
 const AddUpdateForm = ({
-  car, handleInputChange, isDirty }) => {
+  car, handleInputChange }) => {
 
   return (
     <div className="flex-container">
       <Field
         fName="Brand"
-        isDirty={isDirty}
         maxLength="15"
         name="brand"
         onChange={handleInputChange}
@@ -19,7 +18,6 @@ const AddUpdateForm = ({
       />
       <Field
         fName="Country"
-        isDirty={isDirty}
         maxLength="15"
         name="country"
         onChange={handleInputChange}
@@ -28,7 +26,6 @@ const AddUpdateForm = ({
       />
       <Field
         fName="Model"
-        isDirty={isDirty}
         maxLength="15"
         name="model"
         onChange={handleInputChange}
@@ -37,7 +34,6 @@ const AddUpdateForm = ({
       />
       <Field
         fName="Year"
-        isDirty={isDirty}
         min={Number(1900)}
         max={Number(2021)}
         name="year"
@@ -47,7 +43,6 @@ const AddUpdateForm = ({
       />
       <Field
         fName="Serial number"
-        isDirty={isDirty}
         min={Number(99999999999)}
         max={Number(1000000000000)}
         name="serialNum"
@@ -57,7 +52,6 @@ const AddUpdateForm = ({
       />
       <Field
         fName="Description"
-        isDirty={isDirty}
         maxLength="30"
         name="description"
         onChange={handleInputChange}
@@ -79,7 +73,6 @@ AddUpdateForm.propTypes = {
     description: PropTypes.string,
   }),
   handleInputChange: PropTypes.func,
-  isDirty: PropTypes.bool,
 };
 
 export default AddUpdateForm;
