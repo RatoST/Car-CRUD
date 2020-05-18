@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 const Field = ({ fName, min, max, maxLength, name, onChange, type, value }) => {
   const [isDirty, setIsDirty] = useState(false);
+  const [initialValue, setInitialValue] = useState(value);
   const NONE = '';
 
   const validateEmpty = (inputText) => {
@@ -84,7 +85,9 @@ const Field = ({ fName, min, max, maxLength, name, onChange, type, value }) => {
   const handleChange = (event) => {
     event.preventDefault();
     onChange(event);
-    setIsDirty(true);
+    if (initialValue !== value) {
+      setIsDirty(true);
+    }
   };
 
   const errors = validate();
