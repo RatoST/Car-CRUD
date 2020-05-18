@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { v4 as uuidv4 } from 'uuid';
 
-const Field = ({ fName, min, max, maxLength, name, numOfDigit, onChange, type, value }) => {
+const Field = ({ fName, min, max, maxLength, name, onChange, type, value }) => {
   const validateEmpty = (inputText) => {
     if (inputText.length > 0) {
       return true;
@@ -25,26 +26,18 @@ const Field = ({ fName, min, max, maxLength, name, numOfDigit, onChange, type, v
     return `Max of ${M} characters allowed. `;
   };
 
-  // const validateDigit = (inputText, X) => {
-  //   const input = Number(inputText);
-  //   if (typeof input === 'number' && inputText.length === X) {
-  //     return true;
-  //   }
-  //   return `Input needs to have ${X} numbers. `;
-  // };
-
   const validateMin = (inputText, inputNum) => {
-    if (typeof inputText === 'number' && inputText > inputNum) {
-      return true;
-    }
-    return `Input should be less than ${inputNum} . `;
-  };
-
-  const validateMax = (inputText, inputNum) => {
-    if (typeof inputText === 'number' && inputText < inputNum) {
+    if (inputText > inputNum) {
       return true;
     }
     return `Input should be more than ${inputNum} . `;
+  };
+
+  const validateMax = (inputText, inputNum) => {
+    if (inputText < inputNum) {
+      return true;
+    }
+    return `Input should be less than ${inputNum} . `;
   };
 
   const validate = () => {
@@ -98,13 +91,16 @@ const Field = ({ fName, min, max, maxLength, name, numOfDigit, onChange, type, v
         value={value}
         required
       />
-      {errors.map(e => <span className="formWarning">{e}</span>)}
+      {errors.map(e => <span key={uuidv4()} className="formWarning">{e}</span>)}
     </label>
   );
 };
 
 Field.propTypes = {
   fName: PropTypes.string,
+  max: PropTypes.number,
+  maxLength: PropTypes.string,
+  min: PropTypes.number,
   name: PropTypes.string,
   onChange: PropTypes.func,
   type: PropTypes.string,
