@@ -6,10 +6,12 @@ const UpdateCarForm = ({
   currentCar, setUpdating, updateCar,
 }) => {
   const [car, setCar] = useState(currentCar);
+  const [isDirty, setIsDirty] = useState(false);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setCar({ ...car, [name]: value });
+    setIsDirty(true);
   };
 
   useEffect(() => {
@@ -19,10 +21,12 @@ const UpdateCarForm = ({
   const handleSubmit = (event) => {
     event.preventDefault();
     updateCar(car);
+    setIsDirty(false);
   };
 
   const handleCancel = () => {
     setUpdating(false);
+    setIsDirty(false);
   };
 
   return (
@@ -32,6 +36,7 @@ const UpdateCarForm = ({
       <AddUpdateForm
         car={car}
         handleInputChange={handleInputChange}
+        isDirty={isDirty}
       />
       <button type="submit" className="button add-button">Update car</button>
       <button

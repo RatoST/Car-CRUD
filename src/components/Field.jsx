@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
 
-const Field = ({ fName, min, max, maxLength, name, onChange, type, value }) => {
+const Field = ({ fName, isDirty, min, max, maxLength, name, onChange, type, value }) => {
+  const NONE = '';
+
   const validateEmpty = (inputText) => {
     if (inputText.length > 0) {
       return true;
@@ -91,13 +93,14 @@ const Field = ({ fName, min, max, maxLength, name, onChange, type, value }) => {
         value={value}
         required
       />
-      {errors.map(e => <span key={uuidv4()} className="formWarning">{e}</span>)}
+      {isDirty ? errors.map(e => <span key={uuidv4()} className="formWarning">{e}</span>) : NONE }
     </label>
   );
 };
 
 Field.propTypes = {
   fName: PropTypes.string,
+  isDirty: PropTypes.bool,
   max: PropTypes.number,
   maxLength: PropTypes.string,
   min: PropTypes.number,
