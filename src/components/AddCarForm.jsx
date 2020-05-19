@@ -1,22 +1,35 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import AddUpdateForm from './AddUpdateForm';
+import useCustomForm from './useCustomForm';
 
 const AddCarForm = ({
   addCar, initialFormState, setAdding }) => {
-  const [car, setCar] = useState(initialFormState);
+  const {
+    values,
+    errors,
+    touched,
+    handleChange,
+    handleBlur,
+    handleSubmit,
+  } = useCustomForm({
+    initialFormState,
+    onSubmit: values => addCar(values),
+  });
 
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setCar({ ...car, [name]: value });
-  };
+  // const [car, setCar] = useState(initialFormState);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    if (!car.brand || !car.country) return;
-    addCar(car);
-    setCar(initialFormState);
-  };
+  // const handleInputChange = (event) => {
+  //   const { name, value } = event.target;
+  //   setCar({ ...car, [name]: value });
+  // };
+
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   if (!car.brand || !car.country) return;
+  //   addCar(car);
+  //   setCar(initialFormState);
+  // };
 
   const handleCancel = () => {
     setAdding(false);
@@ -27,8 +40,10 @@ const AddCarForm = ({
       onSubmit={handleSubmit}
     >
       <AddUpdateForm
-        car={car}
-        handleInputChange={handleInputChange}
+        // car={car}
+        // handleInputChange={handleInputChange}
+        onChange={handleChange}
+        car={values}
       />
       <button className="button add-button" type="submit">Add new car</button>
       <button

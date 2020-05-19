@@ -4,7 +4,7 @@ import Field from './Field';
 
 
 const AddUpdateForm = ({
-  car, handleInputChange }) => {
+  onChange, car }) => {
 
   return (
     <div className="flex-container">
@@ -12,7 +12,7 @@ const AddUpdateForm = ({
         fName="Brand"
         maxLength="15"
         name="brand"
-        onChange={handleInputChange}
+        onChange={onChange}
         type="text"
         value={car.brand}
       />
@@ -20,7 +20,7 @@ const AddUpdateForm = ({
         fName="Country"
         maxLength="15"
         name="country"
-        onChange={handleInputChange}
+        onChange={onChange}
         type="text"
         value={car.country}
       />
@@ -28,7 +28,7 @@ const AddUpdateForm = ({
         fName="Model"
         maxLength="15"
         name="model"
-        onChange={handleInputChange}
+        onChange={onChange}
         type="text"
         value={car.model}
       />
@@ -37,7 +37,7 @@ const AddUpdateForm = ({
         min={Number(1900)}
         max={Number(2021)}
         name="year"
-        onChange={handleInputChange}
+        onChange={onChange}
         type="number"
         value={car.year}
       />
@@ -46,7 +46,7 @@ const AddUpdateForm = ({
         min={Number(99999999999)}
         max={Number(1000000000000)}
         name="serialNum"
-        onChange={handleInputChange}
+        onChange={onChange}
         type="number"
         value={car.serialNum}
       />
@@ -54,7 +54,7 @@ const AddUpdateForm = ({
         fName="Description"
         maxLength="30"
         name="description"
-        onChange={handleInputChange}
+        onChange={onChange}
         type="text"
         value={car.description}
       />
