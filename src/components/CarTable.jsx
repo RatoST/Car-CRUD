@@ -86,7 +86,6 @@ const CarTable = ({
               <UpdatedTableRow
                 car={car}
                 currentCarSerNum={currentCarSerNum}
-                sortAttribute={sortAttribute}
                 updating={updating}
                 updateRow={updateRow}
               />
