@@ -99,6 +99,7 @@ const Field = ({ fName, min, max, maxLength, name, onChange, type, value }) => {
         className="formInput"
         name={name}
         onChange={onChange}
+        
         type={type}
         value={value}
         required

@@ -4,7 +4,11 @@ import AddUpdateForm from './AddUpdateForm';
 import useCustomForm from './useCustomForm';
 
 const AddCarForm = ({
+
   addCar, initialFormState, setAdding }) => {
+
+  const [car, setCar] = useState(initialFormState);
+
   const {
     values,
     errors,
@@ -14,10 +18,7 @@ const AddCarForm = ({
     handleSubmit,
   } = useCustomForm({
     initialFormState,
-    onSubmit: values => addCar(values),
-  });
-
-  // const [car, setCar] = useState(initialFormState);
+    onSubmit: () => { addCar(values); setCar(values); } });
 
   // const handleInputChange = (event) => {
   //   const { name, value } = event.target;
@@ -40,10 +41,9 @@ const AddCarForm = ({
       onSubmit={handleSubmit}
     >
       <AddUpdateForm
-        // car={car}
+        car={values}
         // handleInputChange={handleInputChange}
         onChange={handleChange}
-        car={values}
       />
       <button className="button add-button" type="submit">Add new car</button>
       <button
