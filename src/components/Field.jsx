@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 const Field = ({ fName, min, max, maxLength, name, onChange, type, value }) => {
   const [isDirty, setIsDirty] = useState(false);
-  const [initialValue, setInitialValue] = useState(value);
+  const [initialValue] = useState(value);
   const NONE = '';
 
   const validateEmpty = (inputText) => {
@@ -82,15 +82,26 @@ const Field = ({ fName, min, max, maxLength, name, onChange, type, value }) => {
     return validationErrors;
   };
 
+  const errors = validate();
+
+  const handleValidation = () => {
+    if (errors !== true) {
+      console.log('Nije cisto');
+    } else {
+      console.log('Cisto je');
+    }
+  };
+
   const handleChange = (event) => {
     event.preventDefault();
     onChange(event);
     if (initialValue !== value) {
       setIsDirty(true);
     }
+    handleValidation();
   };
 
-  const errors = validate();
+
 
   return (
     <label className="formTitle">
