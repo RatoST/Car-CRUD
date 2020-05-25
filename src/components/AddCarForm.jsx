@@ -25,8 +25,11 @@ const AddCarForm = ({
   };
 
   const handleError = (event) => {
-    event.preventDefault();
+    event.stopPropagation();
   };
+
+  console.log(error);
+  
 
   return (
     <form
