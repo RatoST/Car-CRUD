@@ -2,14 +2,15 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
 
-const Field = ({ fName, min, max, maxLength, name, onChange, type, value }) => {
+
+const Field = ({ checkErrors, fName, min, max, maxLength, name, onChange, setError, type, value }) => {
   const [isDirty, setIsDirty] = useState(false);
   const [initialValue] = useState(value);
   const NONE = '';
 
   const validateEmpty = (inputText) => {
     if (inputText.length > 0) {
-      return true;
+      return false;
     }
     return 'Need to have at least 1 character. ';
   };
@@ -17,7 +18,7 @@ const Field = ({ fName, min, max, maxLength, name, onChange, type, value }) => {
   const validateIsNumeric = (inputText) => {
     const input = Number(inputText);
     if (typeof input === 'number') {
-      return true;
+      return false;
     }
     return 'Need to be a number. ';
   };
@@ -25,21 +26,21 @@ const Field = ({ fName, min, max, maxLength, name, onChange, type, value }) => {
   const validateMaxLength = (inputText, M) => {
     const inputLength = inputText.length;
     if (inputLength <= M) {
-      return true;
+      return false;
     }
     return `Max of ${M} characters allowed. `;
   };
 
   const validateMin = (inputText, inputNum) => {
     if (inputText > inputNum) {
-      return true;
+      return false;
     }
     return `Input should be more than ${inputNum} . `;
   };
 
   const validateMax = (inputText, inputNum) => {
     if (inputText < inputNum) {
-      return true;
+      return false;
     }
     return `Input should be less than ${inputNum} . `;
   };
@@ -47,34 +48,34 @@ const Field = ({ fName, min, max, maxLength, name, onChange, type, value }) => {
   const validate = () => {
     const validationErrors = [];
     if (type === 'number') {
-      const typeError = validateIsNumeric(value);
-      if (typeError) {
-        validationErrors.push(typeError);
+      const typeError1 = validateIsNumeric(value);
+      if (typeError1) {
+        validationErrors.push(typeError1);
       }
     }
     if (type === 'text') {
-      const typeError = validateEmpty(value);
-      if (typeError) {
-        validationErrors.push(typeError);
+      const typeError2 = validateEmpty(value);
+      if (typeError2) {
+        validationErrors.push(typeError2);
       }
     }
     if (type === 'number') {
-      const typeError = validateMin(value, min);
-      if (typeError) {
-        validationErrors.push(typeError);
+      const typeError3 = validateMin(value, min);
+      if (typeError3) {
+        validationErrors.push(typeError3);
       }
     }
     if (type === 'number') {
-      const typeError = validateMax(value, max);
-      if (typeError) {
-        validationErrors.push(typeError);
+      const typeError4 = validateMax(value, max);
+      if (typeError4) {
+        validationErrors.push(typeError4);
       }
     }
 
     if (type === 'text') {
-      const typeError = validateMaxLength(value, maxLength);
-      if (typeError) {
-        validationErrors.push(typeError);
+      const typeError5 = validateMaxLength(value, maxLength);
+      if (typeError5) {
+        validationErrors.push(typeError5);
       }
     }
 
@@ -84,24 +85,19 @@ const Field = ({ fName, min, max, maxLength, name, onChange, type, value }) => {
 
   const errors = validate();
 
-  const handleValidation = () => {
-    if (errors !== true) {
-      console.log('Nije cisto');
-    } else {
-      console.log('Cisto je');
-    }
-  };
-
   const handleChange = (event) => {
     event.preventDefault();
     onChange(event);
     if (initialValue !== value) {
       setIsDirty(true);
     }
-    handleValidation();
   };
 
-
+  if (checkErrors(errors) === true) {
+    setError(false);
+  } else {
+    setError(true);
+  }
 
   return (
     <label className="formTitle">
@@ -112,7 +108,6 @@ const Field = ({ fName, min, max, maxLength, name, onChange, type, value }) => {
         onChange={handleChange}
         type={type}
         value={value}
-        required
       />
       {isDirty ? errors.map(e => <span key={uuidv4()} className="formWarning">{e}</span>) : NONE }
     </label>
@@ -122,7 +117,7 @@ const Field = ({ fName, min, max, maxLength, name, onChange, type, value }) => {
 Field.propTypes = {
   fName: PropTypes.string,
   max: PropTypes.number,
-  maxLength: PropTypes.string,
+  maxLength: PropTypes.number,
   min: PropTypes.number,
   name: PropTypes.string,
   onChange: PropTypes.func,

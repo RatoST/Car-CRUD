@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import AddUpdateForm from './AddUpdateForm';
 
+
 const AddCarForm = ({
-  addCar, initialFormState, setAdding }) => {
+  addCar, checkErrors, initialFormState, setAdding }) => {
   const [car, setCar] = useState(initialFormState);
+  const [error, setError] = useState(false);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -22,15 +24,26 @@ const AddCarForm = ({
     setAdding(false);
   };
 
+  const handleError = (event) => {
+    event.preventDefault();
+  };
+
   return (
     <form
-      onSubmit={handleSubmit}
+      onSubmit={error ? handleSubmit : handleError}
     >
       <AddUpdateForm
         car={car}
+        checkErrors={checkErrors}
+        setError={setError}
         handleInputChange={handleInputChange}
       />
-      <button className="button add-button" type="submit">Add new car</button>
+      <button
+        className="button add-button"
+        type="submit"
+      >
+        Add new car
+      </button>
       <button
         className="button cancel-button"
         onClick={handleCancel}

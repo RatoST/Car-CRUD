@@ -4,57 +4,69 @@ import Field from './Field';
 
 
 const AddUpdateForm = ({
-  car, handleInputChange }) => {
+  car, checkErrors, handleInputChange, setError }) => {
 
   return (
     <div className="flex-container">
       <Field
+        checkErrors={checkErrors}
         fName="Brand"
-        maxLength="15"
+        maxLength={Number(15)}
         name="brand"
         onChange={handleInputChange}
+        setError={setError}
         type="text"
         value={car.brand}
       />
       <Field
+        checkErrors={checkErrors}
         fName="Country"
-        maxLength="15"
+        maxLength={Number(15)}
         name="country"
         onChange={handleInputChange}
+        setError={setError}
         type="text"
         value={car.country}
       />
       <Field
+        checkErrors={checkErrors}
         fName="Model"
-        maxLength="15"
+        maxLength={Number(15)}
         name="model"
         onChange={handleInputChange}
+        setError={setError}
         type="text"
         value={car.model}
       />
       <Field
+        checkErrors={checkErrors}
         fName="Year"
         min={Number(1900)}
         max={Number(2021)}
         name="year"
         onChange={handleInputChange}
+        setError={setError}
         type="number"
         value={car.year}
       />
       <Field
+        checkErrors={checkErrors}
         fName="Serial number"
         min={Number(99999999999)}
         max={Number(1000000000000)}
         name="serialNum"
         onChange={handleInputChange}
+        setError={setError}
         type="number"
         value={car.serialNum}
       />
       <Field
+        checkErrors={checkErrors}
         fName="Description"
-        maxLength="30"
+        maxLength={Number(30)}
         name="description"
         onChange={handleInputChange}
+        setError={setError}
         type="text"
         value={car.description}
       />

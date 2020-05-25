@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import { some } from 'lodash';
 import AddCarForm from './components/AddCarForm';
 import carsData from './components/carsData';
 import CarTable from './components/CarTable';
@@ -76,6 +77,11 @@ const App = () => {
   || (car.year.toLowerCase().includes(searchText.toLowerCase()))
   || (car.description.toLowerCase().includes(searchText.toLowerCase())));
 
+  const checkErrors = (errors) => {
+    const checking = some(errors, ve => ve);
+    return checking;
+  };
+
   return (
     <div className="container">
       <h1>CRUD App Cars</h1>
@@ -110,6 +116,7 @@ const App = () => {
               <h2>Add cars</h2>
               <AddCarForm
                 addCar={addCar}
+                checkErrors={checkErrors}
                 initialFormState={initialFormState}
                 setAdding={setAdding}
               />
