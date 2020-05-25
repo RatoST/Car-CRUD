@@ -84,7 +84,9 @@ AddUpdateForm.propTypes = {
     serialNum: PropTypes.string,
     description: PropTypes.string,
   }),
+  checkErrors: PropTypes.func,
   handleInputChange: PropTypes.func,
+  setError: PropTypes.func,
 };
 
 export default AddUpdateForm;

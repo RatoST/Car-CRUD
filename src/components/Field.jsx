@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
 
 
-const Field = ({ checkErrors, fName, min, max, maxLength, name, onChange, setError, type, value }) => {
+const Field = ({
+  checkErrors, fName, min, max, maxLength, name, onChange, setError, type, value,
+}) => {
   const [isDirty, setIsDirty] = useState(false);
   const [initialValue] = useState(value);
   const NONE = '';
@@ -115,12 +117,14 @@ const Field = ({ checkErrors, fName, min, max, maxLength, name, onChange, setErr
 };
 
 Field.propTypes = {
+  checkErrors: PropTypes.func,
   fName: PropTypes.string,
   max: PropTypes.number,
   maxLength: PropTypes.number,
   min: PropTypes.number,
   name: PropTypes.string,
   onChange: PropTypes.func,
+  setError: PropTypes.func,
   type: PropTypes.string,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };

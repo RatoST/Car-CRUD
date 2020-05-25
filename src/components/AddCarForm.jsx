@@ -57,6 +57,7 @@ const AddCarForm = ({
 
 AddCarForm.propTypes = {
   addCar: PropTypes.func.isRequired,
+  checkErrors: PropTypes.func,
   initialFormState: PropTypes.shape({
     id: PropTypes.string,
     brand: PropTypes.string,
