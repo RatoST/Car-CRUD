@@ -24,16 +24,16 @@ const AddCarForm = ({
     setAdding(false);
   };
 
-  const handleError = (event) => {
-    event.stopPropagation();
-  };
+  // const handleError = (event) => {
+  //   event.stopPropagation();
+  // };
 
   console.log(error);
-  
+
 
   return (
     <form
-      onSubmit={error ? handleSubmit : handleError}
+      onSubmit={handleSubmit}
     >
       <AddUpdateForm
         car={car}
@@ -42,6 +42,7 @@ const AddCarForm = ({
         handleInputChange={handleInputChange}
       />
       <button
+        disabled={!error}
         className="button add-button"
         type="submit"
       >
