@@ -92,13 +92,15 @@ const Field = ({
     onChange(event);
     if (initialValue !== value) {
       setIsDirty(true);
+    } else {
+      setIsDirty(false);
     }
   };
 
-  if (checkErrors(errors) === true) {
-    setError(false);
-  } else {
+  if (checkErrors(errors) !== true) {
     setError(true);
+  } if (checkErrors(errors) === true) {
+    setError(false);
   }
 
   return (
