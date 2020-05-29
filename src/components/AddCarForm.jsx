@@ -7,10 +7,22 @@ const AddCarForm = ({
   addCar, checkErrors, initialFormState, setAdding }) => {
   const [car, setCar] = useState(initialFormState);
   const [error, setError] = useState(false);
+  const [toggleButton, setToggleButton] = useState(false);
+  const [disableButton, setDisableButton] = useState(true);
 
   const handleInputChange = (event) => {
+    if (error === true) {
+      setToggleButton(true);
+    } else {
+      setToggleButton(false);
+    }
     const { name, value } = event.target;
     setCar({ ...car, [name]: value });
+    if (toggleButton === true) {
+      setDisableButton(false);
+    } if (toggleButton === false) {
+      setDisableButton(true);
+    }
   };
 
   const handleSubmit = (event) => {
@@ -25,6 +37,7 @@ const AddCarForm = ({
   };
 
   console.log('Error is ' + error);
+  console.log('Disable is ' + disableButton);
 
 
   return (
@@ -38,7 +51,7 @@ const AddCarForm = ({
         handleInputChange={handleInputChange}
       />
       <button
-        disabled={!error}
+        disabled={disableButton}
         className="button add-button"
         type="submit"
       >

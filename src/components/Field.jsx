@@ -95,13 +95,12 @@ const Field = ({
     } else {
       setIsDirty(false);
     }
+    if (checkErrors(errors) === true) {
+      setError(false);
+    } if (checkErrors(errors) !== true) {
+      setError(true);
+    }
   };
-
-  if (checkErrors(errors) !== true) {
-    setError(true);
-  } if (checkErrors(errors) === true) {
-    setError(false);
-  }
 
   return (
     <label className="formTitle">
