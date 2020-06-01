@@ -6,23 +6,12 @@ import AddUpdateForm from './AddUpdateForm';
 const AddCarForm = ({
   addCar, checkErrors, initialFormState, setAdding }) => {
   const [car, setCar] = useState(initialFormState);
-  const [error, setError] = useState(false);
-  const [toggleButton, setToggleButton] = useState(false);
-  const [disableButton, setDisableButton] = useState(true);
+  const [fieldError, setFieldError] = useState([]);
 
   const handleInputChange = (event) => {
-    if (error === true) {
-      setToggleButton(true);
-    } else {
-      setToggleButton(false);
-    }
     const { name, value } = event.target;
     setCar({ ...car, [name]: value });
-    if (toggleButton === true) {
-      setDisableButton(false);
-    } if (toggleButton === false) {
-      setDisableButton(true);
-    }
+    setFieldError({ ...fieldError, [name]: value });
   };
 
   const handleSubmit = (event) => {
@@ -36,10 +25,6 @@ const AddCarForm = ({
     setAdding(false);
   };
 
-  console.log('Error is ' + error);
-  console.log('Disable is ' + disableButton);
-
-
   return (
     <form
       onSubmit={handleSubmit}
@@ -47,11 +32,12 @@ const AddCarForm = ({
       <AddUpdateForm
         car={car}
         checkErrors={checkErrors}
-        setError={setError}
+        fieldError={fieldError}
+        setFieldError={setFieldError}
         handleInputChange={handleInputChange}
       />
       <button
-        disabled={disableButton}
+        // disabled=
         className="button add-button"
         type="submit"
       >

@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 
 const Field = ({
-  checkErrors, fName, min, max, maxLength, name, onChange, setError, type, value,
+  checkErrors, fName, fieldError, min, max, maxLength, name, onChange, setFieldError, type, value,
 }) => {
   const [isDirty, setIsDirty] = useState(false);
   const [initialValue] = useState(value);
@@ -85,9 +85,8 @@ const Field = ({
     return validationErrors;
   };
 
-  const errors = validate();
-
   const handleChange = (event) => {
+    const errors = validate();
     event.preventDefault();
     onChange(event);
     if (initialValue !== value) {
@@ -96,9 +95,9 @@ const Field = ({
       setIsDirty(false);
     }
     if (checkErrors(errors) === true) {
-      setError(false);
+      setFieldError(errors);
     } if (checkErrors(errors) !== true) {
-      setError(true);
+      setFieldError([]);
     }
   };
 
@@ -112,7 +111,8 @@ const Field = ({
         type={type}
         value={value}
       />
-      {isDirty ? errors.map(e => <span key={uuidv4()} className="formWarning">{e}</span>) : NONE }
+      {isDirty ? <span className="formWarning">{fieldError}</span> : NONE}
+      {/* {isDirty ? fieldError.map(e => <span key={uuidv4()} className="formWarning">{e}</span>) : NONE } */}
     </label>
   );
 };
@@ -125,7 +125,7 @@ Field.propTypes = {
   min: PropTypes.number,
   name: PropTypes.string,
   onChange: PropTypes.func,
-  setError: PropTypes.func,
+  setFieldError: PropTypes.func,
   type: PropTypes.string,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
