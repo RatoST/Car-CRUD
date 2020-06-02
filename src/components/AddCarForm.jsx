@@ -4,9 +4,17 @@ import AddUpdateForm from './AddUpdateForm';
 
 
 const AddCarForm = ({
-  addCar, checkErrors, initialFormState, setAdding }) => {
+  addCar, initialFormState, setAdding }) => {
   const [car, setCar] = useState(initialFormState);
-  const [fieldError, setFieldError] = useState([]);
+  const initialErrorState = {
+    brand: ['Need to have at least 1 character. ', 'Max of 15 characters allowed.'],
+    country: ['Need to have at least 1 character. ', 'Max of 15 characters allowed.'],
+    model: ['Need to have at least 1 character. ', 'Max of 15 characters allowed.'],
+    year: ['Need to be a number. ', 'Input should be more than 1900. ', 'Input should be less than 2020. . '],
+    serialNum: ['Need to be a number. ', 'Input should be more than 99999999999. ', 'Input should be less than 1000000000000. . '],
+    description: ['Need to have at least 1 character. ', 'Max of 30 characters allowed.'],
+  };
+  const [fieldError, setFieldError] = useState([initialErrorState]);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -31,9 +39,6 @@ const AddCarForm = ({
     >
       <AddUpdateForm
         car={car}
-        checkErrors={checkErrors}
-        fieldError={fieldError}
-        setFieldError={setFieldError}
         handleInputChange={handleInputChange}
       />
       <button
@@ -56,7 +61,6 @@ const AddCarForm = ({
 
 AddCarForm.propTypes = {
   addCar: PropTypes.func.isRequired,
-  checkErrors: PropTypes.func,
   initialFormState: PropTypes.shape({
     id: PropTypes.string,
     brand: PropTypes.string,

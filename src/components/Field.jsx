@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
+import isValid from '../utils';
 
 
 const Field = ({
-  checkErrors, fName, fieldError, min, max, maxLength, name, onChange, setFieldError, type, value,
+  fName, min, max, maxLength, name, onChange, type, value,
 }) => {
   const [isDirty, setIsDirty] = useState(false);
   const [initialValue] = useState(value);
+  const [fieldError, setFieldError] = useState({});
   const NONE = '';
 
   const validateEmpty = (inputText) => {
@@ -87,6 +89,7 @@ const Field = ({
 
   const handleChange = (event) => {
     const errors = validate();
+    setFieldError(errors);
     event.preventDefault();
     onChange(event);
     if (initialValue !== value) {
@@ -94,11 +97,7 @@ const Field = ({
     } else {
       setIsDirty(false);
     }
-    if (checkErrors(errors) === true) {
-      setFieldError(errors);
-    } if (checkErrors(errors) !== true) {
-      setFieldError([]);
-    }
+    isValid(errors);
   };
 
   return (
@@ -111,21 +110,18 @@ const Field = ({
         type={type}
         value={value}
       />
-      {isDirty ? <span className="formWarning">{fieldError}</span> : NONE}
-      {/* {isDirty ? fieldError.map(e => <span key={uuidv4()} className="formWarning">{e}</span>) : NONE } */}
+      {isDirty ? fieldError.map(e => <span key={uuidv4()} className="formWarning">{e}</span>) : NONE }
     </label>
   );
 };
 
 Field.propTypes = {
-  checkErrors: PropTypes.func,
   fName: PropTypes.string,
   max: PropTypes.number,
   maxLength: PropTypes.number,
   min: PropTypes.number,
   name: PropTypes.string,
   onChange: PropTypes.func,
-  setFieldError: PropTypes.func,
   type: PropTypes.string,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
