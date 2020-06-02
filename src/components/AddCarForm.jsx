@@ -1,25 +1,28 @@
 import React, { useState } from 'react';
+import { isEmpty } from 'lodash';
 import PropTypes from 'prop-types';
+import isValid from '../utils';
 import AddUpdateForm from './AddUpdateForm';
 
 
 const AddCarForm = ({
   addCar, initialFormState, setAdding }) => {
   const [car, setCar] = useState(initialFormState);
-  const initialErrorState = {
-    brand: ['Need to have at least 1 character. ', 'Max of 15 characters allowed.'],
-    country: ['Need to have at least 1 character. ', 'Max of 15 characters allowed.'],
-    model: ['Need to have at least 1 character. ', 'Max of 15 characters allowed.'],
-    year: ['Need to be a number. ', 'Input should be more than 1900. ', 'Input should be less than 2020. . '],
-    serialNum: ['Need to be a number. ', 'Input should be more than 99999999999. ', 'Input should be less than 1000000000000. . '],
-    description: ['Need to have at least 1 character. ', 'Max of 30 characters allowed.'],
-  };
-  const [fieldError, setFieldError] = useState([initialErrorState]);
+  const [fieldError, setFieldError] = useState({});
+  const [valid, setValid] = useState(false);
 
-  const handleInputChange = (event) => {
+  const handleInputChange = (event, errors, nameEr) => {
     const { name, value } = event.target;
     setCar({ ...car, [name]: value });
-    setFieldError({ ...fieldError, [name]: value });
+    setFieldError({ ...fieldError, [nameEr]: errors });
+    if (fieldError[nameEr] && !isEmpty(fieldError[nameEr])) {
+      setValid(false);
+    } else {
+      setValid(true);
+    }
+    // if (isValid(errors) === true) {
+    //   setValid(true);
+    // }
   };
 
   const handleSubmit = (event) => {
@@ -39,10 +42,11 @@ const AddCarForm = ({
     >
       <AddUpdateForm
         car={car}
+        fieldError={fieldError}
         handleInputChange={handleInputChange}
       />
       <button
-        // disabled=
+        disabled={valid}
         className="button add-button"
         type="submit"
       >

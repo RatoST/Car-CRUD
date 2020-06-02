@@ -1,15 +1,12 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
-import isValid from '../utils';
-
 
 const Field = ({
-  fName, min, max, maxLength, name, onChange, type, value,
+  fName, fieldError, min, max, maxLength, name, onChange, type, value,
 }) => {
   const [isDirty, setIsDirty] = useState(false);
   const [initialValue] = useState(value);
-  const [fieldError, setFieldError] = useState({});
   const NONE = '';
 
   const validateEmpty = (inputText) => {
@@ -89,15 +86,13 @@ const Field = ({
 
   const handleChange = (event) => {
     const errors = validate();
-    setFieldError(errors);
     event.preventDefault();
-    onChange(event);
+    onChange(event, errors, name);
     if (initialValue !== value) {
       setIsDirty(true);
     } else {
       setIsDirty(false);
     }
-    isValid(errors);
   };
 
   return (
@@ -110,7 +105,7 @@ const Field = ({
         type={type}
         value={value}
       />
-      {isDirty ? fieldError.map(e => <span key={uuidv4()} className="formWarning">{e}</span>) : NONE }
+      {/* {isDirty ? fieldError.map(e => <span key={uuidv4()} className="formWarning">{e}</span>) : NONE } */}
     </label>
   );
 };
