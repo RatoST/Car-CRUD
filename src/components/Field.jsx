@@ -95,6 +95,7 @@ const Field = ({
     }
   };
 
+  const errorMsg = fieldError[name];
   return (
     <label className="formTitle">
       {fName}
@@ -105,7 +106,7 @@ const Field = ({
         type={type}
         value={value}
       />
-      {/* {isDirty ? fieldError.map(e => <span key={uuidv4()} className="formWarning">{e}</span>) : NONE } */}
+      {isDirty ? errorMsg.map(e => <span key={uuidv4()} className="formWarning">{e}</span>) : NONE }
     </label>
   );
 };

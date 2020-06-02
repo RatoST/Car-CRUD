@@ -9,20 +9,18 @@ const AddCarForm = ({
   addCar, initialFormState, setAdding }) => {
   const [car, setCar] = useState(initialFormState);
   const [fieldError, setFieldError] = useState({});
-  const [valid, setValid] = useState(false);
+  const [isFormValid, setIsFormValid] = useState(false);
 
   const handleInputChange = (event, errors, nameEr) => {
     const { name, value } = event.target;
     setCar({ ...car, [name]: value });
     setFieldError({ ...fieldError, [nameEr]: errors });
-    if (fieldError[nameEr] && !isEmpty(fieldError[nameEr])) {
-      setValid(false);
-    } else {
-      setValid(true);
+    if (isValid(errors) === false) {
+      setIsFormValid(false);
     }
-    // if (isValid(errors) === true) {
-    //   setValid(true);
-    // }
+    if (isValid(errors) === true) {
+      setIsFormValid(true);
+    }
   };
 
   const handleSubmit = (event) => {
@@ -46,7 +44,7 @@ const AddCarForm = ({
         handleInputChange={handleInputChange}
       />
       <button
-        disabled={valid}
+        disabled={isFormValid}
         className="button add-button"
         type="submit"
       >
