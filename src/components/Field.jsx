@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { isEmpty } from 'lodash';
 import PropTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -87,7 +88,8 @@ const Field = ({
   const handleChange = (event) => {
     const errors = validate();
     event.preventDefault();
-    onChange(event, errors, name);
+    const checkIfAnyError = fieldError[name] && !isEmpty(fieldError[name]);
+    onChange(event, errors, name, checkIfAnyError);
     if (initialValue !== value) {
       setIsDirty(true);
     } else {

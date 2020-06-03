@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { isEmpty } from 'lodash';
 import PropTypes from 'prop-types';
 import isValid from '../utils';
 import AddUpdateForm from './AddUpdateForm';
@@ -11,14 +10,14 @@ const AddCarForm = ({
   const [fieldError, setFieldError] = useState({});
   const [isFormValid, setIsFormValid] = useState(false);
 
-  const handleInputChange = (event, errors, nameEr) => {
+  const handleInputChange = (event, errors, nameEr, checkIfAnyError) => {
     const { name, value } = event.target;
     setCar({ ...car, [name]: value });
     setFieldError({ ...fieldError, [nameEr]: errors });
-    if (isValid(errors) === false) {
+    if (checkIfAnyError === false) {
       setIsFormValid(false);
     }
-    if (isValid(errors) === true) {
+    if (checkIfAnyError === true) {
       setIsFormValid(true);
     }
   };
