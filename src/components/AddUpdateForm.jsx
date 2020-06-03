@@ -7,7 +7,7 @@ const AddUpdateForm = ({ car, fieldError, handleInputChange }) => (
   <div className="flex-container">
     <Field
       fName="Brand"
-      fieldError={fieldError}
+      fieldError={fieldError.brand}
       maxLength={Number(15)}
       name="brand"
       onChange={handleInputChange}
@@ -16,7 +16,7 @@ const AddUpdateForm = ({ car, fieldError, handleInputChange }) => (
     />
     <Field
       fName="Country"
-      fieldError={fieldError}
+      fieldError={fieldError.country}
       maxLength={Number(15)}
       name="country"
       onChange={handleInputChange}
@@ -25,7 +25,7 @@ const AddUpdateForm = ({ car, fieldError, handleInputChange }) => (
     />
     <Field
       fName="Model"
-      fieldError={fieldError}
+      fieldError={fieldError.model}
       maxLength={Number(15)}
       name="model"
       onChange={handleInputChange}
@@ -34,7 +34,7 @@ const AddUpdateForm = ({ car, fieldError, handleInputChange }) => (
     />
     <Field
       fName="Year"
-      fieldError={fieldError}
+      fieldError={fieldError.year}
       min={Number(1900)}
       max={Number(2021)}
       name="year"
@@ -44,7 +44,7 @@ const AddUpdateForm = ({ car, fieldError, handleInputChange }) => (
     />
     <Field
       fName="Serial number"
-      fieldError={fieldError}
+      fieldError={fieldError.serialNum}
       min={Number(99999999999)}
       max={Number(1000000000000)}
       name="serialNum"
@@ -54,7 +54,7 @@ const AddUpdateForm = ({ car, fieldError, handleInputChange }) => (
     />
     <Field
       fName="Description"
-      fieldError={fieldError}
+      fieldError={fieldError.description}
       maxLength={Number(30)}
       name="description"
       onChange={handleInputChange}
