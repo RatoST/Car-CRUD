@@ -7,6 +7,7 @@ const Field = ({
   fName, fieldError, min, max, maxLength, name, onChange, type, value,
 }) => {
   const [isDirty, setIsDirty] = useState(false);
+  const [isFieldInError, setIsFieldInError] = useState(false);
   const [initialValue] = useState(value);
   const NONE = '';
 
@@ -95,6 +96,12 @@ const Field = ({
     } else {
       setIsDirty(false);
     }
+    if (checkIfAnyError === true) {
+      setIsFieldInError(true);
+    }
+    if (checkIfAnyError === false) {
+      setIsFieldInError(false);
+    }
   };
 
   const errorMsg = fieldError[name];
@@ -108,7 +115,7 @@ const Field = ({
         type={type}
         value={value}
       />
-      {isDirty ? errorMsg.map(e => <span key={uuidv4()} className="formWarning">{e}</span>) : NONE }
+      {isDirty ? isFieldInError && (errorMsg.map(e => <span key={uuidv4()} className="formWarning">{e}</span>)) : NONE }
     </label>
   );
 };

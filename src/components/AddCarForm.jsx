@@ -20,6 +20,9 @@ const AddCarForm = ({
     if (checkIfAnyError === true) {
       setIsFormValid(true);
     }
+    console.log("isValid " + isValid(errors));
+    console.log("checkIfAnyError " + checkIfAnyError);
+    
   };
 
   const handleSubmit = (event) => {
