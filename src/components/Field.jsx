@@ -115,7 +115,7 @@ const Field = ({
         type={type}
         value={value}
       />
-      {isDirty ? isFieldInError && (errorMsg.map(e => <span key={uuidv4()} className="formWarning">{e}</span>)) : NONE }
+      {isDirty && (isFieldInError && (errorMsg.map(e => <span key={uuidv4()} className="formWarning">{e}</span>)))}
     </label>
   );
 };
