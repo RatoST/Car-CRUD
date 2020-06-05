@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import AddUpdateForm from './AddUpdateForm';
+import Fields from './Fields';
 
 const UpdateCarForm = ({
   currentCar, setUpdating, updateCar,
@@ -29,7 +29,7 @@ const UpdateCarForm = ({
     <form
       onSubmit={handleSubmit}
     >
-      <AddUpdateForm
+      <Fields
         car={car}
         handleInputChange={handleInputChange}
       />

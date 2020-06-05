@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
 
 const Field = ({
-  fName, fieldErrors, min, max, maxLength, name, onChange, type, value,
+  label, fieldErrors, min, max, maxLength, name, onChange, type, value,
 }) => {
   const [isDirty, setIsDirty] = useState(false);
   const [initialValue] = useState(value);
@@ -96,7 +96,7 @@ const Field = ({
 
   return (
     <label className="formTitle">
-      {fName}
+      {label}
       <input
         className="formInput"
         name={name}
@@ -110,7 +110,7 @@ const Field = ({
 };
 
 Field.propTypes = {
-  fName: PropTypes.string,
+  label: PropTypes.string,
   fieldErrors: PropTypes.arrayOf(PropTypes.string),
   max: PropTypes.number,
   maxLength: PropTypes.number,

@@ -2,15 +2,15 @@ import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import PropTypes from 'prop-types';
 import Field from './Field';
-import fields from './fields';
+import fieldsValue from './fieldsValue';
 
 
-const AddUpdateForm = ({ car, handleInputChange, vadlidationErrors = {} }) => (
+const Fields = ({ car, handleInputChange, vadlidationErrors = {} }) => (
   <div className="flex-container">
-    {fields.map((field) => (
+    {fieldsValue.map((field) => (
       <Field
         key={uuidv4()}
-        fName={field.fName}
+        label={field.label}
         fieldErrors={vadlidationErrors[field.name]}
         maxLength={field.maxLength}
         name={field.name}
@@ -21,7 +21,7 @@ const AddUpdateForm = ({ car, handleInputChange, vadlidationErrors = {} }) => (
   </div>
 );
 
-AddUpdateForm.propTypes = {
+Fields.propTypes = {
   car: PropTypes.shape({
     id: PropTypes.string,
     brand: PropTypes.string,
@@ -38,4 +38,4 @@ AddUpdateForm.propTypes = {
   }),
 };
 
-export default AddUpdateForm;
+export default Fields;

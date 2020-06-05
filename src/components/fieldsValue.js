@@ -1,37 +1,37 @@
 
-const fields = [{
-  fName: 'Brand',
+const fieldsValue = [{
+  label: 'Brand',
   maxLength: 15,
   name: 'brand',
   type: 'text',
 }, {
-  fName: 'Country',
+  label: 'Country',
   maxLength: 15,
   name: 'country',
   type: 'text',
 }, {
-  fName: 'Model',
+  label: 'Model',
   maxLength: 15,
   name: 'model',
   type: 'text',
 }, {
-  fName: 'Year',
+  label: 'Year',
   min: 1900,
   max: 2021,
   name: 'year',
   type: 'number',
 }, {
-  fName: 'Serial Number',
+  label: 'Serial Number',
   min: 99999999999,
   max: 1000000000000,
   name: 'serialNum',
   type: 'number',
 }, {
-  fName: 'Description',
+  label: 'Description',
   maxLength: 30,
   name: 'description',
   type: 'text',
 },
 ];
 
-export default fields;
+export default fieldsValue;
