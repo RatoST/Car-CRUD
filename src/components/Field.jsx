@@ -1,15 +1,12 @@
 import React, { useState } from 'react';
-import { isEmpty } from 'lodash';
 import PropTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
 
 const Field = ({
-  fName, fieldError, min, max, maxLength, name, onChange, type, value,
+  fName, fieldErrors, min, max, maxLength, name, onChange, type, value,
 }) => {
   const [isDirty, setIsDirty] = useState(false);
-  const [isFieldInError, setIsFieldInError] = useState(false);
   const [initialValue] = useState(value);
-  const NONE = '';
 
   const validateEmpty = (inputText) => {
     if (inputText.length > 0) {
@@ -48,35 +45,35 @@ const Field = ({
     return `Input should be less than ${inputNum} . `;
   };
 
-  const validate = () => {
+  const validate = (currentValue) => {
     const validationErrors = [];
     if (type === 'number') {
-      const typeError1 = validateIsNumeric(value);
+      const typeError1 = validateIsNumeric(currentValue);
       if (typeError1) {
         validationErrors.push(typeError1);
       }
     }
     if (type === 'text') {
-      const typeError2 = validateEmpty(value);
+      const typeError2 = validateEmpty(currentValue);
       if (typeError2) {
         validationErrors.push(typeError2);
       }
     }
     if (type === 'number') {
-      const typeError3 = validateMin(value, min);
+      const typeError3 = validateMin(currentValue, min);
       if (typeError3) {
         validationErrors.push(typeError3);
       }
     }
     if (type === 'number') {
-      const typeError4 = validateMax(value, max);
+      const typeError4 = validateMax(currentValue, max);
       if (typeError4) {
         validationErrors.push(typeError4);
       }
     }
 
     if (type === 'text') {
-      const typeError5 = validateMaxLength(value, maxLength);
+      const typeError5 = validateMaxLength(currentValue, maxLength);
       if (typeError5) {
         validationErrors.push(typeError5);
       }
@@ -87,24 +84,16 @@ const Field = ({
   };
 
   const handleChange = (event) => {
-    const errors = validate();
+    const errors = validate(event.target.value);
     event.preventDefault();
-    const checkIfAnyError = fieldError[name] && !isEmpty(fieldError[name]);
-    onChange(event, errors, name, checkIfAnyError);
+    onChange(event, errors, name);
     if (initialValue !== value) {
       setIsDirty(true);
     } else {
       setIsDirty(false);
     }
-    if (checkIfAnyError === true) {
-      setIsFieldInError(true);
-    }
-    if (checkIfAnyError === false) {
-      setIsFieldInError(false);
-    }
   };
 
-  const errorMsg = fieldError[name];
   return (
     <label className="formTitle">
       {fName}
@@ -115,13 +104,14 @@ const Field = ({
         type={type}
         value={value}
       />
-      {isDirty && (isFieldInError && (errorMsg.map(e => <span key={uuidv4()} className="formWarning">{e}</span>)))}
+      {isDirty && fieldErrors.map(e => <span key={uuidv4()} className="formWarning">{e}</span>)}
     </label>
   );
 };
 
 Field.propTypes = {
   fName: PropTypes.string,
+  fieldErrors: PropTypes.arrayOf(PropTypes.string),
   max: PropTypes.number,
   maxLength: PropTypes.number,
   min: PropTypes.number,

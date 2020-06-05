@@ -7,18 +7,18 @@ import AddUpdateForm from './AddUpdateForm';
 const AddCarForm = ({
   addCar, initialFormState, setAdding }) => {
   const [car, setCar] = useState(initialFormState);
-  const [fieldError, setFieldError] = useState({});
+  const [validationErrors, setValidationErrors] = useState({});
   const [isFormValid, setIsFormValid] = useState(false);
 
-  const handleInputChange = (event, errors, nameEr, checkIfAnyError) => {
+  const handleInputChange = (event, errors) => {
     const { name, value } = event.target;
     setCar({ ...car, [name]: value });
-    setFieldError({ ...fieldError, [nameEr]: errors });
-    if (checkIfAnyError === false) {
-      setIsFormValid(false);
-    }
-    if (checkIfAnyError === true) {
+    const allErrors = ({ ...validationErrors, [name]: errors });
+    setValidationErrors(allErrors);
+    if (!isValid(allErrors)) {
       setIsFormValid(true);
+    } else {
+      setIsFormValid(false);
     }
   };
 
@@ -39,7 +39,7 @@ const AddCarForm = ({
     >
       <AddUpdateForm
         car={car}
-        fieldError={fieldError}
+        vadlidationErrors={validationErrors}
         handleInputChange={handleInputChange}
       />
       <button

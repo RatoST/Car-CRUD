@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import Field from './Field';
 
 
-const AddUpdateForm = ({ car, fieldError, handleInputChange }) => (
+const AddUpdateForm = ({ car, handleInputChange, vadlidationErrors = {} }) => (
   <div className="flex-container">
     <Field
       fName="Brand"
-      fieldError={fieldError.brand}
+      fieldErrors={vadlidationErrors.brand}
       maxLength={Number(15)}
       name="brand"
       onChange={handleInputChange}
@@ -16,7 +16,7 @@ const AddUpdateForm = ({ car, fieldError, handleInputChange }) => (
     />
     <Field
       fName="Country"
-      fieldError={fieldError.country}
+      fieldErrors={vadlidationErrors.country}
       maxLength={Number(15)}
       name="country"
       onChange={handleInputChange}
@@ -25,7 +25,7 @@ const AddUpdateForm = ({ car, fieldError, handleInputChange }) => (
     />
     <Field
       fName="Model"
-      fieldError={fieldError.model}
+      fieldErrors={vadlidationErrors.model}
       maxLength={Number(15)}
       name="model"
       onChange={handleInputChange}
@@ -34,7 +34,7 @@ const AddUpdateForm = ({ car, fieldError, handleInputChange }) => (
     />
     <Field
       fName="Year"
-      fieldError={fieldError.year}
+      fieldErrors={vadlidationErrors.year}
       min={Number(1900)}
       max={Number(2021)}
       name="year"
@@ -44,7 +44,7 @@ const AddUpdateForm = ({ car, fieldError, handleInputChange }) => (
     />
     <Field
       fName="Serial number"
-      fieldError={fieldError.serialNum}
+      fieldErrors={vadlidationErrors.serialNum}
       min={Number(99999999999)}
       max={Number(1000000000000)}
       name="serialNum"
@@ -54,7 +54,7 @@ const AddUpdateForm = ({ car, fieldError, handleInputChange }) => (
     />
     <Field
       fName="Description"
-      fieldError={fieldError.description}
+      fieldErrors={vadlidationErrors.description}
       maxLength={Number(30)}
       name="description"
       onChange={handleInputChange}
@@ -76,6 +76,7 @@ AddUpdateForm.propTypes = {
     description: PropTypes.string,
   }),
   handleInputChange: PropTypes.func,
+  vadlidationErrors: PropTypes.shape(PropTypes.array),
 };
 
 export default AddUpdateForm;
