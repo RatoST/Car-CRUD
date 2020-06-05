@@ -21,7 +21,6 @@ const AddUpdateForm = ({ car, handleInputChange, vadlidationErrors = {} }) => (
   </div>
 );
 
-
 AddUpdateForm.propTypes = {
   car: PropTypes.shape({
     id: PropTypes.string,
@@ -33,7 +32,10 @@ AddUpdateForm.propTypes = {
     description: PropTypes.string,
   }),
   handleInputChange: PropTypes.func,
-  vadlidationErrors: PropTypes.shape(PropTypes.array),
+  vadlidationErrors: PropTypes.shape({
+    type: PropTypes.string,
+    default: PropTypes.string,
+  }),
 };
 
 export default AddUpdateForm;
