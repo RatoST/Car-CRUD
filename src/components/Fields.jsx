@@ -1,5 +1,4 @@
 import React from 'react';
-import { v4 as uuidv4 } from 'uuid';
 import PropTypes from 'prop-types';
 import Field from './Field';
 import fieldsValue from './fieldsValue';
@@ -9,10 +8,12 @@ const Fields = ({ car, handleInputChange, vadlidationErrors = {} }) => (
   <div className="flex-container">
     {fieldsValue.map((field) => (
       <Field
-        key={uuidv4()}
+        key={field.id}
         label={field.label}
         fieldErrors={vadlidationErrors[field.name]}
+        max={field.max}
         maxLength={field.maxLength}
+        min={field.min}
         name={field.name}
         onChange={handleInputChange}
         type={field.type}

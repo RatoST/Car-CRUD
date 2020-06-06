@@ -1,15 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import isValid from '../utils';
 import Fields from './Fields';
 
 const UpdateCarForm = ({
   currentCar, setUpdating, updateCar,
 }) => {
   const [car, setCar] = useState(currentCar);
+  const [validationErrors, setValidationErrors] = useState({});
+  const [isFormValid, setIsFormValid] = useState(false);
 
-  const handleInputChange = (event) => {
+  const handleInputChange = (event, errors) => {
     const { name, value } = event.target;
     setCar({ ...car, [name]: value });
+    const allErrors = ({ ...validationErrors, [name]: errors });
+    setValidationErrors(allErrors);
+    if (!isValid(allErrors)) {
+      setIsFormValid(true);
+    } else {
+      setIsFormValid(false);
+    }
   };
 
   useEffect(() => {
@@ -32,8 +42,15 @@ const UpdateCarForm = ({
       <Fields
         car={car}
         handleInputChange={handleInputChange}
+        vadlidationErrors={validationErrors}
       />
-      <button type="submit" className="button add-button">Update car</button>
+      <button
+        className="button add-button"
+        disabled={isFormValid}
+        type="submit"
+      >
+        Update car
+      </button>
       <button
         type="submit"
         onClick={handleCancel}

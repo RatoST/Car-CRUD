@@ -39,12 +39,12 @@ const AddCarForm = ({
     >
       <Fields
         car={car}
-        vadlidationErrors={validationErrors}
         handleInputChange={handleInputChange}
+        vadlidationErrors={validationErrors}
       />
       <button
-        disabled={isFormValid}
         className="button add-button"
+        disabled={isFormValid}
         type="submit"
       >
         Add new car
