@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import isValid from '../utils';
 import Fields from './Fields';
 
-
 const AddCarForm = ({
   addCar, initialFormState, setAdding }) => {
   const [car, setCar] = useState(initialFormState);
@@ -24,10 +23,12 @@ const AddCarForm = ({
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (!car.brand || !car.country) return;
+    if (!car.brand || !car.country || !car.model
+      || !car.year || !car.serialNum || !car.description) return;
     addCar(car);
     setCar(initialFormState);
   };
+
 
   const handleCancel = () => {
     setAdding(false);

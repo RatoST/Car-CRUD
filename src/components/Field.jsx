@@ -86,7 +86,7 @@ const Field = ({
   const handleChange = (event) => {
     const errors = validate(event.target.value);
     event.preventDefault();
-    onChange(event, errors, name);
+    onChange(event, errors);
     if (initialValue !== value) {
       setIsDirty(true);
     } else {
